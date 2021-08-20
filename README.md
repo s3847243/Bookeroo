@@ -3,22 +3,20 @@
 # Group Day-Time
 
 ## Members
-* xxxxx
-* xxxxx
-* xxxxx
-* xxxxx
+* Hibbaan Mohammed Nawaz 
+* Ross Alexopoulos
+* Jeffrey Tan
+* Allister Toos
 
 ## Records
 
-* Github repository :https://github.com/xxx
-* jira Board : https://xxxx
-* Google Docs : https://drive.google.com/xxxx
+* Github repository : https://github.com/s3847243/Bookeroo
+* jira Board : https://bookeroo.atlassian.net/jira/software/projects/BOOK/boards/1
+* Sharepoint Files : https://rmiteduau.sharepoint.com/sites/SEPTTeam3Friday1030am/Shared%20Documents/Forms/AllItems.aspx
 
 	
 ## Code documentation - Release 0.1.0 - date
-* feature 1
-* feature 2
-* feature 3
+* No features - (inital commit to master)
   
 
 To run the application locally : 
