@@ -13,7 +13,8 @@ class Register extends Component {
       fullName: "",
       password: "",
       confirmPassword: "",
-      errors: {}
+      errors: {},
+      isBusiness: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -36,8 +37,23 @@ class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
-
+    console.log("this.props.createNewUser", this.props.createNewUser)
     this.props.createNewUser(newUser, this.props.history);
+  }
+
+  handleUserChange(e) {
+    const businessSelected = e.target.value == "Public User" ? false : true;
+    const abnFeild = document.getElementById("abn-field");
+    if(businessSelected) {
+      abnFeild.removeAttribute("disabled")
+    } 
+    else 
+    {
+      abnFeild.setAttribute("disabled", "");
+      abnFeild.value = "";
+    } 
+    
+    this.state.isBusiness = businessSelected;
   }
 
   onChange(e) {
@@ -52,7 +68,7 @@ class Register extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Account</p>
-              <form action="create-profile.html">
+              <form action = "create-profile.html" >
                 <div className="form-group">
                   <input
                     type="text"
@@ -92,6 +108,22 @@ class Register extends Component {
                     name="password2"
                   />
                 </div>
+                <div className="form-group">
+                  <input type="radio" value="Public User" name="user-type" onChange={e => this.handleUserChange(e)} required/> Public User <br></br>
+                  <input type="radio" value="Business User" name="user-type" onChange={e => this.handleUserChange(e)} required/> Business User
+                </div>
+
+                <div className="form-group">
+                  <input
+                    id= "abn-field"
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Your ABN"
+                    name="abn"
+                    disabled
+                  />
+                </div>
+
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
