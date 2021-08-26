@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { createNewUser } from "../../actions/securityActions";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+// import { createNewUser } from "../../actions/securityActions";
+// import PropTypes from "prop-types";
+// import { connect } from "react-redux";
 import classnames from "classnames";
 
 class Register extends Component {
@@ -42,7 +42,7 @@ class Register extends Component {
   }
 
   handleUserChange(e) {
-    const businessSelected = e.target.value == "Public User" ? false : true;
+    const businessSelected = e.target.value === "Public User" ? false : true;
     const abnFeild = document.getElementById("abn-field");
     if(businessSelected) {
       abnFeild.removeAttribute("disabled")
@@ -53,7 +53,9 @@ class Register extends Component {
       abnFeild.value = "";
     } 
     
-    this.state.isBusiness = businessSelected;
+    this.setState({
+      isBusiness: businessSelected
+    });
   }
 
   onChange(e) {
