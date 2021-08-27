@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { login } from "../../actions/securityActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+
 
 class Login extends Component {
   constructor(){
@@ -8,6 +12,7 @@ class Login extends Component {
     username: "",
     password: "",
     errors: {},
+    loginError: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -30,9 +35,7 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    console.log("this.props.createNewUser", login)
-    console.log(credentials);
-    login(credentials, this.props.history);
+    this.setState({registerError: login(credentials, this.props.history)})
     }
 
     onChange(e) {
@@ -40,12 +43,20 @@ class Login extends Component {
     }
 
   render() {
+    const errorMessage = this.state.registerError ? 
+    <>
+      <h2>Incorrect information</h2>
+      <p>Please ensure that the email and password you entered were correct.</p>
+    </> 
+    : null;
     return (
+
       <div className="login">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
+              {errorMessage}
               <form onSubmit = {this.onSubmit}>
                 <div className="form-group">
                   <input

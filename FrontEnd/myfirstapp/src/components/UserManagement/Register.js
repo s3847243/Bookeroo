@@ -14,7 +14,8 @@ class Register extends Component {
       password: "",
       confirmPassword: "",
       errors: {},
-      isBusiness: false
+      isBusiness: false,
+      registerError: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,12 +26,14 @@ class Register extends Component {
           this.setState ({
               errors: nextProps.errors
           });
-
       }
   }
 
+  sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
   onSubmit(e) {
-    console.log("onsubmit");
     e.preventDefault();
     const newUser = {
       username: this.state.username,
@@ -39,9 +42,11 @@ class Register extends Component {
       confirmPassword: this.state.confirmPassword
     };
     
-    console.log("this.props.createNewUser", createNewUser)
-    console.log(newUser);
-    createNewUser(newUser, this.props.history);
+
+    this.setState({registerError: createNewUser(newUser, this.props.history)})
+    console.log(this.state.registerError);
+
+
   }
 
   handleUserChange(e) {
@@ -65,8 +70,21 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value });
     }
 
+
+
   render() {
-      const { errors } = this.state;
+    const { errors } = this.state;
+    const errorMessage = this.state.registerError ? 
+    <>
+      <h2>Incorrect information</h2>
+      <p>This error may be because of one or more of the following factors:</p>
+      <ul>
+        <li>Email was already used</li>
+        <li>Passwords did not match</li>
+        <li>Password were less than 6 characters</li>
+      </ul>
+    </>
+    : null;
     return (
       <div className="register">
         <div className="container">
@@ -74,6 +92,7 @@ class Register extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Account</p>
+              {errorMessage}
               <form onSubmit={this.onSubmit} >
                 <div className="form-group">
                   <input
@@ -133,9 +152,9 @@ class Register extends Component {
                     disabled
                   />
                 </div>
-
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
+              
             </div>
           </div>
         </div>
