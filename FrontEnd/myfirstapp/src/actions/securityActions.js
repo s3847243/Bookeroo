@@ -4,47 +4,75 @@ import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
 
 
-export const createNewUser = (newUser, history) => async dispatch => {
+// export const createNewUser = (newUser, history) => async dispatch => {
+//     try{
+//         await axios.post("localhost:8080/api/users/register", newUser);
+//         console.log("inside the action, after the post")
+//         history.push("/login");
+//         dispatch({
+//             type: GET_ERRORS,
+//             payload: {}
+//         });
+//     }
+//     catch (err){
+//         dispatch ({
+//             type: GET_ERRORS,
+//             payload: err.response.data
+//         });
+//     }
+// };
+
+export const createNewUser = (newUser, history) => {
+    console.log(newUser);
     try{
-        await axios.post("localhost:8080/api/users/register", newUser);
+        axios.post("http://localhost:8080/api/users/register", newUser).then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
         console.log("inside the action, after the post")
         history.push("/login");
-        dispatch({
-            type: GET_ERRORS,
-            payload: {}
-        });
+
     }
     catch (err){
-        dispatch ({
-            type: GET_ERRORS,
-            payload: err.response.data
-        });
-
-
-
     }
-
 };
 
-export const login = LoginRequest => async dispatch => {
-    try {
+// export const login = LoginRequest => async dispatch => {
+//     try {
 
-        //post => login request
+//         //post => login request
 
-        //extract token from res.data
+//         //extract token from res.data
 
-        //set our token in the local storage
+//         //set our token in the local storage
 
-        // set our token in header 
+//         // set our token in header 
 
-        //decode the token on React
+//         //decode the token on React
 
-        // dispatch to our securityReducer
+//         // dispatch to our securityReducer
+
+//     }
+//     catch (err)
+//     {
+
+//     }
+
+// }
+
+
+export const login = (credentials, history) => {
+
+    try{
+        axios.post("http://localhost:8080/api/users/login", credentials).then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+        console.log("inside the action, after the post")
+        history.push("/dashboard");
 
     }
-    catch (err)
-    {
-
+    catch (err){
     }
 
 }

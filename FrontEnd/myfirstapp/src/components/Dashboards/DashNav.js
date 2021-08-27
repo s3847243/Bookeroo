@@ -5,59 +5,59 @@ function DashNav({userType}) {
         if (userType === "admin") {
             return (
                 <ul>
-                    <li>
+                    <button>
                         All Users
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Approve Users
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         All Books
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Transactions
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Report
-                    </li>
+                    </button>
                 </ul>  
             )
         } else if (userType === "public") {
             return (
                 <ul>
-                    <li>
+                    <button>
                         Sold
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Bought
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Orders
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Sell
-                    </li>
+                    </button>
                 </ul> 
                 
             )
         } else if (userType === "business") {
             return (
                 <ul>
-                    <li>
+                    <button>
                         All Books
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Transactions
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Orders
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Add Books
-                    </li>
-                    <li>
+                    </button>
+                    <button>
                         Sell
-                    </li>
+                    </button>
                 </ul>  
             )
         }
