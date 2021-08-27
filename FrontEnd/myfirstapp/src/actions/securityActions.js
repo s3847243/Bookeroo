@@ -31,7 +31,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
         await axios.post("/api/users/register", newUser);
         history.push("/login");
         dispatch({
-        
+            
             payload: {}
         });
     }
@@ -43,32 +43,8 @@ export const createNewUser = (newUser, history) => async dispatch => {
     }
 };
 
-// export const login = async (credentials, history) => {
-    
-//     try{
-//         await axios.post("http://localhost:8080/api/users/login", credentials).then(res => {
-//             console.log(res);
-//             console.log(res.data);
-//           })
- 
-//         history.push("/dashboard");
-
-//         //login success
-//         return false;
-
-//     }
-//     catch (err){
-//         console.error(err)
-//         //login failure
-//         return true;
-//     }
-
-// }
-
-
 export const login = LoginRequest => async dispatch => {
     try {
-
       // post => Login Request
       const res = await axios.post("/api/users/login", LoginRequest);
       // extract token from res.data
@@ -91,8 +67,8 @@ export const login = LoginRequest => async dispatch => {
       });
     }
   };
-
-export const logout = () => dispatch => {
+  
+  export const logout = () => dispatch => {
     localStorage.removeItem("jwtToken");
     setJWTToken(false);
     dispatch({
@@ -100,3 +76,4 @@ export const logout = () => dispatch => {
       payload: {}
     });
   };
+  

@@ -1,46 +1,51 @@
 import React, { Component } from "react";
-import { login } from "../../actions/securityActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-
+import { login } from "../../actions/securityActions";
 
 class Login extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-    username: "",
-    password: "",
-    errors: {},
-    loginError: false
+      username: "",
+      password: "",
+      errors: {},
+      loginError: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.security.validToken) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.security.validToken) {
+      this.props.history.push("/dashboard");
     }
 
-    componentWillReceiveProps(nextProps){
-      if (nextProps.errors){
-          this.setState ({
-              errors: nextProps.errors
-          });
-
-      }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
     }
+  }
 
-    onSubmit(e) {
-    console.log("onsubmit");
+  onSubmit(e) {
     e.preventDefault();
-    const credentials = {
+    const LoginRequest = {
       username: this.state.username,
-      password: this.state.password,
+      password: this.state.password
     };
 
-    this.setState({registerError: login(credentials, this.props.history)})
-    }
+    this.props.login(LoginRequest);
+  }
 
-    onChange(e) {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    }
+  }
 
   render() {
     const errorMessage = this.state.registerError ? 
@@ -49,6 +54,7 @@ class Login extends Component {
       <p>Please ensure that the email and password you entered were correct.</p>
     </> 
     : null;
+    const { errors } = this.state;
     return (
 
       <div className="login">
@@ -60,21 +66,33 @@ class Login extends Component {
               <form onSubmit = {this.onSubmit}>
                 <div className="form-group">
                   <input
-                    type="email"
-                    className="form-control form-control-lg"
+                    type="text"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.username
+                    })}
                     placeholder="Email Address"
                     name="username"
-                    onChange = {this.onChange}
+                    value={this.state.username}
+                    onChange={this.onChange}
                   />
+                  {errors.username && (
+                    <div className="invalid-feedback">{errors.username}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.password
+                    })}
                     placeholder="Password"
                     name="password"
-                    onChange = {this.onChange}
+                    value={this.state.password}
+                    onChange={this.onChange}
                   />
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -86,4 +104,18 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  security: state.security,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
