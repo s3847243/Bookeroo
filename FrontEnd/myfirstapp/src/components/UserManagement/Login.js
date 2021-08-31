@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
 import { login } from "../../actions/securityActions";
 
 class Login extends Component {
@@ -12,8 +15,17 @@ class Login extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     }
+    componentDidMount() {
+      if (this.props.security.validToken) {
+        this.props.history.push("/dashboard");
+      }
+      
+    }
 
     componentWillReceiveProps(nextProps){
+      if (nextProps.security.validToken) {
+        this.props.history.push("/dashboard");
+      }
       if (nextProps.errors){
           this.setState ({
               errors: nextProps.errors
@@ -23,16 +35,16 @@ class Login extends Component {
     }
 
     onSubmit(e) {
-    console.log("onsubmit");
-    e.preventDefault();
-    const credentials = {
-      username: this.state.username,
-      password: this.state.password,
-    };
+      console.log("onsubmit");
+      e.preventDefault();
+      const credentials = {
+        username: this.state.username,
+        password: this.state.password,
+      };
 
-    console.log("this.props.createNewUser", login)
-    console.log(credentials);
-    login(credentials, this.props.history);
+      console.log("this.props.createNewUser", login)
+      console.log(credentials);
+      login(credentials, this.props.history);
     }
 
     onChange(e) {
@@ -72,7 +84,17 @@ class Login extends Component {
         </div>
       </div>
     );
-  }
+  } 
 }
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired
+};
 
-export default Login;
+const mapStateToProps = state => ({
+  security: state.security,
+  errors: state.errors
+});
+
+export default connect( mapStateToProps,{ login })(Login);

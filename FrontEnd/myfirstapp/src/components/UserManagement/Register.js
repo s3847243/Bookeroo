@@ -143,4 +143,15 @@ class Register extends Component {
     );
   }
 }
-export default Register;
+Register.propTypes = {
+  createNewUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { createNewUser }
+)(Register);
