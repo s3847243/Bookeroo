@@ -4,27 +4,6 @@ import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
 
 
-// export const createNewUser = async (newUser, history) => {
-//     console.log(newUser);
-//     let retVal = false;
-//     try{
-//         await axios.post("http://localhost:8080/api/users/register", newUser).then(res => {
-//             console.log(res);
-//             console.log(res.data);  
-//         })
-
-//         history.push("/login");  
-        
-//         //reg success
-//         return false;
-//     }
-//     catch (err){
-//         console.error(err);
-//         //reg failure
-//         return true;
-//     }
-
-// };
 
 export const createNewUser = (newUser, history) => async dispatch => {
 
@@ -50,36 +29,42 @@ export const createNewUser = (newUser, history) => async dispatch => {
 };
 
 export const login = LoginRequest => async dispatch => {
-    try {
-      // post => Login Request
-      const res = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
-      // extract token from res.data
-      const { token } = res.data;
-      // store the token in the localStorage
-      localStorage.setItem("jwtToken", token);
-      // set our token in header ***
-      setJWTToken(token);
-      // decode token on React
-      const decoded = jwt_decode(token);
-      // dispatch to our securityReducer
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: decoded
-      });
-    } catch (err) {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      });
-    }
-  };
-  
-  export const logout = () => dispatch => {
-    localStorage.removeItem("jwtToken");
-    setJWTToken(false);
+  try {
+    // post => Login Request
+    const res = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
+    // extract token from res.data
+    const { token } = res.data;
+    // store the token in the localStorage
+    localStorage.setItem("jwtToken", token);
+    // set our token in header ***
+    setJWTToken(token);
+    // decode token on React
+    const decoded = jwt_decode(token);
+    // dispatch to our securityReducer
     dispatch({
       type: SET_CURRENT_USER,
-      payload: {}
+      payload: decoded
     });
-  };
-  
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+// export const logout = () => dispatch => {
+//   console.log("logout call")
+//   localStorage.removeItem("jwtToken");
+//   setJWTToken(false);
+//   dispatch({
+//     type: SET_CURRENT_USER,
+//     payload: {}
+//   });
+// };
+
+export const logout = () => {
+  console.log("logout call")
+  localStorage.removeItem("jwtToken");
+  setJWTToken(false);
+};

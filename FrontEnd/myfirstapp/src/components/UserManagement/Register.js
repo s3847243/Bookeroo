@@ -30,11 +30,9 @@ class Register extends Component {
       confirmPassword: this.state.confirmPassword
     };
     
-
-    this.setState({registerError: createNewUser(newUser, this.props.history)})
+    let err = this.props.createNewUser(newUser, this.props.history);
+    this.setState({registerError: err})
     console.log(this.state.registerError);
-
-
   }
 
   handleUserChange(e) {
@@ -90,6 +88,7 @@ class Register extends Component {
                     name="fullName"
                     value={this.state.fullName}
                     onChange={this.onChange}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -100,6 +99,7 @@ class Register extends Component {
                     name="username"
                     value={this.state.username}
                     onChange={this.onChange}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -110,6 +110,7 @@ class Register extends Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -120,6 +121,7 @@ class Register extends Component {
                     name="confirmPassword"
                     value={this.state.confirmPassword}
                     onChange = {this.onChange}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -135,6 +137,7 @@ class Register extends Component {
                     placeholder="Your ABN"
                     name="abn"
                     disabled
+                    required
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
