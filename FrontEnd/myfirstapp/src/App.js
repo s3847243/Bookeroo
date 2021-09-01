@@ -9,9 +9,34 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Landing from "./components/Layout/Landing";
+import BookIndex from "./components/Books/BookIndex";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import contact from "./components/UserManagement/contact";
+import about from "./components/UserManagement/about";
+
+import jwt_decode from "jwt-decode";
+import setJWTToken from "./securityUtils/setJWTToken";
+import { SET_CURRENT_USER } from "./actions/types";
+import { logout } from "./actions/securityActions";
+// import SecuredRoute from "./securityUtils/SecureRoute";
+
+const jwtToken = localStorage.jwtToken;
+
+if (jwtToken) {
+  setJWTToken(jwtToken);
+  const decoded_jwtToken = jwt_decode(jwtToken);
+  store.dispatch({
+    type: SET_CURRENT_USER,
+    payload: decoded_jwtToken
+  });
+
+  const currentTime = Date.now() / 1000;
+  if (decoded_jwtToken.exp < currentTime) {
+    store.dispatch(logout());
+    window.location.href = "/";
+  }
+}
 
 class App extends Component {
   render() {
@@ -24,17 +49,20 @@ class App extends Component {
               //Public Routes
             }
            
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={BookIndex} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path ="/contact" component={contact} />
+            <Route exact path ="/about" component={about} />
+
+            
 
             {
               //Private Routes
             }
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addPerson" component={AddPerson} />
-          
+            
           </div>
         </Router>
       </Provider>
