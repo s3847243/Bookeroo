@@ -38,7 +38,7 @@ import { logout } from "../../actions/securityActions";
                         localStorage.jwtToken ? 
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={this.onLogout}>
+                            <a className="nav-link" href="/" onClick={this.onLogout}>
                                 Logout
                             </a>
                         </li>
