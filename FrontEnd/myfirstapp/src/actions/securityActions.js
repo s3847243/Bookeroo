@@ -26,20 +26,14 @@ import jwt_decode from "jwt-decode";
 
 // };
 
-export const createNewUser = (newUser, history) => async dispatch => {
+export const createNewUser = async (newUser, history) => {
     try{
         await axios.post("/api/users/register", newUser);
         history.push("/login");
-        dispatch({
-            
-            payload: {}
-        });
+       
     }
     catch (err){
-        dispatch ({
-            type: GET_ERRORS,
-            payload: err.response.data
-        });
+        
     }
 };
 
