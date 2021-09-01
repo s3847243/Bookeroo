@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { createNewUser } from "../../actions/securityActions";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
-import classnames from "classnames";
+// import classnames from "classnames";
 
 class Register extends Component {
   constructor() {
@@ -59,7 +59,7 @@ class Register extends Component {
 
 
   render() {
-    const { errors } = this.state;
+    // const { errors } = this.state;
     const errorMessage = this.state.registerError ? 
     <>
       <h2>Incorrect information</h2>

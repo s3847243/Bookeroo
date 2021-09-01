@@ -63,8 +63,9 @@ export const login = LoginRequest => async dispatch => {
 //   });
 // };
 
-export const logout = () => {
+export const logout = async () => {
   console.log("logout call")
   localStorage.removeItem("jwtToken");
   setJWTToken(false);
+
 };

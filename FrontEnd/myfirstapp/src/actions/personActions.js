@@ -5,6 +5,7 @@ export const createPerson = (person, history) => async dispatch => {
   try {
     const res = await axios.post("http://localhost:8080/api/person", person);
     history.push("/dashboard");
+    console.log(res.data);
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

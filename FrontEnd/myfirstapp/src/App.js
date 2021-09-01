@@ -8,7 +8,7 @@ import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import Landing from "./components/Layout/Landing";
+// import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import contact from "./components/UserManagement/contact";
@@ -18,7 +18,8 @@ import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
-import SecuredRoute from "./securityUtils/SecureRoute";
+// import SecuredRoute from "./securityUtils/SecureRoute";
+import BookIndex from "./components/Books/BookIndex";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -48,7 +49,7 @@ class App extends Component {
               //Public Routes
             }
            
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={BookIndex} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path ="/contact" component={contact} />

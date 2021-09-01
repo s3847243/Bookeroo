@@ -9,7 +9,6 @@ import { logout } from "../../actions/securityActions";
         console.log("Logging out, " , localStorage.jwtToken);
         logout();
         console.log("Post logging out, ", localStorage.jwtToken);
-        window.location.href = "/";
     }
 
     render() {
@@ -38,7 +37,7 @@ import { logout } from "../../actions/securityActions";
                         localStorage.jwtToken ? 
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={this.onLogout}>
+                            <a className="nav-link" href="/" onClick={this.onLogout}>
                                 Logout
                             </a>
                         </li>
