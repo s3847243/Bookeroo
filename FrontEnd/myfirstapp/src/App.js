@@ -11,7 +11,9 @@ import store from "./store";
 import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
-
+import contact from "./components/UserManagement/contact";
+import about from "./components/UserManagement/about";
+// latest additions by homy
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
@@ -49,6 +51,10 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path ="/contact" component={contact} />
+            <Route exact path ="/about" component={about} />
+
+            
 
             {
               //Private Routes
