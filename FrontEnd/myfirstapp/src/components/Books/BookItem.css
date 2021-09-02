@@ -1,0 +1,21 @@
+.bookItem {
+  width: 200px;
+  height: 300px;
+  background-color: #daf1f5;
+  padding: 10px;
+  margin: 30px;
+  border: 5px;
+  border-style: solid;
+}
+
+.bookItem img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.bookItem p {
+  width: 50%;
+  margin: auto;
+}

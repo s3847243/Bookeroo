@@ -2,8 +2,11 @@ import React, { Component } from "react";
 // import { Fragment } from "react";
 // import { Link } from "react-router-dom";
 import { getAllBooks } from "../../actions/bookActions.js";
-import {Book } from "./BookItem";
-import axios from "axios";
+import { Book } from "./BookItem";
+import BookSearch from "./BookSearch.js";
+import BookSort from "./BookSort.js";
+import "./BookIndex.css"
+
 
 
 class BookIndex extends Component {
@@ -27,6 +30,8 @@ class BookIndex extends Component {
     render() {
         return (
         <React.Fragment>
+            <BookSearch/>
+            <BookSort />
             <div className = "books">
                 {this.state.books.map((book) => (
                     <Book

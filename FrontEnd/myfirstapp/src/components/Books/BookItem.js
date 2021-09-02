@@ -1,8 +1,9 @@
 import React from 'react'
+import "./BookItem.css"
 
 export const Book = ({ title, img, genre }) => (
-    <figure>
-        <img src={img} alt="book cover picture" style={{width: "5%"}}/>
+    <figure className = "bookItem">
+        <img src={img} alt="book cover picture" />
         <p>{title}</p>
         <p>{genre}</p>
     </figure>
