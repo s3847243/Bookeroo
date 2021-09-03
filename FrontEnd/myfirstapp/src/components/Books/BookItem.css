@@ -4,7 +4,7 @@
   background-color: #daf1f5;
   padding: 10px;
   margin: 30px;
-  border: 5px;
+  border: 1px;
   border-style: solid;
 }
 
@@ -18,4 +18,8 @@
 .bookItem p {
   width: 50%;
   margin: auto;
+}
+
+.bookItem:hover {
+  background-color: #898e8f;
 }

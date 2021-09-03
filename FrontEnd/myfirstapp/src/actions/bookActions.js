@@ -9,3 +9,13 @@ export const getAllBooks = async () => {
     console.log(err);
   }
 };
+
+export const searchBooks = async (searchParams) => {
+  try {
+    const res = await axios.get("https://localhost:8080/books" , searchParams);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+  
+}

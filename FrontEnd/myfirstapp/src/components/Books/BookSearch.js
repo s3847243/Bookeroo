@@ -11,6 +11,8 @@ class BookSearch extends Component {
             isbn: "",
             genre: ""
         }
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
@@ -24,6 +26,7 @@ class BookSearch extends Component {
             isbn: this.state.isbn,
             genre: this.state.genre
         }
+        this.props.handler(searchParams);
     }
 
 
@@ -45,7 +48,7 @@ class BookSearch extends Component {
                 </div>
                 <div className="form-field">
                     <h2>ISBN:</h2>
-                    <input type="text" name="isbn" value={this.state.isbn} onChange={this.onChange}/>
+                    <input type="number" name="isbn" value={this.state.isbn} onChange={this.onChange}/>
                 </div>
                 <div className="form-field">
                     <h2>Genre:</h2>
