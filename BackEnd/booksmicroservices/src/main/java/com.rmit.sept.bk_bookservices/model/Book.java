@@ -16,8 +16,8 @@ public class Book implements Entity {
     private String title;
     @NotBlank(message = "author is required")
     private String author;
-    @NotBlank(message = "publishing date is required")
-    private Date published;
+    @NotBlank(message = "isbn is required")
+    private Integer isbn;
 
     private Date create_At;
     private Date update_At;
@@ -37,9 +37,9 @@ public class Book implements Entity {
 
     public void setAuthor(String author) {this.author = author; }
 
-    public Date getPublished() {return published; }
+    public isbn getISBN() {return isbn; }
 
-    public void setPublished(Date published) {this.published = published; }
+    public void setISBN(Integer isbn) {this.isbn = isbn; }
 
     public Date getCreate_At() {
         return create_At;
