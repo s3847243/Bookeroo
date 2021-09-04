@@ -2,34 +2,39 @@ package com.rmit.sept.bk_bookservices.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Collection;
 
 @Entity
-public class Book implements Entity {
+public class Book{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotBlank(message = "title is required")
     private String title;
     @NotBlank(message = "author is required")
     private String author;
-    @NotBlank(message = "publishing date is required")
-    private Date published;
+    @NotBlank(message = "isbn is required")
+    @Size(min = 13, max = 13, message = "isbn must be 13 digits")
+    @Column(unique = true, length = 13)
+    private Integer isbn;
 
     private Date create_At;
     private Date update_At;
 
 
-    public book (){}
+    public Book() {}
 
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
 
-    public String getTitle()
+    public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
 
@@ -37,9 +42,9 @@ public class Book implements Entity {
 
     public void setAuthor(String author) {this.author = author; }
 
-    public Date getPublished() {return published; }
+    public int getISBN() {return isbn;}
 
-    public void setPublished(Date published) {this.published = published; }
+    public void setISBN(Integer isbn) {this.isbn = isbn; }
 
     public Date getCreate_At() {
         return create_At;
@@ -68,3 +73,4 @@ public class Book implements Entity {
         this.update_At = new Date();
     }
 
+}
