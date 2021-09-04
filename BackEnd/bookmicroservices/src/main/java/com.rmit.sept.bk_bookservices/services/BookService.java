@@ -5,17 +5,18 @@ import com.rmit.sept.bk_bookservices.model.Book;
 import com.rmit.sept.bk_bookservices.Repositories.BookRepository;
 import com.rmit.sept.bk_bookservices.exceptions.ISBNAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.ArrayList;
 
+@Service
 public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
 
-    public Book addBook (Book newBook){
+    public Book saveBook (Book newBook){
         try{
             newBook.setTitle(newBook.getTitle());
             newBook.setAuthor(newBook.getAuthor());
@@ -29,10 +30,10 @@ public class BookService {
     }
 
     public List<Book> getAllBooks() {
-        Iterable iterable = bookRepository.findAll();
-        List books = new ArrayList<Book>();
+        Iterable<Book> iterable = bookRepository.findAll();
+        List<Book> books = new ArrayList<>();
 
-        iterable.forEach(book -> books.add(book));
+        iterable.forEach(books::add);
         return books;
     }
 

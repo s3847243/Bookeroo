@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Digits;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Collection;
@@ -20,9 +20,9 @@ public class Book{
     @NotBlank(message = "author is required")
     private String author;
     @NotBlank(message = "isbn is required")
-    @Size(min = 13, max = 13, message = "isbn must be 13 digits")
-    @Column(unique = true, length = 13)
-    private Integer isbn;
+    @Column(unique = true)
+    @Digits(fraction = 0, integer = 13)
+    private String isbn;
 
     private Date create_At;
     private Date update_At;
@@ -42,9 +42,9 @@ public class Book{
 
     public void setAuthor(String author) {this.author = author; }
 
-    public int getISBN() {return isbn;}
+    public String getISBN() {return isbn;}
 
-    public void setISBN(Integer isbn) {this.isbn = isbn; }
+    public void setISBN(String isbn) {this.isbn = isbn; }
 
     public Date getCreate_At() {
         return create_At;
@@ -73,4 +73,15 @@ public class Book{
         this.update_At = new Date();
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", create_At=" + create_At +
+                ", update_At=" + update_At +
+                '}';
+    }
 }
