@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getAllBooks = async () => {
   try {
-    const res = await axios.get("https://api.github.com/users");
+    const res = await axios.get("http://localhost:8081/api/books");
     return res;
   } catch (err) {
     console.log(err);
@@ -12,7 +12,7 @@ export const getAllBooks = async () => {
 
 export const searchBooks = async (searchParams) => {
   try {
-    const res = await axios.get("https://localhost:8080/books" , searchParams);
+    const res = await axios.get("https://localhost:8080/api/books" , searchParams);
     return res;
   } catch (err) {
     console.log(err);

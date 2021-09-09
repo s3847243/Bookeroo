@@ -31,7 +31,6 @@ class BookIndex extends Component {
        
     }
 
-
     handleSort(sortParam) {
         console.log("sort handler");
 
@@ -77,10 +76,12 @@ class BookIndex extends Component {
             <div className = "books">
                 {this.state.books.map((book) => (
                     <BookItem
-                        title = {book.login}
-                        img = {book.avatar_url}
-                        genre = {book.type}
-                        price = {book.id}
+                        title = {book.title}
+                        author = {book.author}
+                        img = {"http://covers.openlibrary.org/b/isbn/" + book.isbn + "-L.jpg"}
+                        isbn = {book.isbn}
+                        genre = {book.genre}
+                        published = {book.published}
                         key = {book.id}
                     />
                 ))}
