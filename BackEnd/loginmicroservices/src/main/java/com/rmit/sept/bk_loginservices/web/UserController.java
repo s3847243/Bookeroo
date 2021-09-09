@@ -5,6 +5,7 @@ import com.rmit.sept.bk_loginservices.model.User;
 import com.rmit.sept.bk_loginservices.payload.JWTLoginSucessReponse;
 import com.rmit.sept.bk_loginservices.payload.LoginRequest;
 import com.rmit.sept.bk_loginservices.security.JwtTokenProvider;
+import com.rmit.sept.bk_loginservices.services.CustomUserDetailsService;
 import com.rmit.sept.bk_loginservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_loginservices.services.UserService;
 import com.rmit.sept.bk_loginservices.validator.UserValidator;
@@ -79,5 +80,4 @@ public class UserController {
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
-
 }
