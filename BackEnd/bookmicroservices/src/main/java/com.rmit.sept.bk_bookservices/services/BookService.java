@@ -20,11 +20,11 @@ public class BookService {
         try{
             newBook.setTitle(newBook.getTitle());
             newBook.setAuthor(newBook.getAuthor());
-            newBook.setISBN(newBook.getISBN());
+            newBook.setIsbn(newBook.getIsbn());
             return bookRepository.save(newBook);
 
         }catch (Exception e){
-            throw new ISBNAlreadyExistsException("ISBN '"+newBook.getISBN()+"' already exists");
+            throw new ISBNAlreadyExistsException("ISBN '"+newBook.getIsbn()+"' already exists");
         }
 
     }

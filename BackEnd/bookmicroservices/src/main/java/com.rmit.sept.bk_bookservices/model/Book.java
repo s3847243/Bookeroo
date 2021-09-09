@@ -84,7 +84,7 @@ public class Book{
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", genre='" + genre + '\'' +
-                ", publication='" + publication + '\'' +
+                ", published='" + published + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';
