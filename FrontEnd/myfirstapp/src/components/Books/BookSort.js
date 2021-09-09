@@ -7,7 +7,7 @@ class BookSort extends Component {
         super(props);
         this.state = {
             alphabetical: "any-alpha",
-            price: "any-price"
+            year: "any-year"
         };
 
         this.onChange = this.onChange.bind(this);
@@ -17,7 +17,7 @@ class BookSort extends Component {
     
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        e.target.name === "alphabetical" ? this.setState({price: "any-price"}) : this.setState({alphabetical: "alphabetical"});
+        e.target.name === "alphabetical" ? this.setState({year: "any-year"}) : this.setState({alphabetical: "alphabetical"});
         
         const sortParam = {[e.target.name]: e.target.value};
 
@@ -35,9 +35,9 @@ class BookSort extends Component {
                     <option value="a-z">A-Z</option>
                     <option value="z-a">Z-A</option>
                 </select>
-                <p>Price</p>
-                <select name="price" onChange={this.onChange} value={this.state.price}>
-                    <option value="any-price">Any</option>
+                <p>Year</p>
+                <select name="year" onChange={this.onChange} value={this.state.year}>
+                    <option value="any-year">Any</option>
                     <option value="low-to-high">Low to High</option>
                     <option value="high-to-low">High to Low</option>
                 </select>

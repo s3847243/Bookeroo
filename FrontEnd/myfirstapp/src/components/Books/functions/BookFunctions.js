@@ -18,17 +18,17 @@ export function shuffle(array) {
 }
 
 export function compareTitle(a, b) {
-    const aTitle = a.login.toLowerCase();
-    const bTitle = b.login.toLowerCase();
+    const aTitle = a.title.toLowerCase();
+    const bTitle = b.title.toLowerCase();
     let result;
     result = aTitle > bTitle ? 1 : bTitle > aTitle ? -1 : 0;
     return result;
 }
 
-export function comparePrice(a, b) {
-    const aPrice = a.id
-    const bPrice = b.id
+export function compareYear(a, b) {
+    const aYear = a.published
+    const bYear = b.published
     let result;
-    result = aPrice > bPrice ? 1 : bPrice > aPrice ? -1 : 0;
+    result = aYear > bYear ? 1 : bYear > aYear ? -1 : 0;
     return result;
 }

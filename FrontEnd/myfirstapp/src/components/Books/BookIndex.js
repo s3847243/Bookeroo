@@ -6,7 +6,7 @@ import { BookItem } from "./BookItem";
 import BookSearch from "./BookSearch.js";
 import BookSort from "./BookSort.js";
 import "./BookIndex.css"
-import {shuffle, compareTitle, comparePrice} from "./functions/BookFunctions.js"
+import {shuffle, compareTitle, compareYear} from "./functions/BookFunctions.js"
 
 
 
@@ -41,8 +41,8 @@ class BookIndex extends Component {
             this.setState({books: sorted});
         } 
         else {
-            let sorted = this.state.books.sort(comparePrice) 
-            if(sortParam.price === "high-to-low"){sorted = sorted.reverse();} 
+            let sorted = this.state.books.sort(compareYear) 
+            if(sortParam.year === "high-to-low"){sorted = sorted.reverse();} 
             // console.log(sorted);
             this.setState({books: sorted});
         }

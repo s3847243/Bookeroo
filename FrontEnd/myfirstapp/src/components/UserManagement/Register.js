@@ -13,6 +13,7 @@ class Register extends Component {
       fullName: "",
       password: "",
       confirmPassword: "",
+      abn: "",
       errors: {},
       isBusiness: false,
       registerError: false
@@ -23,7 +24,10 @@ class Register extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    let abnData = this.state.isBusiness ? this.state.abn : "";
     const newUser = {
+      type: this.state.isBusiness ? "business" : "public",
+      abn: abnData,
       username: this.state.username,
       fullName: this.state.fullName,
       password: this.state.password,
@@ -138,6 +142,7 @@ class Register extends Component {
                     name="abn"
                     disabled
                     required
+                    onChange={e => this.handleUserChange(e)}
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
