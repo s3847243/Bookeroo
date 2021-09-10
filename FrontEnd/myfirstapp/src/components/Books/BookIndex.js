@@ -5,7 +5,7 @@ import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
 import { BookItem } from "./BookItem";
 import BookSearch from "./BookSearch.js";
 import BookSort from "./BookSort.js";
-import "./BookIndex.css"
+import "./css/BookIndex.css"
 import {shuffle, compareTitle, compareYear} from "./functions/BookFunctions.js"
 
 

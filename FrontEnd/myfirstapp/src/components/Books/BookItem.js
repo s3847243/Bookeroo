@@ -1,5 +1,5 @@
 import React from 'react'
-import "./BookItem.css"
+import "./css/BookItem.css"
 import { Link } from "react-router-dom";
 
 export function BookItem({ title, author, img,isbn, genre,published}) {

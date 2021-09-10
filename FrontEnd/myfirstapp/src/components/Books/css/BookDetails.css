@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+.sub-content {
+  width: 50%;
+  flex: 1 0 50%;
+}
+
+.sub-content h1 {
+  font-size: 60px;
+  margin-bottom: 0px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.sub-content h2 {
+  margin-top: 0px;
+  margin-left: 30px;
+  font-size: medium;
+}
+
+.sub-content img {
+  margin: 10px 10px;
+  width: auto;
+  height: auto;
+}
