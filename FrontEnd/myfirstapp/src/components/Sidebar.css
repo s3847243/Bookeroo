@@ -1,0 +1,97 @@
+  .menu-bars{
+    margin-left: 2rem;
+    font-size:  2rem;
+    background: none;
+
+  }
+  .nav-menu{
+    background-color: #060b26;
+    float: left;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position:absolute;
+    top: 55px;
+    list-style-type: square;
+    list-style-position: inside;
+
+    transition: 850ms;
+  }
+
+  .nav-text{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 10px 8px 16px;
+    list-style: none;
+    height: 60px;
+
+  }
+  .nav-text a:hover{
+    background-color: #1a83ff;
+
+  }
+  .nav-menu-items{
+    width:100%
+  }
+  .navbar-toggle{
+    background-color: #060b26;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  span{
+    margin-left: 16px;
+  }
+
+  .body{
+    margin: 0;
+    padding: 0;
+  }
+  .Sidebar{
+    height: 100%;
+    width: 350px;
+    background-color: color #502f7c; 
+  }
+  
+  .SidebarList{
+    height: auto;
+    padding: 0;
+    width: 100%;
+  }
+  
+  
+  .SidebarList .row{
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    list-style-type: none;
+    margin:0%;
+    display: flex;
+    flex-direction: row;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+  }
+  .SidebarList .row:hover{
+    cursor: pointer;
+    background-color: #293846;
+  }
+  .SidebarList #active{
+    background-color: #463229;
+  
+  }
+  .row #icon{
+    flex: 30%;
+    display: grid;
+    place-items: center;
+  }
+  
+  .row #title{
+    flex: 70%;
+  }
