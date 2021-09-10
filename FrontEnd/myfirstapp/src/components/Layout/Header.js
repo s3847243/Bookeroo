@@ -66,9 +66,15 @@ import { logout } from "../../actions/securityActions";
                                 About
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
+        </nav>
+        <nav>
+            <navDropdown title = "UserName">
+
+            </navDropdown>
         </nav>
             </div>
         )
