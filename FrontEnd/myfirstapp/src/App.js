@@ -8,8 +8,7 @@ import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import Landing from "./components/Layout/Landing";
-import BookIndex from "./components/Books/BookIndex";
+// import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import contact from "./components/UserManagement/contact";
@@ -20,6 +19,7 @@ import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 // import SecuredRoute from "./securityUtils/SecureRoute";
+import BookIndex from "./components/Books/BookIndex";
 
 const jwtToken = localStorage.jwtToken;
 
