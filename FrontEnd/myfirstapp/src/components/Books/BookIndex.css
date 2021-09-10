@@ -3,6 +3,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 auto;
-  width: 90%;
+  max-width: 1500px;
   justify-content: space-evenly;
 }

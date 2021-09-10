@@ -85,7 +85,7 @@ class BookIndex extends Component {
                         key = {book.id}
                     />
                 ))}
-            </div>
+            </div>  
         </React.Fragment>
         );
     }
