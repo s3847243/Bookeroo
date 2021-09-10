@@ -1,5 +1,5 @@
 import React , { Component } from 'react'
-import { useParams } from 'react-router';
+//import {  } from 'react-router';
 import "./BookItem.css"
 import { searchBooks } from "../../actions/bookActions.js";
 
@@ -15,8 +15,8 @@ class BookDetails extends Component {
    
 
     componentDidMount() {
-        let {isbn} = useParams;
-        const searchParams = "?isbn=" + isbn;
+        //let {isbn} = useParams;
+        //const searchParams = "?isbn=" + isbn;
         // searchBooks(searchParams)
         //     .then((res) => {
         //         const book = res.data;
