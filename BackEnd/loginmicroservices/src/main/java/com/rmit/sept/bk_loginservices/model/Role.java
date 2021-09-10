@@ -21,12 +21,16 @@ public class Role{
                     name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges;
 
-    public Role(String name){
-        this.name = name;
+    public Role(){
+
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {

@@ -57,6 +57,8 @@ public class SetupDataLoader implements
         createRoleIfNotFound("ADMIN", adminPrivileges);
         createRoleIfNotFound("BUSINESS", businessPrivileges);
         createRoleIfNotFound("USER", userPrivileges);
+
+        System.out.println("Data setup");
         setup = true;
     }
 
@@ -65,7 +67,8 @@ public class SetupDataLoader implements
 
         Privilege privilege = privilegeRepository.findByName(name);
         if (privilege == null) {
-            privilege = new Privilege(name);
+            privilege = new Privilege();
+            privilege.setName(name);
             privilegeRepository.save(privilege);
         }
         return privilege;
@@ -77,7 +80,8 @@ public class SetupDataLoader implements
 
         Role role = roleRepository.findByName(name);
         if (role == null) {
-            role = new Role(name);
+            role = new Role();
+            role.setName(name);
             role.setPrivileges(privileges);
             roleRepository.save(role);
         }

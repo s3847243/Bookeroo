@@ -91,12 +91,16 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     public String getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Collection<Role> getRoles(){
@@ -191,6 +195,8 @@ public class User implements UserDetails {
                 ", fullName='" + fullName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", userType='" + userType + '\'' +
+                ", enabled='" + enabled + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';
