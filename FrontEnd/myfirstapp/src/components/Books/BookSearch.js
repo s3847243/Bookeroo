@@ -38,23 +38,14 @@ class BookSearch extends Component {
         return (
         <React.Fragment>
             <form className="search-bar" onSubmit = {this.onSubmit}>
-                <div className="form-field">
-                    <h2>Title:</h2>
-                    <input type="text" name="title" value={this.state.title} onChange={this.onChange}/>
+                <div className="search-box">
+                    <input type="text" name="title" value={this.state.title} 
+                    placeholder="Search by title, author, isbn, or genre..."
+                    onChange={this.onChange}/>
                 </div>
-                <div className="form-field">
-                    <h2>Author:</h2>
-                    <input type="text" name="author" value={this.state.author} onChange={this.onChange}/>
+                <div className="search-btn">
+                    <input type="submit" className="submit-btn" value="Search" />
                 </div>
-                <div className="form-field">
-                    <h2>ISBN:</h2>
-                    <input type="number" name="isbn" value={this.state.isbn} onChange={this.onChange}/>
-                </div>
-                <div className="form-field">
-                    <h2>Genre:</h2>
-                    <input type="text" name="genre" value={this.state.genre} onChange={this.onChange}/>
-                </div>
-                <input type="submit" className="submit-btn" value="Search" />
             </form>
             
         </React.Fragment>

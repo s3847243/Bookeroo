@@ -28,7 +28,7 @@ class BookSort extends Component {
         return (
         <React.Fragment>
             <div className="sort-bar">
-                <h2>Sort Results: </h2>
+                <h2>Sort By: </h2>
                 <p>Alphabetical</p>
                 <select name="alphabetical" onChange={this.onChange} value={this.state.alphabetical}>
                     <option value="any-alpha">Any</option>
