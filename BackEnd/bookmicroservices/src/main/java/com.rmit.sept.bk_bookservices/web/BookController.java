@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -28,7 +29,7 @@ public class BookController {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
-        Book newBook = bookService.addBook(book);
+        Book newBook = bookService.saveBook(book);
 
         return  new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
     }

@@ -9,7 +9,6 @@ import { logout } from "../../actions/securityActions";
         console.log("Logging out, " , localStorage.jwtToken);
         logout();
         console.log("Post logging out, ", localStorage.jwtToken);
-        window.location.href = "/";
     }
 
     render() {
@@ -67,9 +66,15 @@ import { logout } from "../../actions/securityActions";
                                 About
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
+        </nav>
+        <nav>
+            <navDropdown title = "UserName">
+
+            </navDropdown>
         </nav>
             </div>
         )

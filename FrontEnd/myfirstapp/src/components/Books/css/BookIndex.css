@@ -1,0 +1,8 @@
+.books {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1500px;
+  justify-content: space-evenly;
+}

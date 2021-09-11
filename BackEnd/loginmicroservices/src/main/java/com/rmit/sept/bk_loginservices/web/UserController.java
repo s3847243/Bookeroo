@@ -58,7 +58,6 @@ public class UserController {
     private AuthenticationManager authenticationManager;
 
 
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         System.out.println("Login");
