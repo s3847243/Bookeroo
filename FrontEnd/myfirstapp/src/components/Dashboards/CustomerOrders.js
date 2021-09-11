@@ -1,18 +1,18 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-trans.json";
-import ReadTransRow from "./ReadTransRow";
+import data from "./mock-data-orders.json";
+import ReadCustRow from "./ReadCustRow";
 
-function Transactions(){
+function CustomerOrders(){
   
     const [contacts, setContacts] = useState(data);
 
     const [addFormData, setAddFormData] = useState({
       bookName: "",
-      customerName: "",
+      Author: "",ISDB:"",
       date: "",
-      seller: "",amount:"",status:""
+      seller: "",status:""
     });
 
     // const [editFormData, setEditFormData] = useState({
@@ -42,9 +42,9 @@ function Transactions(){
       const newContact = {
         id: nanoid(),
         bookName: addFormData.bookName,
-        customerName: addFormData.customerName,
+        Author: addFormData.Author,
         date: addFormData.date,
-        seller: addFormData.seller,amount: addFormData.amount,
+        seller: addFormData.seller,ISDB: addFormData.ISDB,
         status: addFormData.status
       };
 
@@ -82,18 +82,19 @@ function Transactions(){
               <tr>
                 <th>id</th>
                 <th>bookName</th>
-                <th>customerName</th>
+                <th>Author</th>
                 <th>date</th>
                 <th>seller</th>
-                <th>amount</th>
+                <th>ISDB</th>
                 <th>status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
                    (
-                    <ReadTransRow
+                    <ReadCustRow
                       contact={contact}
                     />
                   )
@@ -103,7 +104,7 @@ function Transactions(){
           </table>
         </form>
         <div className="form-add">
-          <h2>Add a transactions</h2>
+          <h2>Add an orders</h2>
           <form className="formAdd" onSubmit={handleAddFormSubmit}>
             <input
               type="text"
@@ -141,4 +142,4 @@ function Transactions(){
     );
 };
 
-export default Transactions;
+export default CustomerOrders;

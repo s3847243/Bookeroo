@@ -67,7 +67,9 @@ class Dashboard extends Component {
         // </div>
     
         //)
+        
         <>
+        <h1 className = 'head-Dash'>Welcome to the Dashboard</h1>
             <Router>
                 <Sidebar />
                 <Switch>

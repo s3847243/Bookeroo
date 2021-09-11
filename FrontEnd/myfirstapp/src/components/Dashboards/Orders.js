@@ -1,18 +1,18 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-trans.json";
-import ReadTransRow from "./ReadTransRow";
+import data from "./mock-data-orders.json";
+import ReadOrderRow from "./ReadOrderRow";
 
-function Transactions(){
+function Orders(){
   
     const [contacts, setContacts] = useState(data);
 
     const [addFormData, setAddFormData] = useState({
       bookName: "",
-      customerName: "",
+      Author: "",ISDB:"",
       date: "",
-      seller: "",amount:"",status:""
+      seller: "",status:""
     });
 
     // const [editFormData, setEditFormData] = useState({
@@ -42,9 +42,9 @@ function Transactions(){
       const newContact = {
         id: nanoid(),
         bookName: addFormData.bookName,
-        customerName: addFormData.customerName,
+        Author: addFormData.Author,
         date: addFormData.date,
-        seller: addFormData.seller,amount: addFormData.amount,
+        seller: addFormData.seller,ISDB: addFormData.ISDB,
         status: addFormData.status
       };
 
@@ -82,10 +82,10 @@ function Transactions(){
               <tr>
                 <th>id</th>
                 <th>bookName</th>
-                <th>customerName</th>
+                <th>Author</th>
                 <th>date</th>
                 <th>seller</th>
-                <th>amount</th>
+                <th>ISDB</th>
                 <th>status</th>
               </tr>
             </thead>
@@ -93,7 +93,7 @@ function Transactions(){
               {contacts.map((contact) => (
                 <Fragment>
                    (
-                    <ReadTransRow
+                    <ReadOrderRow
                       contact={contact}
                     />
                   )
@@ -141,4 +141,4 @@ function Transactions(){
     );
 };
 
-export default Transactions;
+export default Orders;
