@@ -2,6 +2,8 @@ import React , { Component } from 'react'
 //import {  } from 'react-router';
 import "./css/BookDetails.css"
 import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
+import BookListing from './BookListing';
+
 
 class BookDetails extends Component {
     constructor() {
@@ -101,12 +103,37 @@ class BookDetails extends Component {
                         <h2>Listings</h2>
                         <hr/>
                         {/* {this.state.listings.map((listing) => (
-                            <ListingItem
+                            <BookListing
                                 title = {listing.title}
                                 seller = {listing.seller}
                                 key = {listing.id}
                             />
                         ))} */}
+                            <table>
+                            <tr>
+                                <th>
+                                    Seller
+                                </th>
+                                <th>
+                                    Price
+                                </th>
+                                <th>
+                                    QTY Remaining
+                                </th>
+                            </tr>
+                            <BookListing
+                                seller = "example seller"
+                                price = "$30"
+                                qtyRem = "1"
+                                key = "1"
+                            />
+                            <BookListing
+                                seller = "example seller"
+                                price = "$30"
+                                qtyRem = "1"
+                                key = "2"
+                            />
+                            </table>
                     </div>
 
 
