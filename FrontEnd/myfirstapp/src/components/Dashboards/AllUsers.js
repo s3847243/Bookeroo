@@ -116,7 +116,7 @@ function AllUsers(){
     return (
       <>
       <div className="app-container">
-        <form onSubmit={handleEditFormSubmit}>
+        <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>

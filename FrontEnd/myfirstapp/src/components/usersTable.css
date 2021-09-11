@@ -36,11 +36,11 @@
     display: inline-block;
     text-align: center;
   }
-  form {
+
+  .tableForm{
     display: flex;
     gap: 5px;
   }
-  
   form td:last-child {
     display: flex;
     justify-content: space-evenly;
