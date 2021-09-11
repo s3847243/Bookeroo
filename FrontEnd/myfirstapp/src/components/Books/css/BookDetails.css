@@ -1,0 +1,54 @@
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sub-content {
+  width: 50%;
+  flex: 1 0 50%;
+}
+
+.sub-content h1 {
+  font-size: 60px;
+  margin-right: 30px;
+}
+
+.sub-content p {
+  margin-right: 30px;
+}
+
+.sub-content img {
+  align-self: center;
+  width: auto;
+  height: auto;
+}
+
+table {
+  margin-left: 140px;
+}
+th {
+  margin-left: 10px;
+  background: none;
+  font-size: large;
+}
+
+td {
+  background: none;
+  font-size: large;
+}
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+.listings h2 {
+  margin-top: 70px;
+  font-size: 40px;
+  margin-left: 30px;
+}

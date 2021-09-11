@@ -20,6 +20,7 @@ import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 // import SecuredRoute from "./securityUtils/SecureRoute";
 import BookIndex from "./components/Books/BookIndex";
+import BookDetails from "./components/Books/BookDetails";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -54,8 +55,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path ="/contact" component={contact} />
             <Route exact path ="/about" component={about} />
-
-            
+            <Route path = "/book/:isbn" component={BookDetails} />
 
             {
               //Private Routes

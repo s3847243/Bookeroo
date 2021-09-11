@@ -12,10 +12,9 @@ export const getAllBooks = async () => {
 
 export const searchBooks = async (searchParams) => {
   try {
-    const res = await axios.get("https://localhost:8080/api/books" , searchParams);
+    const res = await axios.get("https://localhost:8080/api/books" + searchParams);
     return res;
   } catch (err) {
     console.log(err);
   }
-  
 }
