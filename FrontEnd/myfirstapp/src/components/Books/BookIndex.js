@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 // import { Link } from "react-router-dom";
 import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
 import { BookItem } from "./BookItem";
@@ -37,13 +36,11 @@ class BookIndex extends Component {
         if (sortParam.alphabetical) {
             let sorted = this.state.books.sort(compareTitle) 
             if(sortParam.alphabetical === "z-a"){sorted = sorted.reverse();} 
-            // console.log(sorted);
             this.setState({books: sorted});
         } 
         else {
             let sorted = this.state.books.sort(compareYear) 
             if(sortParam.year === "high-to-low"){sorted = sorted.reverse();} 
-            // console.log(sorted);
             this.setState({books: sorted});
         }
     }
@@ -70,7 +67,7 @@ class BookIndex extends Component {
 
     render() {
         return (
-        <React.Fragment>
+        <Fragment>
             <BookSearch handler={this.handleSearch}/>
             <BookSort handler={this.handleSort}/>
             <div className = "books">
@@ -86,7 +83,7 @@ class BookIndex extends Component {
                     />
                 ))}
             </div>  
-        </React.Fragment>
+        </Fragment>
         );
     }
 }

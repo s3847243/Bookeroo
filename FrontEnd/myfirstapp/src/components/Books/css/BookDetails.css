@@ -29,21 +29,21 @@
   height: auto;
 }
 
-table {
+.sub-content table {
   margin-left: 140px;
 }
-th {
+.sub-content th {
   margin-left: 10px;
   background: none;
   font-size: large;
 }
 
-td {
+.sub-content td {
   background: none;
   font-size: large;
 }
 
-tr {
+.sub-content tr {
   border-bottom: 1px solid black;
 }
 
