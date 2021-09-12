@@ -14,6 +14,7 @@ import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import contact from "./components/UserManagement/contact";
 import about from "./components/UserManagement/about";
+import Cart from "./components/UserManagement/cart";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
@@ -57,6 +58,7 @@ class App extends Component {
             <Route exact path ="/contact" component={contact} />
             <Route exact path ="/about" component={about} />
             <Route path = "/book/:isbn" component={BookDetails} />
+            <Route exact path = "/cart" component={Cart} />
 
             {
               //Private Routes
