@@ -73,12 +73,11 @@ class Dashboard extends Component {
             <Router>
                 <Sidebar />
                 <Switch>
-                    <Route path ='/' exact component={AllUsers} />
-                    <Route path ='/AllUsers' exact component={AllUsers} />
-                    <Route path ='/ApproveUsers' exact component={ApproveUsers} />
-                    <Route path ='/AllBooks' exact component={AllBooks} />
-                    <Route path ='/Transactions' exact component={Transactions} />
-                    <Route path ='/Reports' exact component={Reports} />
+                    <Route exact path ='/AllUsers'  component={AllUsers} />
+                    <Route exact path ='/ApproveUsers' component={ApproveUsers} />
+                    <Route exact path ='/AllBooks'  component={AllBooks} />
+                    <Route exact path ='/Transactions'  component={Transactions} />
+                    <Route exact path ='/Reports'  component={Reports} />
                 </Switch>
             </Router>
         </>
