@@ -53,14 +53,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.delete(userToDelete);
     }
 
-    public User updateUser(Long id, User user){
+    public void updateUser(Long id, User user){
         if(userRepository.getById(id) == null){
             throw new UsernameNotFoundException("User not found");
         }
 
         user.setId(id);
         userRepository.save(user);
-        return user;
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(User user){

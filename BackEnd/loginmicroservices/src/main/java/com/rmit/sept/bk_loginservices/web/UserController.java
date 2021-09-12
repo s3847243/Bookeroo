@@ -99,17 +99,24 @@ public class UserController {
     }
 
     @PostMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id, BindingResult result){
+    public ResponseEntity<?> deleteUser(@PathVariable String id){
         Long userId = Long.parseLong(id);
+
         userDetailsService.deleteUser(userId);
-        return ResponseEntity.ok("User deleted");
+        return new ResponseEntity<>("User deleted", HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id, @Valid @RequestBody User user, BindingResult result){
+    public ResponseEntity<?> deleteUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
         Long userId = Long.parseLong(id);
-        User updatedUser = userDetailsService.updateUser(userId, user);
-        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+
+        userValidator.validate(user,result);
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap != null)return errorMap;
+
+        userDetailsService.updateUser(userId, user);
+        return new ResponseEntity<>("User updated", HttpStatus.OK);
     }
 
 }
