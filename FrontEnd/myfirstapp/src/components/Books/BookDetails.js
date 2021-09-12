@@ -110,29 +110,34 @@ class BookDetails extends Component {
                             />
                         ))} */}
                             <table>
-                            <tr>
-                                <th>
-                                    Seller
-                                </th>
-                                <th>
-                                    Price
-                                </th>
-                                <th>
-                                    QTY Remaining
-                                </th>
-                            </tr>
-                            <BookListing
-                                seller = "example seller"
-                                price = "$30"
-                                qtyRem = "1"
-                                key = "1"
-                            />
-                            <BookListing
-                                seller = "example seller"
-                                price = "$30"
-                                qtyRem = "1"
-                                key = "2"
-                            />
+                                <tr>
+                                    <th>
+                                        Seller
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Condition
+                                    </th>
+                                    <th>
+                                        QTY Remaining
+                                    </th>
+                                </tr>
+                                <BookListing
+                                    seller = "example seller"
+                                    price = "$30"
+                                    condition = "new"
+                                    qtyRem = "1"
+                                    key = "1"
+                                />
+                                <BookListing
+                                    seller = "example seller"
+                                    price = "$20"
+                                    condition = "old"
+                                    qtyRem = "1"
+                                    key = "2"
+                                />
                             </table>
                     </div>
 

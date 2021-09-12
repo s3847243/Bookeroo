@@ -11,6 +11,8 @@ class Register extends Component {
     this.state = {
       username: "",
       fullName: "",
+      phoneNum: "",
+      address: "",
       password: "",
       confirmPassword: "",
       abn: "",
@@ -28,6 +30,8 @@ class Register extends Component {
     const newUser = {
       type: this.state.isBusiness ? "business" : "public",
       abn: abnData,
+      phoneNum: this.state.phoneNum,
+      address: this.state.address,
       username: this.state.username,
       fullName: this.state.fullName,
       password: this.state.password,
@@ -102,6 +106,28 @@ class Register extends Component {
                     placeholder="Email Address (Username)"
                     name="username"
                     value={this.state.username}
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Address"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    className="form-control form-control-lg"
+                    placeholder="Phone Number eg. 040..."
+                    name="phoneNum"
+                    value={this.state.phoneNum}
                     onChange={this.onChange}
                     required
                   />
