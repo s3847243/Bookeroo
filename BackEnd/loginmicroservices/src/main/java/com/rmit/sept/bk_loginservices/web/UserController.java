@@ -9,6 +9,7 @@ import com.rmit.sept.bk_loginservices.services.CustomUserDetailsService;
 import com.rmit.sept.bk_loginservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_loginservices.services.UserService;
 import com.rmit.sept.bk_loginservices.validator.UserValidator;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.List;
 
 import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PREFIX;
 
@@ -80,4 +83,33 @@ public class UserController {
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
+
+    @Autowired
+    CustomUserDetailsService userDetailsService;
+
+    @GetMapping("")
+    public List<User> allUsers(){
+        return userDetailsService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public User get(@PathVariable String id){
+        Long userId = Long.parseLong(id);
+        return userDetailsService.loadUserById(userId);
+    }
+
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String id, BindingResult result){
+        Long userId = Long.parseLong(id);
+        userDetailsService.deleteUser(userId);
+        return ResponseEntity.ok("User deleted");
+    }
+
+    @PostMapping("/update/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String id, @Valid @RequestBody User user, BindingResult result){
+        Long userId = Long.parseLong(id);
+        User updatedUser = userDetailsService.updateUser(userId, user);
+        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+    }
+
 }

@@ -40,6 +40,29 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
+    public List<User> getAllUsers() {
+        Iterable<User> iterable = userRepository.findAll();
+        List<User> users = new ArrayList<>();
+
+        iterable.forEach(users::add);
+        return users;
+    }
+
+    public void deleteUser(Long id){
+        User userToDelete = loadUserById(id);
+        userRepository.delete(userToDelete);
+    }
+
+    public User updateUser(Long id, User user){
+        if(userRepository.getById(id) == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+
+        user.setId(id);
+        userRepository.save(user);
+        return user;
+    }
+
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
         return user.getAuthorities();
     }
