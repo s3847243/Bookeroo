@@ -3,17 +3,27 @@ import React , { Component } from 'react'
 import "./css/BookDetails.css"
 import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
-
+import {addToCart} from "./../../actions/cartActions"
+import store from '../../store';
+import { ADD_TO_CART } from "../../actions/types"
 
 class BookDetails extends Component {
     constructor() {
         super();
         this.state = {
             book: null,
-            listings: null
+            listings: [
+                {seller: "example seller",
+                price: "$30",
+                condition: "new",
+                qtyRem: "1"},
+                {seller: "example seller 2",
+                price: "$20",
+                condition: "old",
+                qtyRem: "1"}
+            ]
         }
-        //this.handleSort = this.handleSort.bind(this);
-        //this.handleSearch = this.handleSearch.bind(this);
+        this.handleCartButton = this.handleCartButton.bind(this);
     }
    
 
@@ -41,6 +51,24 @@ class BookDetails extends Component {
         //         this.setState({listings: listings});
         //         console.log(this.state.listings)
         // }) 
+    }
+
+    handleCartButton(index) {
+        const listing = this.state.listings[index];
+        const cartItem = {
+            isbn: this.state.book.isbn,
+            title: this.state.book.title,
+            seller: listing.seller,
+            price: listing.price,
+            condition: listing.condition
+        }
+        console.log("handle")
+
+        console.log(store.dispatch({
+        type: ADD_TO_CART,
+        payload: cartItem
+        }))
+
     }
 
     render () {
@@ -102,13 +130,7 @@ class BookDetails extends Component {
                     <div className="listings">
                         <h2>Listings</h2>
                         <hr/>
-                        {/* {this.state.listings.map((listing) => (
-                            <BookListing
-                                title = {listing.title}
-                                seller = {listing.seller}
-                                key = {listing.id}
-                            />
-                        ))} */}
+                        
                             <table>
                                 <tr>
                                     <th>
@@ -124,20 +146,19 @@ class BookDetails extends Component {
                                         QTY Remaining
                                     </th>
                                 </tr>
-                                <BookListing
-                                    seller = "example seller"
-                                    price = "$30"
-                                    condition = "new"
-                                    qtyRem = "1"
-                                    key = "1"
-                                />
-                                <BookListing
-                                    seller = "example seller"
-                                    price = "$20"
-                                    condition = "old"
-                                    qtyRem = "1"
-                                    key = "2"
-                                />
+                                {this.state.listings.map((listing, i) => (
+                                    <BookListing
+                                        handler={this.handleCartButton}
+                                        
+                                        seller = {listing.seller}
+                                        price = {listing.price}
+                                        condition = {listing.condition}
+                                        qtyRem = {listing.qtyRem}
+                                        index = {i}
+                                        key = {i}
+                                    />
+                                ))}
+
                             </table>
                     </div>
 

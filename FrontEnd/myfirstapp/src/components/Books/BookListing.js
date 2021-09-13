@@ -1,14 +1,15 @@
 import React, { useState, Fragment } from "react";
 
-export function BookListing({ seller, price, condition, qtyRem}) {
+
+export const BookListing = (props) => {
     
     return (
         <tr>
-            <td>{seller}</td>
-            <td>{price}</td>   
-            <td>{condition}</td> 
-            <td>{qtyRem}</td>
-            <td><button className="cart-btn">Add to Cart</button></td>
+            <td>{props.seller}</td>
+            <td>{props.price}</td>   
+            <td>{props.condition}</td> 
+            <td>{props.qtyRem}</td>
+            <td><button className="cart-btn" onClick={() => props.handler(props.index)}>Add to Cart</button></td>
         </tr>   
     );
 }

@@ -1,18 +1,19 @@
 import React, { useState, useEffect, Fragment } from "react";
 import CartItem from "./cartItem";
 import "./css/cart.css"
+import { useStore } from 'react-redux'
 
 function Cart(){
-    const [listings, setListings] = useState([
-        {title: "hp", isbn:9780747532743, seller:"puffin", price:12.50, condition: "new", qty: 1, id: 1},
-        {title: "hp", isbn:9780747532743, seller:"puffin", price:12.50, condition: "new", qty: 1, id: 1},
-    ]);
+    const [cartItems, setCartItems] = useState([]);
 
     const [total, setTotal] = useState(0);
+    const store = useStore();
 
     useEffect(() => {
+        
+        setCartItems(store.getState().cart.cart);
         let total = 0;
-        listings.forEach((listing) => total = total + listing.price);
+        cartItems.forEach((listing) => total = total + listing.price);
         setTotal(total);
     });
 
@@ -39,7 +40,7 @@ function Cart(){
                         Condition
                     </th>
                 </tr>
-                {listings.map((listing) => (
+                {/* {cartItems.map((listing) => (
                     <CartItem
                         title = {listing.title}
                         isbn = {listing.isbn}
@@ -49,7 +50,7 @@ function Cart(){
                         qtyRem = {listing.qty}
                         key = {listing.id}
                     />
-                ))}
+                ))} */}
             </table>
             <hr/>
             <div className="exit-section">
