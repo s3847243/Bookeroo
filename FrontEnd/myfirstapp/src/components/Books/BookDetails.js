@@ -63,7 +63,7 @@ class BookDetails extends Component {
             condition: listing.condition
         }
         addToCart(cartItem);
-        console.log(getCart())
+        
     }
 
     render () {
@@ -153,6 +153,7 @@ class BookDetails extends Component {
                                         key = {i}
                                     />
                                 ))}
+                            
 
                             </table>
                     </div>

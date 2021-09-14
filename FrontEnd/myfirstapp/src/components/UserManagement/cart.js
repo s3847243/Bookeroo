@@ -10,7 +10,6 @@ function Cart(){
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        // setCartItems(getCart());
         console.log(cartItems)
         let total = 0;
         cartItems.forEach((listing) => total = total + Number(listing.price));
@@ -63,11 +62,15 @@ function Cart(){
                         handler = {handleRemove}
                     />
                 ))}
+                <tr>
+                    <td/> <td/> <td/> <td/> <td/>
+                    <td><button className="cl-cart-btn" onClick={handleClear}>Clear All</button></td>
+                </tr>
             </table>
+            
             <hr/>
             <div className="exit-section">
                 <h2>Total = ${total}</h2>
-                <button className="checkout-btn" onClick={handleClear}>Clear</button>
                 <button className="checkout-btn">Checkout</button>
             </div>
             
