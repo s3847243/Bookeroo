@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 
-function CartItem({title, isbn, seller, price, condition, qtyRem, key}){
-
+function CartItem({title, isbn, seller, price, condition, qtyRem, index, key, handler}){
 
     return (
         <tr>
@@ -13,7 +12,7 @@ function CartItem({title, isbn, seller, price, condition, qtyRem, key}){
             <td>{seller}</td> 
             <td>${price}</td>
             <td>{condition}</td>
-            <td><button className="rm-cart-btn">Remove</button></td>
+            <td><button className="rm-cart-btn" onClick={() => handler(index)}>Remove</button></td>
         </tr>   
      
     );

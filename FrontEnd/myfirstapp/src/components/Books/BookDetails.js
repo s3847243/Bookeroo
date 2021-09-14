@@ -3,7 +3,7 @@ import React , { Component } from 'react'
 import "./css/BookDetails.css"
 import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
-import {addToCart} from "./../../actions/cartActions"
+import {addToCart, getCart} from "./../../actions/cartActions"
 import store from '../../store';
 import { ADD_TO_CART } from "../../actions/types"
 
@@ -14,11 +14,11 @@ class BookDetails extends Component {
             book: null,
             listings: [
                 {seller: "example seller",
-                price: "$30",
+                price: "30",
                 condition: "new",
                 qtyRem: "1"},
                 {seller: "example seller 2",
-                price: "$20",
+                price: "20",
                 condition: "old",
                 qtyRem: "1"}
             ]
@@ -62,13 +62,8 @@ class BookDetails extends Component {
             price: listing.price,
             condition: listing.condition
         }
-        console.log("handle")
-
-        console.log(store.dispatch({
-        type: ADD_TO_CART,
-        payload: cartItem
-        }))
-
+        addToCart(cartItem);
+        console.log(getCart())
     }
 
     render () {
