@@ -1,7 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { getCart, removeFromCart, removeAllCart } from "../../actions/cartActions";
+import { getCart, removeFromCart, removeAllCart, getCartTotal } from "../../actions/cartActions";
 import CartItem from "./cartItem";
 import "./css/cart.css"
+import { Link } from "react-router-dom";
+import {useStore} from 'react-redux'
+
 
 
 function Cart(){
@@ -9,11 +12,11 @@ function Cart(){
 
     const [total, setTotal] = useState(0);
 
+    const store = useStore();
+
     useEffect(() => {
-        console.log(cartItems)
-        let total = 0;
-        cartItems.forEach((listing) => total = total + Number(listing.price));
-        setTotal(total);
+        setTotal(getCartTotal());
+        console.log(store.getState())
     });
 
     const handleRemove = (index) => {
@@ -71,7 +74,10 @@ function Cart(){
             <hr/>
             <div className="exit-section">
                 <h2>Total = ${total}</h2>
-                <button className="checkout-btn">Checkout</button>
+                <Link to={ store.getState().security.validToken ? "/checkout" : "/login"} props={{ total: total }}>
+                    <button className="checkout-btn">Checkout</button>
+                </Link>
+                
             </div>
             
             
