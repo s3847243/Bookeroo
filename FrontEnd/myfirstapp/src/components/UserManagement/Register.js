@@ -28,7 +28,7 @@ class Register extends Component {
     e.preventDefault();
     let abnData = this.state.isBusiness ? this.state.abn : "";
     const newUser = {
-      type: this.state.isBusiness ? "business" : "public",
+      userType: this.state.isBusiness ? "BUSINESS" : "USER",
       abn: abnData,
       phoneNum: this.state.phoneNum,
       address: this.state.address,

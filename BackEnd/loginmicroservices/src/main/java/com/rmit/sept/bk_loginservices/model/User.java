@@ -3,7 +3,6 @@ package com.rmit.sept.bk_loginservices.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -31,6 +30,9 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    private String address;
+    private String phoneNum;
+    private String ABN;
     private String userType;
     private Boolean enabled;
     private Date create_At;
@@ -91,6 +93,30 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getABN() {
+        return ABN;
+    }
+
+    public void setABN(String ABN) {
+        this.ABN = ABN;
+    }
+
     public String getUserType() {
         return userType;
     }
@@ -99,8 +125,8 @@ public class User implements UserDetails {
         this.userType = userType;
     }
 
-    public void getEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
     public void setEnabled(boolean enabled) {

@@ -43,12 +43,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
         // Validate passwords match
-        System.out.println("Register called");
-        System.out.println(user.toString());
         userValidator.validate(user,result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
+
         User newUser = userService.saveUser(user);
 
         return  new ResponseEntity<User>(newUser, HttpStatus.CREATED);
