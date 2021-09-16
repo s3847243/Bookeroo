@@ -62,6 +62,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public List<User> getUnapprovedUsers() {
+        Iterable<User> iterable = userRepository.findByEnabled(false);
+        List<User> users = new ArrayList<>();
+
+        iterable.forEach(users::add);
+        return users;
+    }
+
+    public void approveUser(Long id){
+        User user = loadUserById(id);
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
         return user.getAuthorities();
     }

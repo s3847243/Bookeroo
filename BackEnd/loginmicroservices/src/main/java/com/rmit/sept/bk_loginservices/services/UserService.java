@@ -37,9 +37,7 @@ public class UserService {
             // We don't persist or show the confirmPassword
             newUser.setConfirmPassword("");
             newUser.setRoles(Arrays.asList(roleRepository.findByName(newUser.getUserType())));
-            if (newUser.getUserType() == "BUSINESS") {
-                newUser.setEnabled(false);
-            }
+            newUser.setEnabled(!newUser.getUserType().equals("BUSINESS"));
             return userRepository.save(newUser);
 
         } catch (Exception e) {

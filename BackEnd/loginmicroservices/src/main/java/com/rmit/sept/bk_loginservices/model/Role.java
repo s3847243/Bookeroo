@@ -1,5 +1,7 @@
 package com.rmit.sept.bk_loginservices.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -41,6 +43,7 @@ public class Role{
         this.privileges = privileges;
     }
 
+    @JsonIgnore
     public Collection<Privilege> getPrivileges(){
         return privileges;
     }

@@ -91,18 +91,24 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
     public void setUserType(String userType) {
         this.userType = userType;
     }
 
-    public String getUserType() {
-        return userType;
+    public void getEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
+
+    @JsonIgnore
     public Collection<Role> getRoles(){
         return roles;
     }
@@ -160,12 +166,12 @@ public class User implements UserDetails {
     }
 
     @Override
-    @JsonIgnore
     public boolean isEnabled() {
         return enabled;
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<String> privileges = new ArrayList<>();
         List<Privilege> collection = new ArrayList<>();
