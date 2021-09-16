@@ -40,9 +40,16 @@ class BookSearch extends Component {
             <form className="search-bar" onSubmit = {this.onSubmit}>
                 <div className="search-box">
                     <input type="text" name="title" value={this.state.title} 
-                    placeholder="Search by title, author, isbn, or genre..."
                     onChange={this.onChange}/>
                 </div>
+                {/* <div className="search-box">
+                    <input type="text" name="author" value={this.state.title} 
+                    onChange={this.onChange}/>
+                </div>
+                <div className="search-box">
+                    <input type="text" name="genre" value={this.state.title} 
+                    onChange={this.onChange}/>
+                </div> */}
                 <div className="search-btn">
                     <input type="submit" className="submit-btn" value="Search" />
                 </div>

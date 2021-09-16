@@ -65,6 +65,10 @@ public class BookService {
         return bookRepository.getById(id);
     }
 
+    public Book getByISBN(String isbn){
+        return bookRepository.getByIsbn(isbn);
+    }
+
     public List<Book> search(Map<String, String> parameters){
         String title = parameters.get("title");
         String author = parameters.get("author");

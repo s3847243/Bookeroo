@@ -1,7 +1,7 @@
 import React , { Component } from 'react'
 //import {  } from 'react-router';
 import "./css/BookDetails.css"
-import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
+import { getAllBooks, searchBooks, getBookByID } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
 import {addToCart, getCart} from "./../../actions/cartActions"
 import store from '../../store';
@@ -28,11 +28,10 @@ class BookDetails extends Component {
    
 
     componentDidMount() {
-        getAllBooks()
+        console.log("isbn = ", this.props.match.params.isbn);
+        getBookByID(this.props.match.params.isbn)
             .then((res) => {
-                const books = res.data;
-                console.log(books[0]);
-                this.setState({book: books[4]});
+                this.setState({book: res.data});
                 console.log(this.state.book)
         }) 
 
