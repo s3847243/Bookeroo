@@ -2,13 +2,17 @@ package com.rmit.sept.bk_loginservices.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -27,12 +31,24 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    private String userType;
+    private Boolean enabled;
     private Date create_At;
     private Date update_At;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     //OneToMany with Project
 
     public User() {
+
     }
 
     public Long getId() {
@@ -75,6 +91,26 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Collection<Role> getRoles(){
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles){
+        this.roles = roles;
+    }
+
     public Date getCreate_At() {
         return create_At;
     }
@@ -107,12 +143,6 @@ public class User implements UserDetails {
 
     @Override
     @JsonIgnore
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -132,9 +162,30 @@ public class User implements UserDetails {
     @Override
     @JsonIgnore
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<String> privileges = new ArrayList<>();
+        List<Privilege> collection = new ArrayList<>();
+
+        for (Role role : roles) {
+            privileges.add(role.getName());
+            collection.addAll(role.getPrivileges());
+        }
+
+        for (Privilege item : collection) {
+            privileges.add(item.getName());
+        }
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String privilege : privileges) {
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
+
+        return authorities;
+    }
 
     @Override
     public String toString() {
@@ -144,6 +195,8 @@ public class User implements UserDetails {
                 ", fullName='" + fullName + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", userType='" + userType + '\'' +
+                ", enabled='" + enabled + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';
