@@ -119,4 +119,18 @@ public class UserController {
         return new ResponseEntity<>("User updated", HttpStatus.OK);
     }
 
+    @GetMapping("/approve")
+    public List<User> getUnapproved(){
+        return userDetailsService.getUnapprovedUsers();
+    }
+
+
+    @PostMapping("/approve/{id}")
+    public ResponseEntity<?> approveUser(@PathVariable String id){
+        Long userId = Long.parseLong(id);
+
+        userDetailsService.approveUser(userId);
+        return new ResponseEntity<>("User approved", HttpStatus.OK);
+    }
+
 }
