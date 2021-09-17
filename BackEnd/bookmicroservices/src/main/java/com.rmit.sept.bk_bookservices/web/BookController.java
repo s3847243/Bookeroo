@@ -54,8 +54,8 @@ public class BookController {
 
 
     @GetMapping("/search")
-    public List<Book> search(@RequestHeader Map<String, String> parameters){
-        return bookService.search(parameters);
+    public List<Book> search(@RequestParam String params){
+        return bookService.search(params);
     }
 
     @PostMapping("/update/{id}")

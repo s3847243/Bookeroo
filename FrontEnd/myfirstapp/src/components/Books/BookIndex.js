@@ -47,13 +47,6 @@ class BookIndex extends Component {
 
 
     handleSearch(searchParams) {
-        console.log("search handler");
-
-
-        // trim string fields
-        for (let key in searchParams) {
-            searchParams[key] = searchParams[key].trim();
-        }
 
         // query back-end and set state of books
         searchBooks(searchParams)

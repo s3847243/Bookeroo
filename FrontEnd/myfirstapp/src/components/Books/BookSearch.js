@@ -6,10 +6,7 @@ class BookSearch extends Component {
     constructor() {
         super();
         this.state = {
-            title: "",
-            author: "",
-            isbn: "",
-            genre: ""
+            params: ""
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -20,13 +17,8 @@ class BookSearch extends Component {
     
     onSubmit(e) {
         e.preventDefault();
-        const searchParams = {
-            title: this.state.title,
-            author: this.state.author,
-            isbn: this.state.isbn,
-            genre: this.state.genre
-        }
-        this.props.handler(searchParams);
+ 
+        this.props.handler(this.state.params);
     }
 
 
@@ -39,17 +31,9 @@ class BookSearch extends Component {
         <React.Fragment>
             <form className="search-bar" onSubmit = {this.onSubmit}>
                 <div className="search-box">
-                    <input type="text" name="title" value={this.state.title} 
+                    <input type="text" name="params" value={this.state.title} 
                     onChange={this.onChange}/>
                 </div>
-                {/* <div className="search-box">
-                    <input type="text" name="author" value={this.state.title} 
-                    onChange={this.onChange}/>
-                </div>
-                <div className="search-box">
-                    <input type="text" name="genre" value={this.state.title} 
-                    onChange={this.onChange}/>
-                </div> */}
                 <div className="search-btn">
                     <input type="submit" className="submit-btn" value="Search" />
                 </div>

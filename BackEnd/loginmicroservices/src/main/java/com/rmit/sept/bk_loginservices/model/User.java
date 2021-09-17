@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private String confirmPassword;
     private String address;
     private String phoneNum;
-    private String ABN;
+    private String abn;
     private String userType;
     private Boolean enabled;
     private Date create_At;
@@ -109,12 +109,12 @@ public class User implements UserDetails {
         this.phoneNum = phoneNum;
     }
 
-    public String getABN() {
-        return ABN;
+    public String getAbn() {
+        return abn;
     }
 
-    public void setABN(String ABN) {
-        this.ABN = ABN;
+    public void setAbn(String abn) {
+        this.abn = abn;
     }
 
     public String getUserType() {

@@ -61,8 +61,8 @@ class Register extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-    }
+  this.setState({ [e.target.name]: e.target.value });
+  }
 
 
 
@@ -168,7 +168,7 @@ class Register extends Component {
                     name="abn"
                     disabled
                     required
-                    onChange={e => this.handleUserChange(e)}
+                    onChange={e => this.onChange(e)}
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />

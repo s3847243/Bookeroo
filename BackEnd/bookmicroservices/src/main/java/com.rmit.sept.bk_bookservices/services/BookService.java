@@ -69,29 +69,11 @@ public class BookService {
         return bookRepository.getByIsbn(isbn);
     }
 
-    public List<Book> search(Map<String, String> parameters){
-        String title = parameters.get("title");
-        String author = parameters.get("author");
-        String genre = parameters.get(("genre"));
-
-        List<Book> results = null;
-
-        if (!parameters.get("title").equals(null) && parameters.get("author").equals(null) && parameters.get("genre").equals(null)){
-            results = bookRepository.findByAuthorContainingAndGenre(author, genre);
-        }else if (!parameters.get("title").equals(null) && !parameters.get("author").equals(null) && parameters.get("genre").equals(null)){
-            results = bookRepository.findByGenre(genre);
-        }else if (parameters.get("title").equals(null) && parameters.get("author").equals(null) && !parameters.get("genre").equals(null)){
-            results = bookRepository.findByTitleContainingAndAuthorContaining(title, author);
-        }else if (parameters.get("title").equals(null) && !parameters.get("author").equals(null) && !parameters.get("genre").equals(null)){
-            results = bookRepository.findByTitleContaining(title);
-        }else if (!parameters.get("title").equals(null) && parameters.get("author").equals(null) && !parameters.get("genre").equals(null)){
-            results = bookRepository.findByAuthorContaining(author);
-        }else if (parameters.get("title").equals(null) && !parameters.get("author").equals(null) && parameters.get("genre").equals(null)){
-            results = bookRepository.findByTitleContainingAndGenre(title, genre);
-        }else if (!parameters.get("title").equals(null) && !parameters.get("author").equals(null) && !parameters.get("genre").equals(null)){
-            results = bookRepository.findByTitleContainingAndAuthorContainingAndGenre(title, author, genre);
-        }
-
+    public List<Book> search(String parameters){
+        System.out.println(parameters);
+        List<Book> results = bookRepository.findByTitleContaining(parameters);
+        results.addAll(bookRepository.findByAuthorContaining(parameters));
+        results.addAll(bookRepository.findByGenre(parameters));
         return results;
     }
 }
