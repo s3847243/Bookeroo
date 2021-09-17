@@ -2,7 +2,7 @@ import axios from "axios";
 import {GET_ERRORS, SET_CURRENT_USER} from "./types";
 import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
-
+import store from './../store';
 
 
 export const createNewUser = (newUser, history) => async dispatch => {
@@ -39,6 +39,7 @@ export const login = LoginRequest => async dispatch => {
     // decode token on React
     const decoded = jwt_decode(token);
     // dispatch to our securityReducer
+    console.log(decoded);
     dispatch({
       type: SET_CURRENT_USER,
       payload: decoded
@@ -65,5 +66,14 @@ export const logout = async () => {
   console.log("logout call")
   localStorage.removeItem("jwtToken");
   setJWTToken(false);
-
 };
+
+
+export const getType = () => {
+
+  const token = localStorage.getItem("jwtToken");
+  if(token){
+    return jwt_decode(token).userType;
+  }
+  
+}

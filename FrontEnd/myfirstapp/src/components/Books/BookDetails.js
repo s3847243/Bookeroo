@@ -1,16 +1,15 @@
-import React , { Component } from 'react'
+import React , { Component, Fragment } from 'react'
 //import {  } from 'react-router';
 import "./css/BookDetails.css"
 import { getAllBooks, searchBooks, getBookByID } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
 import {addToCart, getCart} from "./../../actions/cartActions"
-import store from '../../store';
-import { ADD_TO_CART } from "../../actions/types"
 
 class BookDetails extends Component {
     constructor() {
         super();
         this.state = {
+            userType: "",
             book: null,
             listings: [
                 {seller: "example seller",
@@ -35,21 +34,12 @@ class BookDetails extends Component {
 
         }) 
 
-        // let {isbn} = useParams;
+        /**
+         * getusertype
+         * setusertype
+         */
+        
 
-        // const searchParams = "?isbn=" + isbn;
-        // searchBooks(searchParams)
-        //     .then((res) => {
-        //         const book = res.data;
-        //         this.setState({book: book});
-        // })  
-
-        // getListings(isbn)
-        //     .then((res) => {
-        //         const listings = res.data;
-        //         this.setState({listings: listings});
-        //         console.log(this.state.listings)
-        // }) 
     }
 
     handleCartButton(index) {
@@ -120,7 +110,7 @@ class BookDetails extends Component {
                             </p>
                         </div>
                     </div>
-                    
+                    {/* {userType == "USER" ? : <Fragment/>} */}
                     <div className="listings">
                         <h2>Listings</h2>
                         <hr/>

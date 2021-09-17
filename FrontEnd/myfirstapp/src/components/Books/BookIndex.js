@@ -4,9 +4,9 @@ import { getAllBooks, searchBooks } from "../../actions/bookActions.js";
 import { BookItem } from "./BookItem";
 import BookSearch from "./BookSearch.js";
 import BookSort from "./BookSort.js";
-import "./css/BookIndex.css"
-import {shuffle, compareTitle, compareYear} from "./functions/BookFunctions.js"
-
+import "./css/BookIndex.css";
+import {shuffle, compareTitle, compareYear} from "./functions/BookFunctions.js";
+import {getType} from "./../../actions/securityActions";
 
 
 class BookIndex extends Component {
@@ -27,7 +27,7 @@ class BookIndex extends Component {
                 const books = res.data;
                 this.setState({books: shuffle(books)});
         })  
-       
+        
     }
 
     handleSort(sortParam) {
