@@ -70,10 +70,10 @@ public class BookService {
     }
 
     public List<Book> search(String parameters){
-        System.out.println(parameters);
-        List<Book> results = bookRepository.findByTitleContaining(parameters);
-        results.addAll(bookRepository.findByAuthorContaining(parameters));
-        results.addAll(bookRepository.findByGenre(parameters));
+        String formattedParams = parameters.substring(0, 1).toUpperCase() + parameters.substring(1);
+        List<Book> results = bookRepository.findByTitleContaining(formattedParams);
+        results.addAll(bookRepository.findByAuthorContaining(formattedParams));
+        results.addAll(bookRepository.findByGenre(formattedParams));
         return results;
     }
 }
