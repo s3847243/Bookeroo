@@ -28,11 +28,11 @@ class BookDetails extends Component {
    
 
     componentDidMount() {
-        console.log("isbn = ", this.props.match.params.isbn);
+
         getBookByID(this.props.match.params.isbn)
             .then((res) => {
                 this.setState({book: res.data});
-                console.log(this.state.book)
+
         }) 
 
         // let {isbn} = useParams;
