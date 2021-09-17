@@ -4,10 +4,13 @@ import javax.persistence.*;
 
 import com.rmit.sept.bk_loginservices.Repositories.PrivilegeRepository;
 import com.rmit.sept.bk_loginservices.Repositories.RoleRepository;
+import com.rmit.sept.bk_loginservices.Repositories.UserRepository;
 import com.rmit.sept.bk_loginservices.model.Privilege;
 import com.rmit.sept.bk_loginservices.model.Role;
+import com.rmit.sept.bk_loginservices.model.User;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +27,16 @@ public class SetupDataLoader implements
     boolean setup = false;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
     private PrivilegeRepository privilegeRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     @Transactional
@@ -57,6 +66,16 @@ public class SetupDataLoader implements
         createRoleIfNotFound("ADMIN", adminPrivileges);
         createRoleIfNotFound("BUSINESS", businessPrivileges);
         createRoleIfNotFound("USER", userPrivileges);
+
+        User sampleAdmin = new User();
+        sampleAdmin.setUsername("admin@bookeroo.com");
+        sampleAdmin.setFullName("John Smith");
+        sampleAdmin.setPassword(bCryptPasswordEncoder.encode("password123"));
+        sampleAdmin.setAddress("123 Street");
+        sampleAdmin.setPhoneNum("1234567890");
+        sampleAdmin.setUserType("ADMIN");
+        sampleAdmin.setEnabled(true);
+        userRepository.save(sampleAdmin);
 
         System.out.println("Data setup");
         setup = true;
