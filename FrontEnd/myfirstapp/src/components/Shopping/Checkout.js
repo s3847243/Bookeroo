@@ -13,6 +13,7 @@ function Checkout(props){
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [postcode, setPostcode] = useState("");
+    const [savedInfo, setSavedInfo] = useState(false);
     const [shippingInfo, setShippingInfo] = useState();
 
 
@@ -21,44 +22,6 @@ function Checkout(props){
     const [cartLength] = useState(getCartLength())
 
     const [paidFor, setPaidFor] = useState(false);
-    const [loaded, setLoaded] = useState(false);
-
-    let paypalRef = useRef();
-
-    useEffect(() => {
-        console.log("run once")
-        const script = document.createElement("script");
-        script.src = 
-        "https://www.paypal.com/sdk/js?client-id=ASNP31jq-n5i8qMqIwgnegeQkLjTyUtcETPdirulwK3C4esDFI6-P-DJezugURmJuEYyAav7cpCBPCSh&currency=AUD";
-        script.addEventListener("load", () => setLoaded(true));
-        document.body.appendChild(script);
-    }, []);
-
-    useEffect(() => {
-        if (loaded) {
-            setTimeout(()=>{
-                window.paypal
-                    .Buttons({
-                        createOrder: (data, actions) => {
-                            return actions.order.create({
-                                purchase_units: [
-                                    {
-                                      amount: {
-                                        value: total,
-                                      },
-                                    },
-                                  ],
-                            })
-                        },
-                        onApprove: async (data, actions) => {
-                            const order = await actions.order.capture();
-                            setPaidFor(true);
-                        }
-                    })
-                    .render(paypalRef);
-            });
-        }
-    }, [loaded]);
 
     useEffect(() => {
         console.log("checkpaid")
@@ -72,7 +35,6 @@ function Checkout(props){
         [paidFor]
     );
 
-
     const onSubmit = (e) => {
         e.preventDefault();
         setShippingInfo( {
@@ -83,14 +45,16 @@ function Checkout(props){
             state: state,
             postcode: postcode
         });
-     
+        setSavedInfo(true);
     }
-
 
     return (
         <div className="checkout-content">
             {paidFor ? (
-                <h1>Thanks for buying from Bookeroo!</h1>
+                <Fragment>
+                    <h1>Thanks for buying from Bookeroo!</h1>
+                    <p> We will implement your order next Sprint. (Transaction history, order status, etc.) </p>
+                </Fragment>
             ) : 
             cartLength !== 0 ?
             (
@@ -186,7 +150,33 @@ function Checkout(props){
             </form>
             <h2>Total = ${total}</h2>
             
-            <div className="paypal" ref={v=>(paypalRef = v)}/>
+            {savedInfo ? 
+            (
+                <PayPalButton
+                    amount={total}
+                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                    onSuccess={(details, data) => {
+                    alert("Transaction completed by " + details.payer.name.given_name);
+                    setPaidFor(true);
+                    // OPTIONAL: Call your server to save the transaction
+                    return fetch("/paypal-transaction-complete", {
+                        method: "post",
+                        body: JSON.stringify({
+                        orderID: data.orderID
+                        })
+                    });
+                    }}
+                    options={{
+                        clientId: "ASNP31jq-n5i8qMqIwgnegeQkLjTyUtcETPdirulwK3C4esDFI6-P-DJezugURmJuEYyAav7cpCBPCSh"
+                    }}
+                />
+            )
+            :
+            (
+                <Fragment></Fragment>
+            )
+            }
+            
 
             </Fragment>
             )
