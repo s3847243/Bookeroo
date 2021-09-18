@@ -2,7 +2,7 @@ import axios from "axios";
 import {GET_ERRORS, SET_CURRENT_USER} from "./types";
 import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
-import store from './../store';
+// import store from './../store';
 
 
 export const createNewUser = (newUser, history) => async dispatch => {

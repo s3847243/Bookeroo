@@ -18,6 +18,7 @@ class BookIndex extends Component {
 
         this.handleSort = this.handleSort.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+
     }
 
     
@@ -27,7 +28,6 @@ class BookIndex extends Component {
                 const books = res.data;
                 this.setState({books: shuffle(books)});
         })  
-        
     }
 
     handleSort(sortParam) {
@@ -44,7 +44,6 @@ class BookIndex extends Component {
             this.setState({books: sorted});
         }
     }
-
 
     handleSearch(searchParams) {
 

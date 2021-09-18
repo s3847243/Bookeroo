@@ -17,7 +17,6 @@ class BookSearch extends Component {
     
     onSubmit(e) {
         e.preventDefault();
- 
         this.props.handler(this.state.params);
     }
 

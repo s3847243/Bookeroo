@@ -1,10 +1,11 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 
 
 export const BookListing = (props) => {
     
     return (
-        <tr>
+        
+        <tr className = "book-listing-row">
             <td>{props.seller}</td>
             <td>${props.price}</td>   
             <td>{props.condition}</td> 

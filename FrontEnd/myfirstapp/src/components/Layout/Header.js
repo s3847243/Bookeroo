@@ -6,9 +6,7 @@ import { logout } from "../../actions/securityActions";
  class Header extends Component {
 
     onLogout(e) {
-        console.log("Logging out, " , localStorage.jwtToken);
         logout();
-        console.log("Post logging out, ", localStorage.jwtToken);
     }
 
     render() {
@@ -37,19 +35,19 @@ import { logout } from "../../actions/securityActions";
                         localStorage.jwtToken ? 
 
                         <li className="nav-item">
-                            <a className="nav-link" href="/" onClick={this.onLogout}>
+                            <a id="logout" className="nav-link" href="/" onClick={this.onLogout}>
                                 Logout
                             </a>
                         </li>
                         : 
                         <>
                         <li className="nav-item">
-                            <a className="nav-link " href="/register">
+                            <a id="signup" className="nav-link " href="/register">
                                 Sign Up
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/login">
+                            <a id="login" className="nav-link" href="/login">
                                 Login
                             </a>
                         </li>
@@ -77,9 +75,9 @@ import { logout } from "../../actions/securityActions";
             </div>
         </nav>
         <nav>
-            <navDropdown title = "UserName">
+            {/* <navDropdown title = "UserName">
 
-            </navDropdown>
+            </navDropdown> */}
         </nav>
             </div>
         )

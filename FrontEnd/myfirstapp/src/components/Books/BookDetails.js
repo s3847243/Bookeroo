@@ -1,17 +1,18 @@
-import React , { Component, Fragment } from 'react'
+import React , { Component } from 'react'
 //import {  } from 'react-router';
 import "./css/BookDetails.css"
-import { getAllBooks, searchBooks, getBookByID } from "../../actions/bookActions.js";
+import { getBookByID } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
-import {addToCart, getCart} from "./../../actions/cartActions"
+import {addToCart} from "./../../actions/cartActions"
 
 class BookDetails extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             userType: "",
             book: null,
             listings: [
+                // TODO: dummy listings for now, will use a microservice for next sprint
                 {seller: "example seller",
                 price: "30",
                 condition: "new",
@@ -67,22 +68,24 @@ class BookDetails extends Component {
                             <img src={"http://covers.openlibrary.org/b/isbn/" + book.isbn + "-L.jpg" }
                             alt={"book cover for " + book.title}/>
                             <table>
-                                <tr>
-                                    <th>Author</th>
-                                    <td>{book.author}</td>
-                                </tr>
-                                <tr>
-                                    <th>Genre</th>
-                                    <td>{book.genre}</td>
-                                </tr>
-                                <tr>
-                                    <th>Year Published</th>
-                                    <td>{book.published}</td>
-                                </tr>
-                                <tr>
-                                    <th>ISBN</th>
-                                    <td>{book.isbn}</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Author</th>
+                                        <td>{book.author}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Genre</th>
+                                        <td>{book.genre}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Year Published</th>
+                                        <td>{book.published}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ISBN</th>
+                                        <td>{book.isbn}</td>
+                                    </tr>
+                                </thead>
                             </table>
                         </div>
                         <div className="sub-content">
@@ -116,32 +119,36 @@ class BookDetails extends Component {
                         <hr/>
                         
                             <table>
-                                <tr>
-                                    <th>
-                                        Seller
-                                    </th>
-                                    <th>
-                                        Price
-                                    </th>
-                                    <th>
-                                        Condition
-                                    </th>
-                                    <th>
-                                        QTY Remaining
-                                    </th>
-                                </tr>
-                                {this.state.listings.map((listing, i) => (
-                                    <BookListing
-                                        handler={this.handleCartButton}
-                                        
-                                        seller = {listing.seller}
-                                        price = {listing.price}
-                                        condition = {listing.condition}
-                                        qtyRem = {listing.qtyRem}
-                                        index = {i}
-                                        key = {i}
-                                    />
-                                ))}
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Seller
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+                                        <th>
+                                            Condition
+                                        </th>
+                                        <th>
+                                            QTY Remaining
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.listings.map((listing, i) => (
+                                        <BookListing
+                                            handler={this.handleCartButton}
+                                            
+                                            seller = {listing.seller}
+                                            price = {listing.price}
+                                            condition = {listing.condition}
+                                            qtyRem = {listing.qtyRem}
+                                            index = {i}
+                                            key = {i}
+                                        />
+                                    ))}
+                                </tbody>
                             
 
                             </table>

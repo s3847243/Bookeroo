@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
-import ReactDOM from 'react-dom';
-import CartItem from "./cartItem";
+// import ReactDOM from 'react-dom';
+// import CartItem from "./cartItem";
 import "./css/cart.css"
-import classnames from "classnames";
 import "./css/checkout.css"
 import { getCart, removeAllCart, getCartTotal, getCartLength } from "../../actions/cartActions";
+import { PayPalButton } from "react-paypal-button-v2";
 
 function Checkout(props){
     const [firstName, setFirstName] = useState("");
@@ -16,9 +16,9 @@ function Checkout(props){
     const [shippingInfo, setShippingInfo] = useState();
 
 
-    const [cartItems, setCartItems] = useState(getCart());
-    const [total, setTotal] = useState(getCartTotal());
-    const [cartLength, setCartLength] = useState(getCartLength())
+    //const [cartItems, setCartItems] = useState(getCart());
+    const [total] = useState(getCartTotal());
+    const [cartLength] = useState(getCartLength())
 
     const [paidFor, setPaidFor] = useState(false);
     const [loaded, setLoaded] = useState(false);

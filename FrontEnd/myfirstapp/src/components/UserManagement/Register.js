@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
 // import classnames from "classnames";
 
-class Register extends Component {
+export class Register extends Component {
   constructor() {
     super();
 
@@ -134,6 +134,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <input
+                    id="pw"
                     type="password"
                     className="form-control form-control-lg"
                     placeholder="Password"

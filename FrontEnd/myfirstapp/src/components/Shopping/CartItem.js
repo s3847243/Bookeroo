@@ -1,6 +1,6 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 
-function CartItem({title, isbn, seller, price, condition, qtyRem, index, key, handler}){
+function CartItem({title, isbn, seller, price, condition, qtyRem, index, handler}){
 
     return (
         <tr>

@@ -5,7 +5,7 @@ import classnames from "classnames";
 import { login } from "../../actions/securityActions";
 
 
-class Login extends Component {
+export class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +24,7 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.security.validToken) {
       this.props.history.push("/dashboard");
     }
@@ -82,6 +82,7 @@ class Login extends Component {
                 </div>
                 <div className="form-group">
                   <input
+                    id ="pw"
                     type="password"
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password

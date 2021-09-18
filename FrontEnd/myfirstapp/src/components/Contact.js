@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import emailjs from 'emailjs-com'
 
-class contact extends Component {
+class Contact extends Component {
     render() {
         function sendEmail(e){
             e.preventDefault();
@@ -32,4 +32,4 @@ class contact extends Component {
         );
     }
 }
-export default contact;
+export default Contact;
