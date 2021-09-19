@@ -1,0 +1,87 @@
+version: 2.1
+
+jobs:
+
+ build_test_push:
+   docker:
+    - image: docker
+   environment:
+    FRONTEND_TAG: 
+    LOGIN_MS_TAG: 
+    BOOK_MS_TAG:
+   working_directory: ~/
+
+   steps:
+    - checkout
+    - setup_remote_docker
+    
+    # FRONTEND - REACT APP
+    - run:
+       name: build frontend
+       command: | 
+         docker build /FrontEnd/myfirstapp -t $FRONTEND_TAG
+    - run:
+       name: run frontend
+       command: |
+         docker run -d $FRONTEND_TAG
+    - run:
+       name: test frontend (npm test)
+       command: |
+         docker run -e CI=true $FRONTEND_TAG npm run test
+    
+    # BACKEND - LOGIN MICROSERVICES
+    - run:
+       name: build backend (login microservices)
+       command: | 
+         docker build . -t $LOGIN_MS_TAG
+    - run:
+       name: run backend (login microservices)
+       command: | 
+         docker run -d $LOGIN_MS_TAG
+    - run:
+       name: test backend (login microservices)
+       command: | 
+         docker run -e CI=true $LOGIN_MS_TAG mvn test
+         
+    # BACKEND - BOOK MICROSERVICES
+    - run:
+       name: build backend (book microservices)
+       command: | 
+         docker build . -t $BOOK_MS_TAG
+    - run:
+       name: run backend (book microservices)
+       command: | 
+         docker run -d $BOOK_MS_TAG
+    - run:
+       name: test backend (book microservices)
+       command: | 
+         docker run -e CI=true $BOOK_MS_TAG mvn test
+         
+    # PUSH IMAGES
+    - run:
+       name: login to DockerHub
+       command: |
+         docker login -u $DOCKER_USER -p $DOCKER_PASS
+         
+    - run:
+       name: push frontend
+       command: |
+         docker push $FRONTEND_TAG:latest
+
+    - run:
+       name: push backend (login microservices)
+       command: |
+         docker push $LOGIN_MS_TAG:latest
+         
+    - run:
+       name: push backend (book microservices)
+       command: |
+         docker push $BOOK_MS_TAG:latest
+         
+workflows:
+  build_test_push_app:
+    jobs:
+      - build_test_push
+      
+      
+      
