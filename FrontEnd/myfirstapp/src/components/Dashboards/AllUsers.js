@@ -116,7 +116,7 @@ function AllUsers(){
     };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
         <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
@@ -185,7 +185,7 @@ function AllUsers(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 

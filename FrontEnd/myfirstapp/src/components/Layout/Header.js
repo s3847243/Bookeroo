@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import { logout } from "../../actions/securityActions";
@@ -40,7 +40,7 @@ import { logout } from "../../actions/securityActions";
                             </a>
                         </li>
                         : 
-                        <>
+                        <Fragment>
                         <li className="nav-item">
                             <a id="signup" className="nav-link " href="/register">
                                 Sign Up
@@ -51,7 +51,7 @@ import { logout } from "../../actions/securityActions";
                                 Login
                             </a>
                         </li>
-                        </>
+                        </Fragment>
                     }
                         <li className="nav-item">
                             <a className="nav-link" href="/cart">

@@ -26,8 +26,8 @@ class BookIndex extends Component {
         getAllBooks()
             .then((res) => {
                 const books = res.data;
-                this.setState({books: shuffle(books)});
-        })  
+                this.setState({books: shuffle(books)}) })
+            .catch((error) => {console.log("no books! " + error)});
     }
 
     handleSort(sortParam) {

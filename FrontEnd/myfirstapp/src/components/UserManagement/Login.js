@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
@@ -50,10 +50,10 @@ export class Login extends Component {
 
   render() {
     const errorMessage = this.state.registerError ? 
-    <>
+    <Fragment>
       <h2>Incorrect information</h2>
       <p>Please ensure that the email and password you entered were correct.</p>
-    </> 
+    </Fragment> 
     : null;
     const { errors } = this.state;
     return (

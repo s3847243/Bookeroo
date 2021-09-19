@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { createNewUser } from "../../actions/securityActions";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
@@ -69,7 +69,7 @@ export class Register extends Component {
   render() {
     // const { errors } = this.state;
     const errorMessage = this.state.registerError ? 
-    <>
+    <Fragment>
       <h2>Incorrect information</h2>
       <p>This error may be because of one or more of the following factors:</p>
       <ul>
@@ -77,7 +77,7 @@ export class Register extends Component {
         <li>Passwords did not match</li>
         <li>Password were less than 6 characters</li>
       </ul>
-    </>
+    </Fragment>
     : null;
     return (
       <div className="register">

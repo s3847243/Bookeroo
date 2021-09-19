@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component, Fragment} from 'react'
 import DashNav from './Dashboards/DashNav';
 import DashContent from './Dashboards/DashContent';
 import Sidebar from './Dashboards/Sidebar';
@@ -68,7 +68,7 @@ class Dashboard extends Component {
     
         //)
         
-        <>
+        <Fragment>
         <h1 className = 'head-Dash'>Welcome to the Dashboard</h1>
             <Router>
                 <Sidebar />
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                     <Route exact path ='/Reports'  component={Reports} />
                 </Switch>
             </Router>
-        </>
+        </Fragment>
         )
     }
 }
