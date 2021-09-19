@@ -89,6 +89,16 @@
   transition: 0.1s;
 }
 
+.added-cart-btn {
+  background-color: #4b4b4b;
+  color: white;
+  font-size: small;
+  padding: 8px 8px;
+  border-radius: 12px;
+  border-style: none;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
 .cart-btn:hover {
   background-color: #439fdc;
   cursor: pointer;
