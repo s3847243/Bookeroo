@@ -10,8 +10,6 @@ import {BrowserRouter as Router} from "react-router-dom";
 Enzyme.configure({adapter: new Adapter()});
 
 describe("<BookIndex/> component Unit Test", () => {
-    const mockFn = jest.fn();
-    const match = {params: {isbn: '9780007136582'}};
 
     it("Should render search bar", ()=>{
         const component = mount(

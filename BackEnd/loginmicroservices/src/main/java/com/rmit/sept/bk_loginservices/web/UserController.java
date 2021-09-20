@@ -131,4 +131,11 @@ public class UserController {
         return new ResponseEntity<>("User approved", HttpStatus.OK);
     }
 
+    @PostMapping("/blockUser/{id}")
+    public ResponseEntity<?> blockUser(@PathVariable String id){
+        Long userId = Long.parseLong(id);
+        userDetailsService.blockUser(userId);
+        return new ResponseEntity<>("User blocked", HttpStatus.OK);
+    }
+
 }

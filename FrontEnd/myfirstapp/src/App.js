@@ -20,7 +20,7 @@ import Checkout from "./components/Shopping/Checkout";
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
-import { logout } from "./actions/securityActions";
+// import { logout } from "./actions/securityActions";
 // import SecuredRoute from "./securityUtils/SecureRoute";
 import BookIndex from "./components/Books/BookIndex";
 import BookDetails from "./components/Books/BookDetails";
@@ -35,7 +35,7 @@ if (jwtToken) {
     payload: decoded_jwtToken
   });
 
-  const currentTime = Date.now() / 1000;
+  // const currentTime = Date.now() / 1000;
   // comment out for now dispatching a promise is bad! c'mon homy!
   // if (decoded_jwtToken.exp < currentTime) {
   //   store.dispatch(logout());

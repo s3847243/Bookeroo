@@ -27,7 +27,9 @@ class BookIndex extends Component {
             .then((res) => {
                 const books = res.data;
                 this.setState({books: shuffle(books)}) })
-            .catch((error) => {console.log("no books! " + error)});
+            .catch((error) => {console.log("unfulfilled promise: " + error )});
+
+        console.log(getType());
     }
 
     handleSort(sortParam) {
@@ -51,9 +53,9 @@ class BookIndex extends Component {
         searchBooks(searchParams)
             .then((res) => {
                 const books = res.data;
-                this.setState({books: shuffle(books)});
-        }) 
-
+                this.setState({books: shuffle(books)}) 
+            })
+            .catch((error) => {console.log("unfulfilled promise: " + error )});
     }
     
 
@@ -63,17 +65,26 @@ class BookIndex extends Component {
             <BookSearch handler={this.handleSearch}/>
             <BookSort handler={this.handleSort}/>
             <div className = "books">
-                {this.state.books.map((book) => (
-                    <BookItem
-                        title = {book.title}
-                        author = {book.author}
-                        img = {"http://covers.openlibrary.org/b/isbn/" + book.isbn + "-L.jpg"}
-                        isbn = {book.isbn}
-                        genre = {book.genre}
-                        published = {book.published}
-                        key = {book.id}
-                    />
-                ))}
+                {
+                    this.state.books.length == 0 ?(
+                        <h1>No matching books</h1>
+                    )
+                    :
+                    (
+                     this.state.books.map((book) => (
+                        <BookItem
+                            title = {book.title}
+                            author = {book.author}
+                            img = {"http://covers.openlibrary.org/b/isbn/" + book.isbn + "-L.jpg"}
+                            isbn = {book.isbn}
+                            genre = {book.genre}
+                            published = {book.published}
+                            key = {book.id}
+                        />
+                    ))
+                    )
+                }
+                
             </div>  
         </Fragment>
         );
