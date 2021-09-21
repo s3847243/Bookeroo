@@ -73,6 +73,6 @@ public class BookController {
     public ResponseEntity<?> delete(@PathVariable String id){
 
         bookService.deleteBook(id);
-        return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Book deleted", HttpStatus.OK);
     }
 }
