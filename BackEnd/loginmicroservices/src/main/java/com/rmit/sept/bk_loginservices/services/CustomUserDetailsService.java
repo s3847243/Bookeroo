@@ -48,18 +48,23 @@ public class CustomUserDetailsService implements UserDetailsService {
         return users;
     }
 
-    public void deleteUser(Long id){
-        User userToDelete = loadUserById(id);
-        userRepository.delete(userToDelete);
+    public boolean deleteUser(Long id){
+        if(userRepository.getById(id) == null){
+            return false;
+        }
+
+        userRepository.deleteById(id);
+        return true;
+
     }
 
-    public void updateUser(Long id, User user){
+    public User updateUser(Long id, User user){
         if(userRepository.getById(id) == null){
             throw new UsernameNotFoundException("User not found");
         }
 
         user.setId(id);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public List<User> getUnapprovedUsers() {
@@ -70,10 +75,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         return users;
     }
 
-    public void approveUser(Long id){
+    public User approveUser(Long id){
         User user = loadUserById(id);
         user.setEnabled(true);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
