@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Fragment, useRef } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 // import ReactDOM from 'react-dom';
 // import CartItem from "./cartItem";
 import "./css/cart.css"
 import "./css/checkout.css"
-import { getCart, removeAllCart, getCartTotal, getCartLength } from "../../actions/cartActions";
+import { removeAllCart, getCartTotal, getCartLength } from "../../actions/cartActions";
 import { PayPalButton } from "react-paypal-button-v2";
 
 function Checkout(props){
@@ -46,6 +46,8 @@ function Checkout(props){
             postcode: postcode
         });
         setSavedInfo(true);
+        // save shipping info
+        console.log(shippingInfo)
     }
 
     return (

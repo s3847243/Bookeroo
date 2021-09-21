@@ -31,10 +31,10 @@ class BookDetails extends Component {
 
         getBookByID(this.props.match.params.isbn)
             .then((res) => {
-                this.setState({book: res.data});
-
-        }) 
-
+                this.setState({book: res.data})
+            })
+            .catch((error) => {console.log("unfulfilled promise: " + error )});
+            
         /**
          * getusertype
          * setusertype
@@ -53,6 +53,7 @@ class BookDetails extends Component {
             condition: listing.condition
         }
         addToCart(cartItem);
+        
         
     }
 

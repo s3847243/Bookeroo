@@ -15,15 +15,18 @@ describe("<Header/> component Unit Test", () => {
             <Header store={store}/>
         );
         expect(component.find("#login")).toHaveLength(1);
-        expect(component.find("#signup")).toHaveLength(1);     
+        expect(component.find("#signup")).toHaveLength(1);
+        expect(component.find("#logout")).toHaveLength(0);    
+           
     });
-
 
     it("Should render logout when logged in", ()=>{
         localStorage.setItem("jwtToken", "example");
         const component = mount(
             <Header store={store}/>
         );
+        expect(component.find("#login")).toHaveLength(0);
+        expect(component.find("#signup")).toHaveLength(0);    
         expect(component.find("#logout")).toHaveLength(1);  
     });
 })

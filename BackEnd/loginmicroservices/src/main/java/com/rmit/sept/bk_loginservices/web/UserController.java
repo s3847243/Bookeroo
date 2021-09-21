@@ -107,12 +107,6 @@ public class UserController {
     @PostMapping("/update/{id}")
     public ResponseEntity<?> deleteUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
         Long userId = Long.parseLong(id);
-
-        userValidator.validate(user,result);
-
-        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null)return errorMap;
-
         userDetailsService.updateUser(userId, user);
         return new ResponseEntity<>("User updated", HttpStatus.OK);
     }
@@ -129,6 +123,13 @@ public class UserController {
 
         userDetailsService.approveUser(userId);
         return new ResponseEntity<>("User approved", HttpStatus.OK);
+    }
+
+    @PostMapping("/blockUser/{id}")
+    public ResponseEntity<?> blockUser(@PathVariable String id){
+        Long userId = Long.parseLong(id);
+        userDetailsService.blockUser(userId);
+        return new ResponseEntity<>("User blocked", HttpStatus.OK);
     }
 
 }

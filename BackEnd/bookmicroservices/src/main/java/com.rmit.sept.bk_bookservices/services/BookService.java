@@ -5,6 +5,7 @@ import com.rmit.sept.bk_bookservices.model.Book;
 import com.rmit.sept.bk_bookservices.Repositories.BookRepository;
 import com.rmit.sept.bk_bookservices.exceptions.ISBNAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,19 +47,13 @@ public class BookService {
     public Book updateBook(String id, Book book){
         Long longID = Long.parseLong(id);
 
-        Book oldBook = bookRepository.getById(longID);
-
-        try{
-            oldBook.setTitle(book.getTitle());
-            oldBook.setAuthor(book.getAuthor());
-            oldBook.setIsbn(book.getIsbn());
-            oldBook.setGenre(book.getGenre());
-            oldBook.setPublished(book.getPublished());
-            return oldBook;
-
-        }catch (Exception e){
-            throw new ISBNAlreadyExistsException("ISBN '"+oldBook.getIsbn()+"' already exists");
+        if(bookRepository.getById(longID) == null){
+            throw new NullPointerException();
         }
+
+        book.setId(longID);
+        bookRepository.save(book);
+        return bookRepository.getById(longID);
     }
 
     public Book getById(Long id){

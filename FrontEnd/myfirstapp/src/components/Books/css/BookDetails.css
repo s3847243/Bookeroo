@@ -94,6 +94,7 @@
   color: white;
   font-size: small;
   padding: 8px 8px;
+  cursor: default;
   border-radius: 12px;
   border-style: none;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
@@ -104,4 +105,10 @@
   cursor: pointer;
   transform: scale(1.01);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.added-cart-btn:hover {
+  background-color: #4b4b4b;
+  cursor: default;
+  transform: scale(1.01);
 }
