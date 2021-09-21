@@ -1,16 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { createNewUser } from "../../actions/securityActions";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
 // import classnames from "classnames";
 
-class Register extends Component {
+export class Register extends Component {
   constructor() {
     super();
 
     this.state = {
       username: "",
       fullName: "",
+      phoneNum: "",
+      address: "",
       password: "",
       confirmPassword: "",
       abn: "",
@@ -26,8 +28,10 @@ class Register extends Component {
     e.preventDefault();
     let abnData = this.state.isBusiness ? this.state.abn : "";
     const newUser = {
-      type: this.state.isBusiness ? "business" : "public",
+      userType: this.state.isBusiness ? "BUSINESS" : "USER",
       abn: abnData,
+      phoneNum: this.state.phoneNum,
+      address: this.state.address,
       username: this.state.username,
       fullName: this.state.fullName,
       password: this.state.password,
@@ -57,15 +61,15 @@ class Register extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-    }
+  this.setState({ [e.target.name]: e.target.value });
+  }
 
 
 
   render() {
     // const { errors } = this.state;
     const errorMessage = this.state.registerError ? 
-    <>
+    <Fragment>
       <h2>Incorrect information</h2>
       <p>This error may be because of one or more of the following factors:</p>
       <ul>
@@ -73,7 +77,7 @@ class Register extends Component {
         <li>Passwords did not match</li>
         <li>Password were less than 6 characters</li>
       </ul>
-    </>
+    </Fragment>
     : null;
     return (
       <div className="register">
@@ -108,6 +112,29 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Address"
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    className="form-control form-control-lg"
+                    placeholder="Phone Number eg. 040..."
+                    name="phoneNum"
+                    value={this.state.phoneNum}
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    id="pw"
                     type="password"
                     className="form-control form-control-lg"
                     placeholder="Password"
@@ -142,7 +169,7 @@ class Register extends Component {
                     name="abn"
                     disabled
                     required
-                    onChange={e => this.handleUserChange(e)}
+                    onChange={e => this.onChange(e)}
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />

@@ -120,9 +120,9 @@ function AllBooks(){
     };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
-        <form onSubmit={handleEditFormSubmit}>
+        <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>
@@ -215,7 +215,7 @@ function AllBooks(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 

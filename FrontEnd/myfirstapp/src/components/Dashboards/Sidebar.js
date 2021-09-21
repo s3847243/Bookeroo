@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 //import '../App.css';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -11,7 +11,7 @@ function Sidebar() {
     const showSidebar = () => setSidebar(!sBar);
 
     return(
-        <>
+        <Fragment>
         <IconContext.Provider value={{color:'#fff'}}>
             <div className='sidebar'>
                <Link to='#' className='menu-bars'>
@@ -34,7 +34,7 @@ function Sidebar() {
                 </ul>
             </nav>
             </IconContext.Provider>
-        </>
+        </Fragment>
     );
 
     

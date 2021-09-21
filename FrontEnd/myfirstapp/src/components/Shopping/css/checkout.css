@@ -1,0 +1,26 @@
+.checkout-content {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.co-form-group label {
+  display: block;
+}
+
+.co-input {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  font-size: medium;
+}
+
+.paypal {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.checkout-content h1 {
+  margin-top: 100px;
+  text-align: center;
+  margin-bottom: 100px;
+}

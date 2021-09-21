@@ -74,9 +74,9 @@ function Transactions(){
     // };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
-        <form>
+        <form className="tableForm">
           <table>
             <thead>
               <tr>
@@ -137,7 +137,7 @@ function Transactions(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 

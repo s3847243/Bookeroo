@@ -10,8 +10,9 @@ const ReadAppRow = ({ contact, handleEditClick, handleDeleteClick,checkBoxSubmit
       <td>{contact.address}</td>
       <td>{contact.email}</td>
       <td><label>
-        <input type="checkbox"
-               onClick={(event) => checkBoxSubmit(event)}></input>
+        <button onClick={(event) => checkBoxSubmit(event)}> 
+        Approve
+        </button>
         </label></td>
       <td>{contact.status}</td>
       <td>

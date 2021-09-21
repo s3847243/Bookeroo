@@ -41,15 +41,21 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/{isbn}")
-    public Book get(@PathVariable String isbn){
-        Long bookId = Long.parseLong(isbn);
+    @GetMapping("/{id}")
+    public Book getById(@PathVariable String id){
+        Long bookId = Long.parseLong(id);
         return bookService.getById(bookId);
     }
 
+    @GetMapping("/isbn/{isbn}")
+    public Book getByISBN(@PathVariable String isbn){
+        return bookService.getByISBN(isbn);
+    }
+
+
     @GetMapping("/search")
-    public List<Book> search(@RequestHeader Map<String, String> parameters){
-        return bookService.search(parameters);
+    public List<Book> search(@RequestParam String params){
+        return bookService.search(params);
     }
 
     @PostMapping("/update/{id}")

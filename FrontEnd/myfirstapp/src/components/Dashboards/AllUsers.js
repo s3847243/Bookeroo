@@ -4,6 +4,8 @@ import "../usersTable.css";
 import data from "./mock-data.json";
 import ReadOnlyRow from "./readRow";
 import EditableRow from "./editRow";
+import { getAllUsers } from "../../actions/dashboardActions"
+import { getAllBooks } from "../../actions/bookActions";
 
 function AllUsers(){
   
@@ -114,9 +116,9 @@ function AllUsers(){
     };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
-        <form onSubmit={handleEditFormSubmit}>
+        <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>
@@ -183,7 +185,7 @@ function AllUsers(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 

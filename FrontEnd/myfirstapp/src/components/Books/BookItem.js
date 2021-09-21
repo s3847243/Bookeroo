@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export function BookItem({ title, author, img,isbn, genre,published}) {
     
     return (
-        <Link className = "bookItem" to={`/book/${isbn}`}>
+        <Link className = "bookItem" to={{pathname: `/book/${isbn}`}}>
             <div >
                     <p className="title">{title}</p>
                     <p className="author">By {author}</p>

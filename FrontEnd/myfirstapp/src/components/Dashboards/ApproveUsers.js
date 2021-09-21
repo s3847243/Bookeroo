@@ -135,9 +135,9 @@ function ApproveUsers(){
       };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
-        <form onSubmit={handleEditFormSubmit}>
+        <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>
@@ -209,7 +209,7 @@ function ApproveUsers(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 

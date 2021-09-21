@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { login } from "../../actions/securityActions";
 
-class Login extends Component {
+
+export class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,7 +24,7 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.security.validToken) {
       this.props.history.push("/dashboard");
     }
@@ -49,10 +50,10 @@ class Login extends Component {
 
   render() {
     const errorMessage = this.state.registerError ? 
-    <>
+    <Fragment>
       <h2>Incorrect information</h2>
       <p>Please ensure that the email and password you entered were correct.</p>
-    </> 
+    </Fragment> 
     : null;
     const { errors } = this.state;
     return (
@@ -81,6 +82,7 @@ class Login extends Component {
                 </div>
                 <div className="form-group">
                   <input
+                    id ="pw"
                     type="password"
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password
