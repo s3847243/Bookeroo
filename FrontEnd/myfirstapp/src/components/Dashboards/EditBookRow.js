@@ -1,20 +1,20 @@
 import React from "react";
 
-const EditAppRow = ({
+const EditBookRow = ({
   editFormData,
   handleEditFormChange,
-  handleCancelClick,
+  handleCancelClick,contact
 }) => {
   return (
     <tr>
-        
+        <td>{contact.id}</td>
       <td>
         <input
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="bookName"
-          value={editFormData.bookName}
+          name="title"
+          value={editFormData.title}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -23,8 +23,8 @@ const EditAppRow = ({
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="Author"
-          value={editFormData.Author}
+          name="author"
+          value={editFormData.author}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -33,8 +33,8 @@ const EditAppRow = ({
           type="text"
           required="required"
           placeholder="Enter ISDB..."
-          name="ISDB"
-          value={editFormData.ISDB}
+          name="  ISBN"
+          value={editFormData.isbn}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -42,9 +42,9 @@ const EditAppRow = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter seller..."
-          name="seller"
-          value={editFormData.seller}
+          placeholder="Enter ISDB..."
+          name="  published"
+          value={editFormData.published}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -53,28 +53,8 @@ const EditAppRow = ({
           type="text"
           required="required"
           placeholder="Enter an category..."
-          name="category"
-          value={editFormData.category}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter a status..."
-          name="status"
-          value={editFormData.status}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="status"
-          required="required"
-          placeholder="Enter a type..."
-          name="type"
-          value={editFormData.userType}
+          name="genre"
+          value={editFormData.genre}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -89,4 +69,4 @@ const EditAppRow = ({
   );
 };
 
-export default EditAppRow;
+export default EditBookRow;

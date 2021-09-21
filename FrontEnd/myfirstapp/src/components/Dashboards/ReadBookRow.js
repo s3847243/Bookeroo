@@ -1,16 +1,14 @@
 import React from "react";
 
-const ReadAppRow = ({ contact, handleEditClick, handleDeleteClick,checkBoxSubmit }) => {
+const ReadBookRow = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{contact.id}</td>
-      <td>{contact.bookName}</td>
-      <td>{contact.Author}</td>
-      <td>{contact.ISDB}</td>
-      <td>{contact.seller}</td>
-      <td>{contact.category}</td>
-      <td>{contact.status}</td>
-      <td>{contact.type}</td>
+      <td>{contact.title }</td>
+      <td>{contact.author}</td>
+      <td>{contact.isbn}</td>
+      <td>{contact.published}</td>
+      <td>{contact.genre}</td>
       <td>
         <button
           type="button"
@@ -26,4 +24,4 @@ const ReadAppRow = ({ contact, handleEditClick, handleDeleteClick,checkBoxSubmit
   );
 };
 
-export default ReadAppRow;
+export default ReadBookRow;

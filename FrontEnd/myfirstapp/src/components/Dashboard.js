@@ -9,15 +9,9 @@ import ApproveUsers from './Dashboards/ApproveUsers';
 import AllBooks from './Dashboards/AllBooks';
 import Transactions from './Dashboards/Transactions';
 import Reports from './Dashboards/Reports';
+import AddBook from './Dashboards/AddBook';
 class Dashboard extends Component { 
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            userType: "admin",
-            currentPage: "allBooks"
-        };
-    }
+
 
     render() {
         return (
@@ -69,15 +63,16 @@ class Dashboard extends Component {
         //)
         
         <>
-        <h1 className = 'head-Dash'>Welcome to the Dashboard</h1>
             <Router>
                 <Sidebar />
                 <Switch>
-                    <Route exact path ='/AllUsers'  component={AllUsers} />
-                    <Route exact path ='/ApproveUsers' component={ApproveUsers} />
-                    <Route exact path ='/AllBooks'  component={AllBooks} />
-                    <Route exact path ='/Transactions'  component={Transactions} />
-                    <Route exact path ='/Reports'  component={Reports} />
+                    <Route  path ='/AllUsers'  component={AllUsers} /> 
+                    <Route  path ='/ApproveUsers' component={ApproveUsers} />
+                    <Route  path ='/AllBooks'  component={AllBooks} />
+                    <Route  path ='/Transactions'  component={Transactions} />
+                    <Route  path ='/Reports'  component={Reports} />
+                    <Route exact path ="/addBook" component={AddBook} />
+
                 </Switch>
             </Router>
         </>

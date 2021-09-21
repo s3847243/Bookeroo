@@ -1,43 +1,33 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data.json";
 import ReadOnlyRow from "./readRow";
 import EditableRow from "./editRow";
 import { getAllUsers } from "../../actions/dashboardActions"
-import { getAllBooks } from "../../actions/bookActions";
+import { postEditUser } from "../../actions/dashboardActions";
+import { deleteUser } from "../../actions/dashboardActions";
+import { blockUser } from "../../actions/dashboardActions";
+
 
 function AllUsers(){
-  
-    const [contacts, setContacts] = useState(data);
-
-    const [addFormData, setAddFormData] = useState({
-      fullName: "",
-      address: "",
-      phoneNumber: "",
-      email: "",
-    });
+    const [contacts, setContacts] = useState(null);
+    useEffect(() => {
+      getAllUsers().then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
 
     const [editFormData, setEditFormData] = useState({
-      fullName: "",
-      address: "",
-      phoneNumber: "",
-      email: "",
+      fullName: "",phoneNum: "",
+      address: ""
     });
 
     const [editContactId, setEditContactId] = useState(null);
-
-    const handleAddFormChange = (event) => {
-      event.preventDefault();
-
-      const fieldName = event.target.getAttribute("name");
-      const fieldValue = event.target.value;
-
-      const newFormData = { ...addFormData };
-      newFormData[fieldName] = fieldValue;
-
-      setAddFormData(newFormData);
-    };
+    const [editUsername,setUsername] = useState(null);
+    const [editType,setType]=useState(null);
+    const [editPassword,setPassword]=useState(null);
+    const [isEnabled,setisEnabled]=useState(null);
+    const [editABN,setABN]=useState(null);
 
     const handleEditFormChange = (event) => {
       event.preventDefault();
@@ -51,51 +41,45 @@ function AllUsers(){
       setEditFormData(newFormData);
     };
 
-    const handleAddFormSubmit = (event) => {
-      event.preventDefault();
-
-      const newContact = {
-        id: nanoid(),
-        fullName: addFormData.fullName,
-        address: addFormData.address,
-        phoneNumber: addFormData.phoneNumber,
-        email: addFormData.email,
-      };
-
-      const newContacts = [...contacts, newContact];
-      setContacts(newContacts);
-    };
-
-    const handleEditFormSubmit = (event) => {
+    const handleEditFormSubmit = (event,contact) => {
       event.preventDefault();
 
       const editedContact = {
         id: editContactId,
-        fullName: editFormData.fullName,
-        address: editFormData.address,
-        phoneNumber: editFormData.phoneNumber,
-        email: editFormData.email,
+        fullName: editFormData.fullName,phoneNum: editFormData.phoneNum,
+        address: editFormData.address,username:editUsername,userType:editType,enabled:isEnabled,
+        password:editPassword,abn:editABN
       };
-
+      console.log(editedContact);
       const newContacts = [...contacts];
 
       const index = contacts.findIndex((contact) => contact.id === editContactId);
 
       newContacts[index] = editedContact;
+      postEditUser(editedContact); 
 
       setContacts(newContacts);
       setEditContactId(null);
+      setUsername(null);
+      setType(null);
+      setABN(null);
+      setPassword(null);
+      setisEnabled(null);
     };
 
     const handleEditClick = (event, contact) => {
       event.preventDefault();
       setEditContactId(contact.id);
+      setUsername(contact.username);
+      setType(contact.userType);
+      setABN(contact.abn);
+      setPassword(contact.password);
+      setisEnabled(contact.enabled);
 
       const formValues = {
-        fullName: contact.fullName,
+        fullName: contact.fullName,phoneNum: contact.phoneNum,
         address: contact.address,
-        phoneNumber: contact.phoneNumber,
-        email: contact.email,
+        
       };
 
       setEditFormData(formValues);
@@ -103,17 +87,31 @@ function AllUsers(){
 
     const handleCancelClick = () => {
       setEditContactId(null);
+      setUsername(null);
+      setType(null);
+      setABN(null);
+      setPassword(null);
+      setisEnabled(null);
     };
 
     const handleDeleteClick = (contactId) => {
       const newContacts = [...contacts];
 
       const index = contacts.findIndex((contact) => contact.id === contactId);
-
+      console.log(index);
+      deleteUser(contactId);
       newContacts.splice(index, 1);
 
       setContacts(newContacts);
+      
     };
+ 
+    const handleBlockClick = (contactId) => {
+
+      blockUser(contactId);
+
+    }
+    if (!contacts) return null;
 
     return (
       <>
@@ -122,10 +120,13 @@ function AllUsers(){
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
-                <th>Address</th>
                 <th>Phone Number</th>
+                <th>Address</th>
                 <th>Email</th>
+                <th>User type</th>
+                <th>Block</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -137,12 +138,14 @@ function AllUsers(){
                       editFormData={editFormData}
                       handleEditFormChange={handleEditFormChange}
                       handleCancelClick={handleCancelClick}
+                      contact={contact}
                     />
                   ) : (
                     <ReadOnlyRow
                       contact={contact}
                       handleEditClick={handleEditClick}
                       handleDeleteClick={handleDeleteClick}
+                      handleBlockClick={handleBlockClick}
                     />
                   )}
                 </Fragment>
@@ -150,40 +153,6 @@ function AllUsers(){
             </tbody>
           </table>
         </form>
-        <div className="form-add">
-          <h2>Add a Contact</h2>
-          <form className="formAdd" onSubmit={handleAddFormSubmit}>
-            <input
-              type="text"
-              name="fullName"
-              required="required"
-              placeholder="Enter a name..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="text"
-              name="address"
-              required="required"
-              placeholder="Enter an addres..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="text"
-              name="phoneNumber"
-              required="required"
-              placeholder="Enter a phone number..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="email"
-              name="email"
-              required="required"
-              placeholder="Enter an email..."
-              onChange={handleAddFormChange}
-            />
-            <button type="submit">Add</button>
-          </form>
-          </div>
       </div>
       </>
     );

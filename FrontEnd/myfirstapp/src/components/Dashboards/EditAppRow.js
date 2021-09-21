@@ -4,10 +4,11 @@ const EditAppRow = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
+  contact
 }) => {
   return (
     <tr>
-        
+        <td>{contact.id}</td>
       <td>
         <input
           type="text"
@@ -23,8 +24,8 @@ const EditAppRow = ({
           type="text"
           required="required"
           placeholder="Enter phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          name="phoneNum"
+          value={editFormData.phoneNum}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -49,26 +50,13 @@ const EditAppRow = ({
         ></input>
       </td>
       <td>
-        <input
-          type="email"
-          required="required"
-          placeholder="Enter an email..."
-          name="email"
-          value={editFormData.email}
-          onChange={handleEditFormChange}
-        ></input>
+        {contact.email}
       </td>
       <td>
-        <input
-          type="status"
-          required="required"
-          placeholder="Enter a status..."
-          name="email"
-          value={editFormData.status}
-          onChange={handleEditFormChange}
-        ></input>
+      <button> 
+        Block
+        </button>
       </td>
-      
       <td>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>

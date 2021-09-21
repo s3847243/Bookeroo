@@ -75,5 +75,11 @@ export const getType = () => {
   if(token){
     return jwt_decode(token).userType;
   }
-  
+}
+export const isLogin = () => {
+  if (localStorage.getItem("jwtToken")) {
+      return true;
+  }
+
+  return false;
 }

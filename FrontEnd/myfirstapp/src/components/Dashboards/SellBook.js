@@ -2,58 +2,67 @@ import React, { useState } from 'react'
 import data from './mock-data-App.json'
 
 function SellBook() {
-   const[radio,setRadio] = useState("");
-   const[amount,setAmount] = useState("");
-   const [bookState, setbookState] = useState("");
-  
+    const [radio, setRadio] = useState('');
+    const [amount, setAmount] = useState('');
+    const [bookState, setbookState] = useState('');
+    const [values, setValues] = useState({
+        type:"",bookName:"",amount:""
+      });
+      handleSellFormChange = event =>{
+        event.preventDefault();
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+        const newFormData = { ...values};
+        newFormData[fieldName] = fieldValue;
+        setValues(newFormData);
+      }
+      handleSellFormSubmit = event =>{
+        event.preventDefault();
+        const sellBook = {
+          type:values.type,
+          bookName:values.bookName,
+          amount:values.amount
     
+        }
+      }
     return (
-       <div>
-
+    <form className = "sell-form" onSubmit={handleSellFormSubmit}>
+        <div>
             <div className="radio-buttons">
             NEW
             <input
                 id="new"
                 value="NEW"
-                name="new"
+                name="type"
                 type="radio"
-                onChange={(e)=>{setRadio(e.target.value)}}
+                required
+                onChange={handleSellFormChange}
             />
             OLD
             <input
                 id="old"
                 value="OLD"
-                name="new"
+                name="type"
                 type="radio"
-                onChange={(e)=>{setRadio(e.target.value)}}
+                onChange={handleSellFormChange}
             />
             </div>
-            <select
-                className="custom-select"
-                value={bookState}
-                onChange={(e) => {
-                const selectedFood = e.target.value;
-                setbookState(selectedFood);
-                }}
-            >
-                {data.map((names) => {
-                    <option key={names.id} value={names.ABN}>
-                        {names.id}
-                    </option>
-                })}
+            <select className="custom-select" name="bookName" onChange={handleSellFormChange}>
+            {data.map((names) => (
+                <option key={names.ABN}>{names.ABN}</option>
+            ))}
             </select>
-
+    
             <label>Amount</label>
             <input
                 id="amount"
                 value={amount}
                 name="amount"
                 type="text"
-                onChange={(e)=>{setAmount(e.target.value)}}
+                onChange={handleSellFormChange}
             />
-            <button>DONE</button>
+            <button className = "sell-submit" type = "submit">DONE</button>
         </div>
-
+    </form>
     );
-    
-}
+  }
