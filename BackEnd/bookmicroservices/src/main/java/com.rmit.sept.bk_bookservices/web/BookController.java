@@ -59,7 +59,7 @@ public class BookController {
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Book book, BindingResult result){
+    public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody Book book, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
