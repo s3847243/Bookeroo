@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 //import '../App.css';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -31,6 +31,26 @@ function Sidebar() {
                             <AiIcons.AiOutlineCloseCircle />   
                             </Link> 
                         </li>
+    return(
+        <Fragment>
+        <IconContext.Provider value={{color:'#fff'}}>
+            <div className='sidebar'>
+               <Link to='#' className='menu-bars'>
+                    <FaIcons.FaBars onClick={showSidebar} />   
+                </Link> 
+            </div>
+            <nav className={'nav-menu'}>
+                <ul className='nav-menu-items' onClick={showSidebar}>
+                    {SidebarData.map((item,index) => {
+                        return(
+                            <li key = {index} className={item.cName}>
+                            <Link to = {item.path}>
+                                {item.icon}
+                                <span>{item.title}</span>
+                            </Link>
+                            </li>
+                        )
+                    })}
 
                         {SidebarData.map((item,index) => {
                             return(
@@ -117,6 +137,8 @@ function Sidebar() {
     }
 
    
+        </Fragment>
+    );
 
     
 }

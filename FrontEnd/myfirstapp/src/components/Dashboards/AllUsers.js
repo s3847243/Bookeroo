@@ -114,7 +114,7 @@ function AllUsers(){
     if (!contacts) return null;
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
         <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
@@ -154,7 +154,7 @@ function AllUsers(){
           </table>
         </form>
       </div>
-      </>
+      </Fragment>
     );
 };
 

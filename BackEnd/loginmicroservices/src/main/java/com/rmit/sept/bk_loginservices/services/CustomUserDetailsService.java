@@ -76,6 +76,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void blockUser(Long id){
+        User user = loadUserById(id);
+        user.setEnabled(false);
+        userRepository.save(user);
+    }
+
+
+
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
         return user.getAuthorities();
     }

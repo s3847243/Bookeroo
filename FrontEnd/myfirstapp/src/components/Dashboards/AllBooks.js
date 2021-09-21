@@ -129,7 +129,7 @@ function AllBooks(){
     };
     if (!contacts) return null;
     return (
-      <>
+      <Fragment>
       <div className="app-container">
         <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
@@ -168,7 +168,7 @@ function AllBooks(){
         </form>
         
       </div>
-      </>
+      </Fragment>
     );
 };
 

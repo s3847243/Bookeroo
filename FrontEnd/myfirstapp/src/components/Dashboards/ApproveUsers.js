@@ -123,7 +123,7 @@ function ApproveUsers(){
     if (!contacts) return null;
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
         <form className="tableForm" onSubmit={handleEditFormSubmit}>
           <table>
@@ -161,7 +161,7 @@ function ApproveUsers(){
           </table>
         </form>
       </div>
-      </>
+      </Fragment>
     );
 };
 

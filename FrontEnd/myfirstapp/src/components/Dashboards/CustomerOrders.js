@@ -74,7 +74,7 @@ function CustomerOrders(){
     // };
 
     return (
-      <>
+      <Fragment>
       <div className="app-container">
         <form className="tableForm">
           <table>
@@ -138,7 +138,7 @@ function CustomerOrders(){
           </form>
           </div>
       </div>
-      </>
+      </Fragment>
     );
 };
 
