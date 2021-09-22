@@ -1,0 +1,21 @@
+.sort-bar {
+  width: 50%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sort-bar p {
+  display: inline;
+  margin: 10px 10px;
+}
+
+.sort-bar h2 {
+  margin: 10px 10px;
+  font-size: medium;
+}
+
+.sort-bar select {
+  margin: 10px 10px;
+}

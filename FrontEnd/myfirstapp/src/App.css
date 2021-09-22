@@ -63,3 +63,6 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+.head-Dash{
+  text-align: center;
+}

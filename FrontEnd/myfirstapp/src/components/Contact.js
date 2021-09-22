@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import emailjs from 'emailjs-com'
 
-class contact extends Component {
+class Contact extends Component {
     render() {
         function sendEmail(e){
             e.preventDefault();
@@ -13,10 +13,10 @@ class contact extends Component {
         }
         return (
             <div className = "container border"
-            style={{marginTop: "50px",
-            width:'50%',
-            backgroundPosition: "center"
-            }}>
+                style={{marginTop: "50px",
+                width:'50%',
+                backgroundPosition: "center"
+                }}>
                 <h1 style={{marginTop:'25px',textAlign:'center'}}>Contact Form</h1>
                 <form className = "row" style={{margin:"25px 85px 75px 100px"}} onSubmit={sendEmail}>
                     <label>Name</label>
@@ -32,4 +32,4 @@ class contact extends Component {
         );
     }
 }
-export default contact;
+export default Contact;

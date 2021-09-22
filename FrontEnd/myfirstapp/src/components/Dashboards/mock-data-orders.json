@@ -1,0 +1,47 @@
+[
+    {
+      "id": 1,
+      "bookName": "Jenny Chan",
+      "Author":"hibbaan",
+      "date":"15-11-2001",
+      "seller": "jeff",
+      "ISDB": "33",
+      "status": "sold"
+    },
+    {
+      "id": 2,
+      "bookName": "Jenny Chan",
+      "customerName":"hibbaan",
+      "date":"15-11-2001",
+      "seller": "jeff",
+      "amount": "33",
+      "status": "sold"
+    },
+    {
+        "id": 3,
+        "bookName": "Jenny Chan",
+        "customerName":"hibbaan",
+        "date":"15-11-2001",
+        "seller": "jeff",
+        "amount": "33",
+        "status": "sold"
+    },
+    {
+        "id": 4,
+      "bookName": "Jenny Chan",
+      "customerName":"hibbaan",
+      "date":"15-11-2001",
+      "seller": "jeff",
+      "amount": "33",
+      "status": "sold"
+    },
+    {
+        "id": 5,
+      "bookName": "Jenny Chan",
+      "customerName":"hibbaan",
+      "date":"15-11-2001",
+      "seller": "jeff",
+      "amount": "33",
+      "status": "sold"
+    }
+  ]

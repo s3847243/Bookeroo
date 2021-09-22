@@ -1,0 +1,52 @@
+[
+    {
+      "id": 1,
+      "bookName": "Jenny Chan",
+      "Author": "3 waterfoot road",
+      "ISDB": "333-962-7516",
+      "seller":"Hibbaan",
+      "category":"fiction",
+      "status":"unsold",
+      "type": "shop Owner"
+    },
+    {
+        "id": 2,
+        "bookName": "Jenny Chan",
+        "Author": "3 waterfoot road",
+        "ISDB": "333-962-7516",
+        "seller":"Hibbaan",
+        "category":"fiction",
+        "status":"unsold",
+        "type": "shop Owner"
+    },
+    {
+        "id": 3,
+        "bookName": "Jenny Chan",
+        "Author": "3 waterfoot road",
+        "ISDB": "333-962-7516",
+        "seller":"Hibbaan",
+        "category":"fiction",
+        "status":"unsold",
+        "type": "shop Owner"
+    },
+    {
+        "id": 4,
+        "bookName": "Jenny Chan",
+        "Author": "3 waterfoot road",
+        "ISDB": "333-962-7516",
+        "seller":"Hibbaan",
+        "category":"fiction",
+        "status":"unsold",
+        "type": "shop Owner"
+    },
+    {
+        "id": 5,
+        "bookName": "Jenny Chan",
+        "Author": "3 waterfoot road",
+        "ISDB": "333-962-7516",
+        "seller":"Hibbaan",
+        "category":"fiction",
+        "status":"unsold",
+        "type": "shop Owner"
+    }
+  ]

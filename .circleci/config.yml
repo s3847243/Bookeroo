@@ -2,86 +2,122 @@ version: 2.1
 
 jobs:
 
- build_test_push:
+ test_build_deploy_backend:
+   working_directory: ~/repo
    docker:
-    - image: docker
+    - image: circleci/openjdk:8-stretch
    environment:
-    FRONTEND_TAG: 
-    LOGIN_MS_TAG: 
-    BOOK_MS_TAG:
-   working_directory: ~/
+    LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
+    BOOK_MS_TAG: s3851781/bk-book-microservices:latest
 
    steps:
     - checkout
     - setup_remote_docker
-    
-    # FRONTEND - REACT APP
+
+    ########## Login Microservices ##########
     - run:
-       name: build frontend
-       command: | 
-         docker build /FrontEnd/myfirstapp -t $FRONTEND_TAG
+        name: build dependencies
+        command: |
+          cd BackEnd/loginmicroservices
+          mvn package
+
     - run:
-       name: run frontend
+        name: test
+        command: |
+          cd BackEnd/loginmicroservices
+          mvn test
+
+    # Build Image
+    - run:
+       name: build login microservices image
        command: |
-         docker run -d $FRONTEND_TAG
-    - run:
-       name: test frontend (npm test)
-       command: |
-         docker run -e CI=true $FRONTEND_TAG npm run test
-    
-    # BACKEND - LOGIN MICROSERVICES
-    - run:
-       name: build backend (login microservices)
-       command: | 
+         cd BackEnd/loginmicroservices
          docker build . -t $LOGIN_MS_TAG
-    - run:
-       name: run backend (login microservices)
-       command: | 
-         docker run -d $LOGIN_MS_TAG
-    - run:
-       name: test backend (login microservices)
-       command: | 
-         docker run -e CI=true $LOGIN_MS_TAG mvn test
-         
-    # BACKEND - BOOK MICROSERVICES
-    - run:
-       name: build backend (book microservices)
-       command: | 
-         docker build . -t $BOOK_MS_TAG
-    - run:
-       name: run backend (book microservices)
-       command: | 
-         docker run -d $BOOK_MS_TAG
-    - run:
-       name: test backend (book microservices)
-       command: | 
-         docker run -e CI=true $BOOK_MS_TAG mvn test
-         
-    # PUSH IMAGES
+
+    # Deploy Image
     - run:
        name: login to DockerHub
        command: |
          docker login -u $DOCKER_USER -p $DOCKER_PASS
-         
-    - run:
-       name: push frontend
-       command: |
-         docker push $FRONTEND_TAG:latest
-
     - run:
        name: push backend (login microservices)
        command: |
-         docker push $LOGIN_MS_TAG:latest
-         
+         docker push $LOGIN_MS_TAG
+
+    ########## Book Microservices ##########
+
     - run:
-       name: push backend (book microservices)
-       command: |
-         docker push $BOOK_MS_TAG:latest
-         
+        name: build dependencies
+        command: |
+          cd BackEnd/bookmicroservices
+          mvn package
+
+    - run:
+        name: test
+        command: |
+          cd BackEnd/bookmicroservices
+          mvn test
+
+    # Build Image
+    - run:
+        name: build book microservices image
+        command: |
+          cd BackEnd/bookmicroservices
+          docker build . -t $BOOK_MS_TAG
+
+    # Deploy Image
+    - run:
+        name: login to DockerHub
+        command: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+    - run:
+        name: push backend (book microservices)
+        command: |
+          docker push $BOOK_MS_TAG
+
+  ########## FRONTEND ##########
+ test_build_deploy_frontend:
+   working_directory: ~/repo
+   docker:
+     - image: circleci/node
+   environment:
+     FRONTEND_TAG: s3851781/bk-react-webapp:latest
+
+   steps:
+     - checkout
+     - setup_remote_docker
+
+     - run:
+         name: install dependencies
+         command: |
+           cd FrontEnd/myfirstapp
+           npm install
+     - run:
+         name: run tests
+         command: |
+           cd FrontEnd/myfirstapp
+           npm test
+
+     # Build Image
+     - run:
+         name: build book microservices image
+         command: |
+           cd FrontEnd/myfirstapp
+           docker build . -t $FRONTEND_TAG
+
+     # Deploy Image
+     - run:
+         name: login to DockerHub
+         command: |
+           docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+     - run:
+         name: push frontend
+         command: |
+           docker push $FRONTEND_TAG
 workflows:
   build_test_push_app:
     jobs:
-      - build_test_push
-      
-      
-      
+      - test_build_deploy_backend
+      - test_build_deploy_frontend

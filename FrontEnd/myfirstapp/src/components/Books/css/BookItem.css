@@ -1,0 +1,79 @@
+.bookItem {
+  position: relative;
+  width: 20%;
+  height: 350px;
+  background-color: #fefbea;
+  padding: 20px;
+  margin: 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  transition: 0.1s;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.title {
+  width: 90%;
+  margin: auto;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.author {
+  width: 90%;
+  margin: auto;
+  font-size: small;
+  font-style: italic;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.isbn {
+  position: absolute;
+  width: 90%;
+  font-size: xx-small;
+  font-style: italic;
+  bottom: 0;
+  left: 10px;
+}
+
+.genre {
+  text-align: center;
+  font-size: small;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.published {
+  text-align: center;
+  font-size: small;
+  margin-top: 0px;
+}
+
+img {
+  width: 140px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-radius: 15px;
+  margin-bottom: 5px;
+}
+
+.bookItem:hover {
+  background-color: #e6e3d3;
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}

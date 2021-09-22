@@ -1,0 +1,35 @@
+.search-bar {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.search-bar input {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.search-bar h2 {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline;
+  font-size: medium;
+}
+
+.search-box {
+  width: 80%;
+}
+
+.search-box input {
+  width: 100%;
+  font-size: medium;
+  margin-bottom: 10px;
+}
+
+.search-btn {
+  font-size: medium;
+}
