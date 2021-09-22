@@ -61,7 +61,7 @@ jobs:
     - run:
        name: push backend (login microservices)
        command: |
-         docker push $LOGIN_MS_TAG:latest
+         docker push $LOGIN_MS_TAG
 
 # test_build_deploy_bookms:
 #   docker:
