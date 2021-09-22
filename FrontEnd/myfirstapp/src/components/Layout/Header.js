@@ -10,11 +10,11 @@ import { getType } from '../../actions/securityActions';
         logout();
     }
     doClick(){
-        if(getType() == "USER"){
+        if(getType() === "USER"){
             window.location.href = "DashboardCust";
-        }else if(getType() == "BUSINESS"){
+        }else if(getType() === "BUSINESS"){
             window.location.href = "DashboardShop";
-        }else if (getType() == "ADMIN"){
+        }else if (getType() === "ADMIN"){
             window.location.href = "dashboard";
         }else{
             window.location.href = "ErrorPage";

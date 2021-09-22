@@ -1,5 +1,4 @@
 import React , { Component } from 'react'
-//import {  } from 'react-router';
 import "./css/BookDetails.css"
 import { getBookByID } from "../../actions/bookActions.js";
 import BookListing from './BookListing';

@@ -1,8 +1,10 @@
-import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
-import "../usersTable.css";
-import data from "./mock-data-orders.json";
-import ReadOrderRow from "./ReadOrderRow";
+import React, { 
+  // useState, Fragment 
+} from "react";
+// import { nanoid } from "nanoid";
+// import "../usersTable.css";
+// import data from "./mock-data-orders.json";
+// import ReadOrderRow from "./ReadOrderRow";
 
 function Orders(){
   return(

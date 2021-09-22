@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import data from './mock-data-App.json'
+import React, { 
+  // useState 
+} from 'react'
+// import data from './mock-data-App.json'
 
 function SellOldBook() {
   return(

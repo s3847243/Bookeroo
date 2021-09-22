@@ -1,6 +1,4 @@
 import React, { Component, Fragment} from 'react'
-import DashNav from './Dashboards/DashNav';
-import DashContent from './Dashboards/DashContent';
 import Sidebar from './Dashboards/Sidebar';
 import "../App.css"
 import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';

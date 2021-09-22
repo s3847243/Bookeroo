@@ -1,5 +1,4 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
 import "../usersTable.css";
 import ReadOnlyRow from "./readRow";
 import EditableRow from "./editRow";

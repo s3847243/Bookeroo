@@ -66,7 +66,7 @@ class BookIndex extends Component {
             <BookSort handler={this.handleSort}/>
             <div className = "books">
                 {
-                    this.state.books.length == 0 ?(
+                    this.state.books.length === 0 ?(
                         <h1>No matching books</h1>
                     )
                     :

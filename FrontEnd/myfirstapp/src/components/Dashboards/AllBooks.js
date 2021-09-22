@@ -1,7 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-books.json";
+// import data from "./mock-data-books.json";
 import ReadBookRow from "./ReadBookRow";
 import EditBookRow from "./EditBookRow";
 import { getAllBooks } from "../../actions/bookActions";

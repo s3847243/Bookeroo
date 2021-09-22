@@ -13,10 +13,10 @@ class Contact extends Component {
         }
         return (
             <div className = "container border"
-            style={{marginTop: "50px",
-            width:'50%',
-            backgroundPosition: "center"
-            }}>
+                style={{marginTop: "50px",
+                width:'50%',
+                backgroundPosition: "center"
+                }}>
                 <h1 style={{marginTop:'25px',textAlign:'center'}}>Contact Form</h1>
                 <form className = "row" style={{margin:"25px 85px 75px 100px"}} onSubmit={sendEmail}>
                     <label>Name</label>
