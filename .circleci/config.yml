@@ -51,12 +51,6 @@ jobs:
        command: |
          cd BackEnd/loginmicroservices
          docker run -d $LOGIN_MS_TAG
-    # Test Image
-    - run:
-       name: test login microservices image
-       command: |
-         cd BackEnd/loginmicroservices
-         docker run -e CI=true $LOGIN_MS_TAG mvn test
 
     # Deploy Image
     - run:
@@ -69,16 +63,16 @@ jobs:
        command: |
          docker push $LOGIN_MS_TAG:latest
 
- test_build_deploy_bookms:
-   docker:
-    - image: circleci/openjdk:8-jdk
-   environment:
-    BOOK_MS_TAG: s3851781/bk-book-microservices
-   working_directory: ~/
-
-   steps:
-    - checkout
-    - setup_remote_docker
+# test_build_deploy_bookms:
+#   docker:
+#    - image: circleci/openjdk:8-jdk
+#   environment:
+#    BOOK_MS_TAG: s3851781/bk-book-microservices
+#   working_directory: ~/
+#
+#   steps:
+#    - checkout
+#    - setup_remote_docker
 
 # test_build_deploy_react:
 #   docker:
