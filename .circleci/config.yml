@@ -10,7 +10,8 @@ jobs:
    working_directory: ~/BackEnd/loginmicroservices
 
    steps:
-    - checkout
+    - checkout:
+        path: ~/repo
     - setup_remote_docker
 
      #Dependencies
@@ -31,17 +32,17 @@ jobs:
 
     # Build Image
     - run:
-       name: build backend (login microservices)
+       name: build login microservices image
        command: |
          docker build . -t $LOGIN_MS_TAG
     # Run Image
     - run:
-       name: run backend (login microservices)
+       name: run login microservices image
        command: |
          docker run -d $LOGIN_MS_TAG
     # Test Image
     - run:
-       name: test backend (login microservices)
+       name: test login microservices image
        command: |
          docker run -e CI=true $LOGIN_MS_TAG mvn test
 
