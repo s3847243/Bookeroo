@@ -3,17 +3,20 @@ version: 2.1
 jobs:
 
  test_build_deploy_loginms:
+   working_directory: ~/
    docker:
     - image: circleci/openjdk:8-stretch
    environment:
     LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
-   working_directory: ~/BackEnd/loginmicroservices
+
 
    steps:
-    - checkout:
-        path: ~/repo
+    - checkout
     - setup_remote_docker
-
+    -run:
+      name: cd into login_ms
+      command: |
+        cd BackEnd/loginmicroservices
      #Dependencies
     - restore_cache:
         keys:
@@ -57,17 +60,17 @@ jobs:
        command: |
          docker push $LOGIN_MS_TAG:latest
 
-# test_build_deploy_bookms:
-#   docker:
-#    - image: circleci/openjdk:8-jdk
-#   environment:
-#    BOOK_MS_TAG: s3851781/bk-book-microservices
-#   working_directory: ~/
-#
-#   steps:
-#    - checkout
-#    - setup_remote_docker
-#
+ test_build_deploy_bookms:
+   docker:
+    - image: circleci/openjdk:8-jdk
+   environment:
+    BOOK_MS_TAG: s3851781/bk-book-microservices
+   working_directory: ~/
+
+   steps:
+    - checkout
+    - setup_remote_docker
+
 # test_build_deploy_react:
 #   docker:
 #    - image: circleci/node
