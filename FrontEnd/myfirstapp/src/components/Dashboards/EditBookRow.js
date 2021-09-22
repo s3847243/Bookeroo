@@ -60,7 +60,7 @@ const EditBookRow = ({
       </td>
       
       <td>
-        <button type="submit">Save</button>
+        <button className ="save-cancel-btn"type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel
         </button>

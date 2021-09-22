@@ -15,6 +15,7 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick,handleBlockCl
       <td>
         <button
           type="button"
+          className="edit-button"
           onClick={(event) => handleEditClick(event, contact)}
         >
           Edit

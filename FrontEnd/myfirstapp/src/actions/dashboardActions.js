@@ -29,8 +29,7 @@ export const postApproveUsers = async (id) => {
 
 export const postEditUser = (postedit,id) => async () => {
   try {
-    await axios.post("http://localhost:8080/api/users/update/"+
-    id, postedit);
+    await axios.post("http://localhost:8080/api/users/update/"+id, postedit);
     
   } catch (err) {
     console.log(err);
@@ -47,7 +46,7 @@ export const deleteUser = async (id) => {
 
 export const blockUser = async (id) => {
   try {
-    const res = await axios.post("http://localhost:8080/api/users/blockUser/", id);
+    const res = await axios.post("http://localhost:8080/api/users/blockUser/"+ id);
     return res;
   } catch (err) {
     console.log(err);

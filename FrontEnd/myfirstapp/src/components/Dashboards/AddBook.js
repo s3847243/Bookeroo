@@ -61,7 +61,7 @@ function AddBook(){
         //     console.log('dataFiles');
         // }
     const handleAddFormChange = (event) =>{
-        event.preventDefault();
+        
         const fieldName = event.target.getAttribute("name");
         
         const fieldValue = event.target.value;
@@ -98,8 +98,8 @@ function AddBook(){
     }
 
     return(
-    <div class="form-container">
-        <form class="add-form" onSubmit={handleAddFormSubmit}>
+    <div className="form-container">
+        <form className="add-form" onSubmit={handleAddFormSubmit}>
             <input
                 id="Book-name"
                 className="form-field"

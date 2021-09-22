@@ -166,7 +166,6 @@ function AllBooks(){
             </tbody>
           </table>
         </form>
-        
       </div>
       </Fragment>
     );

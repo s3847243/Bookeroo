@@ -17,7 +17,7 @@ function Sidebar() {
    if(getType() ==="USER"){
 
         return(
-            <>
+            <Fragment>
             <IconContext.Provider value={{color:'#fff'}}>
                 <div className='sidebar'>
                    <Link to='#' className='menu-bars'>
@@ -31,26 +31,6 @@ function Sidebar() {
                             <AiIcons.AiOutlineCloseCircle />   
                             </Link> 
                         </li>
-    return(
-        <Fragment>
-        <IconContext.Provider value={{color:'#fff'}}>
-            <div className='sidebar'>
-               <Link to='#' className='menu-bars'>
-                    <FaIcons.FaBars onClick={showSidebar} />   
-                </Link> 
-            </div>
-            <nav className={'nav-menu'}>
-                <ul className='nav-menu-items' onClick={showSidebar}>
-                    {SidebarData.map((item,index) => {
-                        return(
-                            <li key = {index} className={item.cName}>
-                            <Link to = {item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </Link>
-                            </li>
-                        )
-                    })}
 
                         {SidebarData.map((item,index) => {
                             return(
@@ -66,12 +46,12 @@ function Sidebar() {
                     </ul>
                 </nav>
             </IconContext.Provider>
-            </>
+            </Fragment>
         );
    }
     else if(getType() === "ADMIN"){
         return(
-            <>
+            <Fragment>
             <IconContext.Provider value={{color:'#fff'}}>
                 <div className='sidebar'>
                    <Link to='#' className='menu-bars'>
@@ -99,12 +79,13 @@ function Sidebar() {
                     </ul>
                 </nav>
             </IconContext.Provider>
-            </>
+            </Fragment>
+            
         );
     }
     else if(getType() === "BUSINESS"){
         return(
-            <>
+            <Fragment>
             <IconContext.Provider value={{color:'#fff'}}>
                 <div className='sidebar'>
                    <Link to='#' className='menu-bars'>
@@ -132,13 +113,11 @@ function Sidebar() {
                     </ul>
                 </nav>
             </IconContext.Provider>
-            </>
+            </Fragment>
         );
     }
 
    
-        </Fragment>
-    );
 
     
 }
