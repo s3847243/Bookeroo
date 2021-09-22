@@ -59,7 +59,7 @@ public class BookController {
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Book book, BindingResult result){
+    public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody Book book, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -73,6 +73,6 @@ public class BookController {
     public ResponseEntity<?> delete(@PathVariable String id){
 
         bookService.deleteBook(id);
-        return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Book deleted", HttpStatus.OK);
     }
 }

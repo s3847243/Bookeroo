@@ -41,7 +41,7 @@ class ApplicationTests {
 		testBook.setTitle("Revolt Against the Modern World");
 		testBook.setAuthor("Julius Evola");
 		testBook.setGenre("Politics");
-		testBook.setPublished(1);
+		testBook.setPublished("2000");
 		testBook.setIsbn("089281506X");
 		testBook.setId(Long.parseLong("1"));
 	}
@@ -51,7 +51,7 @@ class ApplicationTests {
 		assertTrue(testBook.getAuthor() == "Julius Evola");
 		assertTrue(testBook.getTitle() == "Revolt Against the Modern World");
 		assertTrue(testBook.getGenre() == "Politics");
-		assertTrue(testBook.getPublished() == 1);
+		assertTrue(testBook.getPublished() == "2000");
 		assertTrue(testBook.getIsbn() == "089281506X");
 		assertTrue(testBook.getId() == Long.parseLong("1"));
 	}

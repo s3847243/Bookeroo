@@ -26,8 +26,8 @@ public class Book{
     @NotBlank(message = "genre is required")
     private String genre;
     @NotBlank(message = "publication year is required")
-    private int published;
-
+    private String published;
+    @Transient
     private Date create_At;
     private Date update_At;
 
@@ -48,8 +48,8 @@ public class Book{
     public String getGenre() {return genre; }
     public void setGenre(String genre) {this.genre = genre; }
 
-    public int getPublished() { return published; }
-    public void setPublished(int published) { this.published = published; }
+    public String getPublished() { return published; }
+    public void setPublished(String published) { this.published = published; }
 
     public Date getCreate_At() {
         return create_At;
