@@ -18,22 +18,28 @@ jobs:
         name: cd into login_ms
         command: |
           cd BackEnd/loginmicroservices
-          ls
-     #Dependencies
-    - restore_cache:
-        keys:
-        - loginms-{{ checksum "pom.xml" }}
-        - loginms-
+    - run:
+        name: build dependencies
+        command: |
+          mvn package
 
-    - run: mvn dependency:go-offline
+    - run:
+        name: test
+        command: |
+          mvn test
 
-    - save_cache:
-        paths:
-          - ~/.m2
-        key: loginms-{{ checksum "pom.xml" }}
-
-    #Test
-    - run: mvn test
+#     #Dependencies
+#    - restore_cache:
+#        keys:
+#        - loginms-{{ checksum "pom.xml" }}
+#        - loginms-
+#
+#    - run: mvn dependency:go-offline
+#
+#    - save_cache:
+#        paths:
+#          - ~/.m2
+#        key: loginms-{{ checksum "pom.xml" }}
 
     # Build Image
     - run:
