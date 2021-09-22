@@ -6,7 +6,7 @@ import { getUnapprovedUsers } from "../../actions/dashboardActions";
 import { postApproveUsers } from "../../actions/dashboardActions"
 function ApproveUsers(){
   
-  const [contacts, setContacts] = useState(null);
+  const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getUnapprovedUsers().then((res)=>{
         setContacts(res.data)
@@ -119,7 +119,7 @@ function ApproveUsers(){
 
 
     }
-    if (!contacts) return null;
+    //if (!contacts) return null;
 
     return (
       <Fragment>

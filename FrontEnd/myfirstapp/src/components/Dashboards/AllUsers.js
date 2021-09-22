@@ -9,7 +9,7 @@ import { blockUser } from "../../actions/dashboardActions";
 
 
 function AllUsers(){
-    const [contacts, setContacts] = useState(null);
+    const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllUsers().then((res)=>{
         setContacts(res.data)
@@ -108,7 +108,7 @@ function AllUsers(){
     const handleBlockClick = (contactId) => {
       blockUser(contactId);
     }
-    if (!contacts) return null;
+    //if (!contacts) return null;
 
     return (
       <Fragment>

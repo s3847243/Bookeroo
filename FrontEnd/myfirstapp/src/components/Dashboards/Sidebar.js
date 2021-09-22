@@ -13,7 +13,7 @@ import { SidebarDataUser } from './SidebarDataUser';
 function Sidebar() {
     const [sBar,setSidebar]=useState(false);
     const showSidebar = () => setSidebar(!sBar);
-    console.log(getType());
+   
    if(getType() ==="USER"){
 
         return(

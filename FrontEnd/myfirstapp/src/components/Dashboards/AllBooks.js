@@ -9,7 +9,7 @@ import { deleteBook } from "../../actions/addBookActions";
 
 function AllBooks(){
   
-    const [contacts, setContacts] = useState(null);
+    const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllBooks().then((res)=>{
         setContacts(res.data)
@@ -126,7 +126,7 @@ function AllBooks(){
 
       setContacts(newContacts);
     };
-    if (!contacts) return null;
+    //if (!contacts) return null;
     return (
       <Fragment>
       <div className="app-container">
