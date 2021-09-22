@@ -2,86 +2,128 @@ version: 2.1
 
 jobs:
 
- build_test_push:
+ test_build_deploy_loginms:
    docker:
-    - image: docker
+    - image: circleci/openjdk:8-jdk
    environment:
-    FRONTEND_TAG: 
-    LOGIN_MS_TAG: 
-    BOOK_MS_TAG:
+    LOGIN_MS_TAG: s3851781/bk-login-microservices
    working_directory: ~/
 
    steps:
     - checkout
     - setup_remote_docker
     
-    # FRONTEND - REACT APP
-    - run:
-       name: build frontend
-       command: | 
-         docker build /FrontEnd/myfirstapp -t $FRONTEND_TAG
-    - run:
-       name: run frontend
-       command: |
-         docker run -d $FRONTEND_TAG
-    - run:
-       name: test frontend (npm test)
-       command: |
-         docker run -e CI=true $FRONTEND_TAG npm run test
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - loginms-dependencies-{{ checksum "pom.xml" }}
+        # fallback to using the latest cache if no exact match is found
+        - loginms-dependencies-
+    - run: mvn dependency:go-offline
+    - save_cache:
+        paths:
+          - ~/.m2
+        key: loginms-dependencies-{{ checksum "pom.xml" }}
+    # run tests!
+    - run: mvn integration-test
     
-    # BACKEND - LOGIN MICROSERVICES
+    
+    
+    # Build
     - run:
        name: build backend (login microservices)
        command: | 
          docker build . -t $LOGIN_MS_TAG
+    # Run
     - run:
        name: run backend (login microservices)
        command: | 
          docker run -d $LOGIN_MS_TAG
+    # Test the image
     - run:
        name: test backend (login microservices)
        command: | 
          docker run -e CI=true $LOGIN_MS_TAG mvn test
-         
-    # BACKEND - BOOK MICROSERVICES
-    - run:
-       name: build backend (book microservices)
-       command: | 
-         docker build . -t $BOOK_MS_TAG
-    - run:
-       name: run backend (book microservices)
-       command: | 
-         docker run -d $BOOK_MS_TAG
-    - run:
-       name: test backend (book microservices)
-       command: | 
-         docker run -e CI=true $BOOK_MS_TAG mvn test
-         
-    # PUSH IMAGES
+
+    # Deploy
     - run:
        name: login to DockerHub
        command: |
          docker login -u $DOCKER_USER -p $DOCKER_PASS
          
     - run:
-       name: push frontend
+       name: push backend (login microservices)
        command: |
-         docker push $FRONTEND_TAG:latest
+         docker push $LOGIN_MS_TAG:latest
+         
+ test_build_deploy_bookms:
+   docker:
+    - image: circleci/openjdk:8-jdk
+   environment:
+    LOGIN_MS_TAG: s3851781/bk-book-microservices
+   working_directory: ~/
 
+   steps:
+    - checkout
+    - setup_remote_docker
+    
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - loginms-dependencies-{{ checksum "pom.xml" }}
+        # fallback to using the latest cache if no exact match is found
+        - loginms-dependencies-
+    - run: mvn dependency:go-offline
+    - save_cache:
+        paths:
+          - ~/.m2
+        key: loginms-dependencies-{{ checksum "pom.xml" }}
+    # run tests!
+    - run: mvn integration-test
+    
+    
+    
+    # Build
+    - run:
+       name: build backend (login microservices)
+       command: | 
+         docker build . -t $LOGIN_MS_TAG
+    # Run
+    - run:
+       name: run backend (login microservices)
+       command: | 
+         docker run -d $LOGIN_MS_TAG
+    # Test the image
+    - run:
+       name: test backend (login microservices)
+       command: | 
+         docker run -e CI=true $LOGIN_MS_TAG mvn test
+
+    # Deploy
+    - run:
+       name: login to DockerHub
+       command: |
+         docker login -u $DOCKER_USER -p $DOCKER_PASS
+         
     - run:
        name: push backend (login microservices)
        command: |
          docker push $LOGIN_MS_TAG:latest
+
+
+         
+workflows:
+  build_test_push_app:
+    jobs:
+      - test_build_deploy_loginms
+      - test_build_deploy_bookms
+      - test_build_deploy_frontend
+      
+      
+      
+          
          
     - run:
        name: push backend (book microservices)
        command: |
          docker push $BOOK_MS_TAG:latest
-         
-workflows:
-  build_test_push_app:
-    jobs:
-      - build_test_push
-      
-      
-      

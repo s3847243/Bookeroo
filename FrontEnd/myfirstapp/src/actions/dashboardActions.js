@@ -27,7 +27,7 @@ export const postApproveUsers = async (id) => {
   }
 };
 
-export const postEditUser = (postedit,id) => async () => {
+export const postEditUser = async (postedit,id)=> {
   try {
     await axios.post("http://localhost:8080/api/users/update/"+id, postedit);
     

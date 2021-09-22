@@ -50,13 +50,13 @@ function AllUsers(){
         address: editFormData.address,username:editUsername,userType:editType,enabled:isEnabled,
         password:editPassword,abn:editABN
       };
-      console.log(editedContact);
+
       const newContacts = [...contacts];
 
       const index = contacts.findIndex((contact) => contact.id === editContactId);
 
       newContacts[index] = editedContact;
-      postEditUser(editedContact); 
+      postEditUser(editedContact, editedContact.id); 
 
       setContacts(newContacts);
       setEditContactId(null);
@@ -107,9 +107,7 @@ function AllUsers(){
     };
  
     const handleBlockClick = (contactId) => {
-
       blockUser(contactId);
-
     }
     if (!contacts) return null;
 

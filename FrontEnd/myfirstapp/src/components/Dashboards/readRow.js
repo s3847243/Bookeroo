@@ -10,7 +10,7 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick,handleBlockCl
       <td>{contact.username}</td>
       <td>{contact.userType}</td>
       <td>
-        <button name="approve" className="blockButton" type="button" value="BLOCK" onClick={(event) => handleBlockClick(event, contact.id)} > Block </button>
+        <button name="approve" className="blockButton" type="button" value="BLOCK" onClick={() => handleBlockClick(contact.id)} > Block </button>
         </td>
       <td>
         <button

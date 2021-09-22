@@ -107,6 +107,8 @@ public class UserController {
     @PostMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
         Long userId = Long.parseLong(id);
+        System.out.println(userId + " update called");
+        System.out.println(user);
         userDetailsService.updateUser(userId, user);
         return new ResponseEntity<>("User updated", HttpStatus.OK);
     }

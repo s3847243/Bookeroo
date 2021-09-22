@@ -2,11 +2,11 @@ import React from "react";
 
 function ErrorPage(){
     return(
-        <div>
-
-            <h1 style={{textAlign:"center"}}>You are not allowed to access this page</h1>
-            <h2 style={{textAlign:"center"}}>Please Login to confirm its you</h2> 
-            <a href="/login" style={{textAlign:"center"}}>Login</a>
+        <div style={{margin: "auto", marginTop:"200px" , width: "30%", textAlign: "center"}}>
+            <a href="/login" style={{
+             padding: "20px 20px", borderRadius: "10px", backgroundColor: "#007bff", 
+             color: "white", fontStyle: "bold", fontSize: "large"
+             }}>Continue to Dashboard</a>
         </div>
 
     )

@@ -92,7 +92,7 @@ function AllBooks(){
       const index = contacts.findIndex((contact) => contact.id === editContactId);
 
       newContacts[index] = editedContact;
-      postEditBook(editedContact,editContactId); // id and object
+      postEditBook(editedContact,editedContact.id); // id and object
       console.log(editedContact);
       setContacts(newContacts);
       setEditContactId(null);

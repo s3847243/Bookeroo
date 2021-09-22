@@ -34,9 +34,9 @@ export const sellBook = (sellBook,history) => async dispatch =>{
     //     });
     // }
 }
-export const postEditBook = (postedit,id) => async () => {
+export const postEditBook = async (postedit,id) => {
     try {
-      await axios.post("http://localhost:8080/api/books/update/"+id,postedit);
+      await axios.post("http://localhost:8081/api/books/update/"+id,postedit);
       
     } catch (err) {
       console.log(err);
