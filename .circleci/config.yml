@@ -3,7 +3,7 @@ version: 2.1
 jobs:
 
  test_build_deploy_loginms:
-   working_directory: ~/
+   working_directory: ~/repo
    docker:
     - image: circleci/openjdk:8-stretch
    environment:
@@ -12,12 +12,15 @@ jobs:
 
    steps:
     - checkout
-    - setup_remote_docker
+    - setup_remote_docker:
+        docker_layer_caching: true
 
     - run:
         name: cd into login_ms
         command: |
+          ls
           cd BackEnd/loginmicroservices
+          ls
      #Dependencies
     - restore_cache:
         keys:
