@@ -121,15 +121,21 @@ public class UserController {
     public ResponseEntity<?> approveUser(@PathVariable String id){
         Long userId = Long.parseLong(id);
 
-        userDetailsService.approveUser(userId);
-        return new ResponseEntity<>("User approved", HttpStatus.OK);
+
+        if(userDetailsService.approveUser(userId))
+            return new ResponseEntity<>("User approved", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/blockUser/{id}")
     public ResponseEntity<?> blockUser(@PathVariable String id){
         Long userId = Long.parseLong(id);
-        userDetailsService.blockUser(userId);
-        return new ResponseEntity<>("User blocked", HttpStatus.OK);
+
+        if(userDetailsService.blockUser(userId))
+            return new ResponseEntity<>("User approved", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
     }
 
 }
