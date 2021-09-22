@@ -43,16 +43,19 @@ jobs:
     - run:
        name: build login microservices image
        command: |
+         cd BackEnd/loginmicroservices
          docker build . -t $LOGIN_MS_TAG
     # Run Image
     - run:
        name: run login microservices image
        command: |
+         cd BackEnd/loginmicroservices
          docker run -d $LOGIN_MS_TAG
     # Test Image
     - run:
        name: test login microservices image
        command: |
+         cd BackEnd/loginmicroservices
          docker run -e CI=true $LOGIN_MS_TAG mvn test
 
     # Deploy Image
