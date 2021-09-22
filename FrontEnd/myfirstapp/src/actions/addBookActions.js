@@ -1,21 +1,13 @@
 import axios from "axios";
-import {GET_ERRORS} from "./types";
 
-export const addBook = (newBook,history) => async dispatch =>{
+export const addBook = async (newBook) =>{
     try{
-
+        console.log(newBook);
+        console.log("addbook call");
         await axios.post("http://localhost:8081/api/books/create", newBook);
-        history.push("/addBook");
-        dispatch({
-            type: GET_ERRORS,
-            payload: {}
-        });
     }
     catch (err){
-        dispatch ({
-            type: GET_ERRORS,
-            payload: err.response.data
-        });
+        console.log(err);
     }
 }
 export const sellBook = (sellBook,history) => async dispatch =>{

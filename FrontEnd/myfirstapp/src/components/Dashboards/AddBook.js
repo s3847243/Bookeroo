@@ -111,13 +111,14 @@ function AddBook(){
                 name="title"
                 onChange={handleAddFormChange}
             />
+            <label for="isbn">Isbn must be 13 numerical characters</label>
             <input
                 onChange={handleAddFormChange}
                 id="ISBN"
                 className="form-control"
                 type="text"
                 placeholder="ISBN"
-                name="ISBN"
+                name="isbn"
             />
             <input
                 onChange={handleAddFormChange}
