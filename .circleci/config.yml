@@ -7,7 +7,7 @@ jobs:
     - image: circleci/openjdk:8-stretch
    environment:
     LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
-   working_directory: ~/bk-login-microservices-java-spring
+   working_directory: ~/BackEnd/loginmicroservices
 
    steps:
     - checkout
@@ -16,15 +16,15 @@ jobs:
      #Dependencies
     - restore_cache:
         keys:
-        - bk-login-microservices-java-spring-{{ checksum "pom.xml" }}
-        - bk-login-microservices-java-spring-
+        - loginms-{{ checksum "pom.xml" }}
+        - loginms-
 
     - run: mvn dependency:go-offline
 
     - save_cache:
         paths:
           - ~/.m2
-        key: bk-login-microservices-java-spring-{{ checksum "pom.xml" }}
+        key: loginms-{{ checksum "pom.xml" }}
 
     #Test
     - run: mvn test
