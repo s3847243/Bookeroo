@@ -91,10 +91,12 @@ jobs:
      - run:
          name: install dependencies
          command: |
+           cd FrontEnd/myfirstapp
            npm install
      - run:
          name: run tests
          command: |
+           cd FrontEnd/myfirstapp
            npm test
 
      # Build Image
