@@ -54,7 +54,6 @@ class BookDetails extends Component {
         }
         addToCart(cartItem);
         
-        
     }
 
     render () {

@@ -9,9 +9,6 @@ Enzyme.configure({adapter: new Adapter()});
 describe("<App/> component Unit Test", () => {
 
     it("Should render header", ()=>{
-        const component = shallow(
-            <App/>
-        );
         expect(shallow(<App />).find('Connect(Header)')).toHaveLength(1);    
     });
 })
