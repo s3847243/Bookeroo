@@ -4,10 +4,10 @@ jobs:
 
  test_build_deploy_loginms:
    docker:
-    - image: circleci/openjdk:8-jdk
+    - image: circleci/openjdk:8-stretch
    environment:
     LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
-   working_directory: ~/
+   working_directory: ~/bk-login-microservices-java-spring
 
    steps:
     - checkout
@@ -16,15 +16,15 @@ jobs:
      #Dependencies
     - restore_cache:
         keys:
-        - loginms-dependencies-{{ checksum "pom.xml" }}
-        - loginms-dependencies-
+        - bk-login-microservices-java-spring-{{ checksum "pom.xml" }}
+        - bk-login-microservices-java-spring-
 
     - run: mvn dependency:go-offline
 
     - save_cache:
         paths:
           - ~/.m2
-        key: loginms-dependencies-{{ checksum "pom.xml" }}
+        key: bk-login-microservices-java-spring-{{ checksum "pom.xml" }}
 
     #Test
     - run: mvn test
