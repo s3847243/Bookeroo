@@ -2,18 +2,19 @@ version: 2.1
 
 jobs:
 
- test_build_deploy_loginms:
+ test_build_deploy_backend:
    working_directory: ~/repo
    docker:
     - image: circleci/openjdk:8-stretch
    environment:
     LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
-
+    BOOK_MS_TAG: s3851781/bk-book-microservices:latest
 
    steps:
     - checkout
     - setup_remote_docker
 
+    ########## Login Microservices ##########
     - run:
         name: build dependencies
         command: |
@@ -26,70 +27,95 @@ jobs:
           cd BackEnd/loginmicroservices
           mvn test
 
-#     #Dependencies
-#    - restore_cache:
-#        keys:
-#        - loginms-{{ checksum "pom.xml" }}
-#        - loginms-
-#
-#    - run: mvn dependency:go-offline
-#
-#    - save_cache:
-#        paths:
-#          - ~/.m2
-#        key: loginms-{{ checksum "pom.xml" }}
-
     # Build Image
     - run:
        name: build login microservices image
        command: |
          cd BackEnd/loginmicroservices
          docker build . -t $LOGIN_MS_TAG
-    # Run Image
-    - run:
-       name: run login microservices image
-       command: |
-         cd BackEnd/loginmicroservices
-         docker run -d $LOGIN_MS_TAG
 
     # Deploy Image
     - run:
        name: login to DockerHub
        command: |
          docker login -u $DOCKER_USER -p $DOCKER_PASS
-
     - run:
        name: push backend (login microservices)
        command: |
          docker push $LOGIN_MS_TAG
 
-# test_build_deploy_bookms:
-#   docker:
-#    - image: circleci/openjdk:8-jdk
-#   environment:
-#    BOOK_MS_TAG: s3851781/bk-book-microservices
-#   working_directory: ~/
-#
-#   steps:
-#    - checkout
-#    - setup_remote_docker
+    ########## Book Microservices ##########
 
-# test_build_deploy_react:
-#   docker:
-#    - image: circleci/node
-#   environment:
-#    BOOK_MS_TAG: s3851781/bk-react-webapp
-#   working_directory: ~/
-#
-#   steps:
-#    - checkout
-#    - setup_remote_docker
+    - run:
+        name: build dependencies
+        command: |
+          cd BackEnd/bookmicroservices
+          mvn package
 
+    - run:
+        name: test
+        command: |
+          cd BackEnd/bookmicroservices
+          mvn test
 
+    # Build Image
+    - run:
+        name: build book microservices image
+        command: |
+          cd BackEnd/bookmicroservices
+          docker build . -t $BOOK_MS_TAG
+
+    # Deploy Image
+    - run:
+        name: login to DockerHub
+        command: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+    - run:
+        name: push backend (book microservices)
+        command: |
+          docker push $BOOK_MS_TAG
+
+  ########## FRONTEND ##########
+ test_build_deploy_frontend:
+   working_directory: ~/repo
+   docker:
+     - image: circleci/node
+   environment:
+     FRONTEND_TAG: s3851781/bk-react-webapp:latest
+
+   steps:
+     - checkout
+     - setup_remote_docker
+
+     - run:
+         name: install dependencies
+         command: |
+           npm install
+     - run:
+         name: run tests
+         command: |
+           npm test
+
+     # Build Image
+     - run:
+         name: build book microservices image
+         command: |
+           cd FrontEnd/myfirstapp
+           docker build . -t $FRONTEND_TAG
+
+     # Deploy Image
+     - run:
+         name: login to DockerHub
+         command: |
+           docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+     - run:
+         name: push frontend
+         command: |
+           docker push $FRONTEND_TAG
 workflows:
   build_test_push_app:
     jobs:
-      - test_build_deploy_loginms
-#      - test_build_deploy_bookms
-#      - test_build_deploy_react
-      
+      - test_build_deploy_backend
+      - test_build_deploy_frontend
