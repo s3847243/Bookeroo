@@ -33,10 +33,4 @@ export const SidebarData = [
         path: "/Reports",
         cName:'nav-text'
     },
-    {
-        title : "Add Book",
-        icon: <FaIcons.FaEnvelope />,
-        path: "/addBook",
-        cName:'nav-text'
-    },
 ];

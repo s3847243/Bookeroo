@@ -65,8 +65,8 @@ public class BookController {
 
 
         Book updatedBook = bookService.updateBook(id, book);
-
         return  new ResponseEntity<Book>(updatedBook, HttpStatus.CREATED);
+
     }
 
     @PostMapping("delete/{id}")

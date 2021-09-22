@@ -9,7 +9,10 @@ import ApproveUsers from './Dashboards/ApproveUsers';
 import AllBooks from './Dashboards/AllBooks';
 import Transactions from './Dashboards/Transactions';
 import Reports from './Dashboards/Reports';
-import AddBook from './Dashboards/AddBook';
+import AddBook from "./Dashboards/AddBook";
+import SellBook from "./Dashboards/SellBook";
+import SellOldBook from "./Dashboards/SellOldBook"
+import Orders from "./Dashboards/Orders"
 class Dashboard extends Component { 
 
 
@@ -64,7 +67,6 @@ class Dashboard extends Component {
         
         
         <Fragment>
-        <h1 className = 'head-Dash'>Welcome to the Dashboard</h1>
             <Router>
                 <Sidebar />
                 <Switch>
@@ -74,6 +76,9 @@ class Dashboard extends Component {
                     <Route  path ='/Transactions'  component={Transactions} />
                     <Route  path ='/Reports'  component={Reports} />
                     <Route exact path ="/addBook" component={AddBook} />
+                    <Route exact path ="/sellBookCust" component={SellOldBook} />
+                    <Route exact path ="/Orders" component={Orders} />
+                    <Route exact path ="/SellBook" component={SellBook} />
 
                 </Switch>
             </Router>

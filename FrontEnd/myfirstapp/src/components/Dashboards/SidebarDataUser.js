@@ -9,23 +9,24 @@ export const SidebarDataUser = [
     //     path: "/AllUsers",
     //     cName:'nav-text'
     // },
-    // {
-    //     title : "Transactions - Bought",
-    //     icon: <FaIcons.FaEnvelope />,
-    //     path: "/ApproveUsers",
-    //     cName:'nav-text'
-    // },
-    // {
-    //     title : "Orders",
-    //     icon: <FaIcons.FaEnvelope />,  
-    //     path: "/orderCust",
-    //     cName:'nav-text'
-    // },
+    {
+        title : "Transactions - Bought",
+        icon: <FaIcons.FaEnvelope />,
+        path: "/ApproveUsers",
+        cName:'nav-text'
+    },
+    {
+        title : "Orders",
+        icon: <FaIcons.FaEnvelope />,  
+        path: "/Orders",
+        cName:'nav-text'
+    },
     {
         title : "Sell old Book",
         icon: <FaIcons.FaEnvelope />,
         path: "/sellBookCust",
         cName:'nav-text'
     },
+
 
 ];

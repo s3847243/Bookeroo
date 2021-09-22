@@ -21,6 +21,8 @@
     top: 10;
     left: -100%;
     margin-top: 0;
+    list-style-type: none;
+
 
 /*     
     list-style-type: square;
@@ -58,7 +60,9 @@
 
   }
   .nav-menu-items{
-    width:100%
+    width:100%;
+    list-style-type: none;
+
   }
   .navbar-toggle{
     background-color: #18a2b9;

@@ -98,11 +98,14 @@ function AddBook(){
     }
 
     return(
-    <div className="form-container">
-        <form className="add-form" onSubmit={handleAddFormSubmit}>
+    <div style={{marginTop: "50px",
+    width:'50%',
+    backgroundPosition: "center"
+    }} className="form-container">
+        <form style={{margin:"25px 85px 75px 100px"}} className="add-form" onSubmit={handleAddFormSubmit}>
             <input
                 id="Book-name"
-                className="form-field"
+                className="form-control"
                 type="text"
                 placeholder="Book Name"
                 name="title"
@@ -111,7 +114,7 @@ function AddBook(){
             <input
                 onChange={handleAddFormChange}
                 id="ISBN"
-                className="form-field"
+                className="form-control"
                 type="text"
                 placeholder="ISBN"
                 name="ISBN"
@@ -119,7 +122,7 @@ function AddBook(){
             <input
                 onChange={handleAddFormChange}
                 id="author"
-                className="form-field"
+                className="form-control"
                 type="text"
                 placeholder="author"
                 name="author"
@@ -127,7 +130,7 @@ function AddBook(){
             <input
                 onChange={handleAddFormChange}
                 id="published"
-                className="form-field"
+                className="form-control"
                 type="text"
                 placeholder="published"
                 name="published"
@@ -135,7 +138,7 @@ function AddBook(){
             <input
                 onChange={handleAddFormChange}
                 id="genre"
-                className="form-field"
+                className="form-control"
                 type="text"
                 placeholder="genre"
                 name="genre"
@@ -154,7 +157,7 @@ function AddBook(){
             </div>
             {pdfFileError&&<div className='error-msg'>{pdfFileError}</div>}
             <br></br> */}
-            <button className="form-field" type="submit">
+            <button className="form-control  btn btn-primary" style={{marginTop:'30px'}} type="submit">
             Add Book
             </button>
         </form>

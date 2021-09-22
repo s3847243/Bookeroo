@@ -4,12 +4,6 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 export const SidebarDataBus = [
     // {
-    //     title : "All Books",
-    //     icon: <FaIcons.FaEnvelope />,
-    //     path: "/customerBooks",
-    //     cName:'nav-text'
-    // },
-    // {
     //     title : "Transactions",
     //     icon: <FaIcons.FaEnvelope />,
     //     path: "/customerTransaction",
