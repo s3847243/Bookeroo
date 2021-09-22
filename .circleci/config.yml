@@ -15,17 +15,15 @@ jobs:
     - setup_remote_docker
 
     - run:
-        name: cd into login_ms
-        command: |
-          cd BackEnd/loginmicroservices
-    - run:
         name: build dependencies
         command: |
+          cd BackEnd/loginmicroservices
           mvn package
 
     - run:
         name: test
         command: |
+          cd BackEnd/loginmicroservices
           mvn test
 
 #     #Dependencies
