@@ -83,6 +83,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         user = userRepository.getById(id);
         user.setEnabled(true);
+        userRepository.save(user);
         return true;
     }
 
@@ -94,6 +95,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         user = userRepository.getById(id);
         user.setEnabled(false);
+        userRepository.save(user);
         return true;
     }
 
