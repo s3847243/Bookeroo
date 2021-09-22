@@ -14,7 +14,7 @@ function Sidebar() {
     const [sBar,setSidebar]=useState(false);
     const showSidebar = () => setSidebar(!sBar);
    
-   if(getType() ==="USER"){
+   if(getType() ==="ADMIN"){
 
         return(
             <Fragment>
@@ -49,7 +49,7 @@ function Sidebar() {
             </Fragment>
         );
    }
-    else if(getType() === "ADMIN"){
+    else if(getType() === "USER"){
         return(
             <Fragment>
             <IconContext.Provider value={{color:'#fff'}}>

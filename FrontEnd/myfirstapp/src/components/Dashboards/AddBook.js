@@ -111,7 +111,7 @@ function AddBook(){
                 name="title"
                 onChange={handleAddFormChange}
             />
-            <label for="isbn">Isbn must be 13 numerical characters</label>
+            <label htmlFor="isbn">Isbn must be 13 numerical characters</label>
             <input
                 onChange={handleAddFormChange}
                 id="ISBN"
