@@ -1,10 +1,9 @@
 import React ,{Component}from "react";
 import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import SellOldBook from "./Dashboards/SellOldBook"
-import Orders from "./Dashboard/Orders"
-import AddBook from "./Dashboards/AddBook";
-import SellBook from "./Dashboard/SellBook";
-class DashboardShop extends Component{
+import Orders from "./Dashboards/Orders"
+import Sidebar from "./Dashboards/Sidebar";
+class DashboardCust extends Component{
 
     render(){
         return(
@@ -12,8 +11,8 @@ class DashboardShop extends Component{
                 <Sidebar />
                 <Switch>
                    
-                    <Route exact path ="/addBook" component={AddBook} />
-                    <Route exact path ="/SellBook" component={SellBook} />
+                    <Route exact path ="/sellBookCust" component={SellOldBook} />
+                    <Route exact path ="/Orders" component={Orders} />
 
 
                 </Switch>
@@ -23,4 +22,4 @@ class DashboardShop extends Component{
     
 
 }
-export default DashboardShop;
+export default DashboardCust;

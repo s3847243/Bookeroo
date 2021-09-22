@@ -36,8 +36,13 @@ const csvTransReport = {
  
 function Reports(){
   return(
-    <div className='report'>
+    <div style={{marginTop: "50px",
+    
+    }} className='report'>
+      <h1 style={{margin:"25px 85px 75px 100px", textAlign:"center"}}>Exporting Reports of Books in CSV format</h1>
       <CSVLink {...csvReport}> Export to books CSV</CSVLink>
+      <br></br>
+      <h1 style={{margin:"25px 85px 75px 100px", alignContent:"center"}}>Exporting Reports of Books in CSV format</h1>
       <CSVLink {...csvTransReport}> Export to Transaction CSV</CSVLink>
     </div>
   )
