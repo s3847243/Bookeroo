@@ -1,0 +1,68 @@
+.reviews h2 {
+  margin-top: 10px;
+  font-size: 40px;
+  margin-left: 133px;
+  text-align: left;
+}
+
+.book-review-row {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 70%;
+  margin: auto;
+}
+
+.br-info {
+  flex: 0 0 30%;
+  overflow-wrap: break-word;
+}
+.br-content {
+  flex: 0 0 70%;
+}
+
+.br-content p {
+  overflow-wrap: break-word;
+}
+
+.add-review {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.add-review h2,
+h3 {
+  text-align: center;
+}
+
+.review-form-field {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+.review-form-field label,
+input,
+textarea {
+  margin: auto;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.review-form-field input,
+textarea {
+  font-size: 20px;
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rating-field {
+  margin-left: 0;
+  margin-top: 15px;
+}
+.rating-field span:first-of-type {
+  margin-left: 0px;
+}

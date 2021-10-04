@@ -70,11 +70,14 @@ export const logout = async () => {
 
 
 export const getType = () => {
-
   const token = localStorage.getItem("jwtToken");
   if(token){
     return jwt_decode(token).userType;
   }
+  else{
+    return "NONE"
+  }
+
 }
 export const isLogin = () => {
   if (localStorage.getItem("jwtToken")) {
