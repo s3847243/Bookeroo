@@ -3,6 +3,7 @@
   font-size: 40px;
   margin-left: 133px;
   text-align: left;
+  margin-bottom: 30px;
 }
 
 .book-review-row {
@@ -10,6 +11,7 @@
   flex-wrap: nowrap;
   width: 70%;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .br-info {
@@ -18,6 +20,9 @@
 }
 .br-content {
   flex: 0 0 70%;
+  border-right: 1px solid rgb(167, 167, 167);
+  border-left: 1px solid rgb(167, 167, 167);
+  padding: 10px;
 }
 
 .br-content p {
@@ -25,7 +30,7 @@
 }
 
 .add-review {
-  width: 50%;
+  width: 70%;
   margin: 50px auto;
 }
 
@@ -65,4 +70,13 @@ textarea {
 }
 .rating-field span:first-of-type {
   margin-left: 0px;
+}
+.review-name {
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.review-date {
+  margin-top: 3px;
+  font-size: small;
 }

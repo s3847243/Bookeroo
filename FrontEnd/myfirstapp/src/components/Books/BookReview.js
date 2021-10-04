@@ -6,23 +6,23 @@ export const BookReview = (props) => {
     const [reviews, setReviews] = useState([{reviewer: "example reviewer 1",
     date: Date.now(),
     stars: 3,
-    content: "okay book",
+    content: "Okay i guess....Okay i guess....Okay i guess....Okay i guess....Okay i guess....Okay i guess....Okay i guess....Okay i guess....",
     },
-    {reviewer: "eexample reviewer 2",
+    {reviewer: "example reviewer 2",
     date: Date.now(),
     stars: 5,
-    content: "excellent book asdfasdf",
+    content: "excellent i guess....excellent i guess....excellent i guess....excellent i guess....excellent i guess....",
     }]);
 
     const ReviewItem = (props) => {
         return (
             <div className = "book-review-row">
                 <div className = "br-info">
-                    <p>{props.reviewer}</p>
-                    <p>{props.date}</p>
+                    <p className="review-name">{props.reviewer}</p>
+                    <p className="review-date"> Reviewed on {props.date}</p>
                 </div>
                 <div className = "br-content">
-                    <RatingView ratingValue = {props.stars} />
+                    <RatingView ratingValue = {props.stars} className="rating-field"/>
                     <p>{props.content}</p>
                 </div>
             </div>   
@@ -31,7 +31,7 @@ export const BookReview = (props) => {
     return (
         <div className="reviews">
             <h2>Reviews</h2>
-
+            
             {/* // reviews */}
             {reviews.map((review, i) => (
                     <ReviewItem
