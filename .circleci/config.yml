@@ -119,5 +119,13 @@ jobs:
 workflows:
   build_test_push_app:
     jobs:
-      - test_build_deploy_backend
-      - test_build_deploy_frontend
+      - test_build_deploy_backend:
+          filters:
+            branches:
+              only:
+                - master
+      - test_build_deploy_frontend:
+          filters:
+            branches:
+              only:
+                - master
