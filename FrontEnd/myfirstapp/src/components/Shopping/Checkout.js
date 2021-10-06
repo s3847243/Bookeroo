@@ -5,6 +5,7 @@ import "./css/cart.css"
 import "./css/checkout.css"
 import { removeAllCart, getCartTotal, getCartLength } from "../../actions/cartActions";
 import { PayPalButton } from "react-paypal-button-v2";
+import { addTransaction } from "../../actions/transactionActions";
 
 function Checkout(props){
     const [firstName, setFirstName] = useState("");
@@ -48,6 +49,23 @@ function Checkout(props){
         setSavedInfo(true);
         // save shipping info
         console.log(shippingInfo)
+    }
+
+    const processTransaction = (data) => {
+        const transaction = shippingInfo;
+        transaction['id'] = data.orderID;
+        transaction['user_id'] = data.orderID;
+        transaction['seller_id'] = data.orderID;
+        console.log(transaction);
+        // OPTIONAL: Call your server to save the transaction
+                    // return fetch("/paypal-transaction-complete", {
+                    //     method: "post",
+                    //     body: JSON.stringify({
+                    //     orderID: data.orderID
+                    //     })
+                        
+                    // });
+        addTransaction(transaction);
     }
 
     return (
@@ -160,13 +178,7 @@ function Checkout(props){
                     onSuccess={(details, data) => {
                     alert("Transaction completed by " + details.payer.name.given_name);
                     setPaidFor(true);
-                    // OPTIONAL: Call your server to save the transaction
-                    return fetch("/paypal-transaction-complete", {
-                        method: "post",
-                        body: JSON.stringify({
-                        orderID: data.orderID
-                        })
-                    });
+                    processTransaction(data);
                     }}
                     options={{
                         clientId: "ASNP31jq-n5i8qMqIwgnegeQkLjTyUtcETPdirulwK3C4esDFI6-P-DJezugURmJuEYyAav7cpCBPCSh"
