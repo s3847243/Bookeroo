@@ -3,22 +3,16 @@ import React, { useState, useEffect, Fragment } from "react";
 // import CartItem from "./cartItem";
 import "./css/cart.css"
 import "./css/checkout.css"
-import { removeAllCart, getCartTotal, getCartLength } from "../../actions/cartActions";
+import { removeAllCart, getCartTotal, getCartLength, getCart } from "../../actions/cartActions";
 import { PayPalButton } from "react-paypal-button-v2";
 import { addTransaction } from "../../actions/transactionActions";
+import CartItem from "./CartItem";
+import "./css/cart.css"
 
 function Checkout(props){
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [street, setStreet] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [postcode, setPostcode] = useState("");
-    const [savedInfo, setSavedInfo] = useState(false);
-    const [shippingInfo, setShippingInfo] = useState();
 
 
-    //const [cartItems, setCartItems] = useState(getCart());
+    const [cartItems, setCartItems] = useState(getCart());
     const [total] = useState(getCartTotal());
     const [cartLength] = useState(getCartLength())
 
@@ -29,33 +23,22 @@ function Checkout(props){
         // send to transactions backend
         if (paidFor) {
             console.log("clear the cart")
-             removeAllCart();
+            removeAllCart();
         }
        
         },
         [paidFor]
     );
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        setShippingInfo( {
-            firstName: firstName,
-            lastName: lastName,
-            street: street,
-            city: city,
-            state: state,
-            postcode: postcode
-        });
-        setSavedInfo(true);
-        // save shipping info
-        console.log(shippingInfo)
-    }
 
     const processTransaction = (data) => {
-        const transaction = shippingInfo;
-        transaction['id'] = data.orderID;
-        transaction['user_id'] = data.orderID;
-        transaction['seller_id'] = data.orderID;
+        const transaction = {};
+        // transaction['id'] = data.orderID;
+        transaction['bookId'] = data.orderID;
+        transaction['sellerId'] = data.orderID;
+        transaction['customerId'] = data.orderID;
+        transaction['value'] = total;
+        transaction['status'] = 'shipping';
         console.log(transaction);
         // OPTIONAL: Call your server to save the transaction
                     // return fetch("/paypal-transaction-complete", {
@@ -80,98 +63,46 @@ function Checkout(props){
             (
             <Fragment>
             <h1>Checkout</h1>
-            <form onSubmit = {onSubmit}>
-                <div className="co-form-group">
-                    <label>
-                        First Name
-                        <input
-                            type="text"
-                            className="co-input"
-                            placeholder="First Name"
-                            name="firstName"
-                            value={firstName}
-                            onChange={e => setFirstName(e.target.value)}
-                            required
+            <div className="cart-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Seller
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Condition
+                            </th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                        {cartItems.map((listing, i) => (
+                        <CartItem
+                            title = {listing.title}
+                            isbn = {listing.isbn}
+                            seller = {listing.seller}
+                            price = {listing.price}
+                            condition = {listing.condition}
+                            qtyRem = {listing.qty}
+                            index = {i}
+                            key = {i}
                         />
-                    </label>
-                </div>
-                <div className="co-form-group">
-                    <label>
-                        Last Name
-                        <input
-                            type="text"
-                            className="co-input"
-                            placeholder="Last Name"
-                            name="lastName"
-                            value={lastName}
-                            onChange={e => setLastName(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="co-form-group">
-                    <label>
-                        Street Address
-                        <input
-                            type="text"
-                            className="co-input"
-                            placeholder=""
-                            name="street"
-                            value={street}
-                            onChange={e => setStreet(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="co-form-group">
-                    <label>
-                        City
-                        <input
-                            type="text"
-                            className="co-input"
-                            placeholder=""
-                            name="city"
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="co-form-group">
-                    <label>
-                        State
-                        <input
-                            type="text"
-                            className="co-input"
-                            placeholder=""
-                            name="state"
-                            value={state}
-                            onChange={e => setState(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="co-form-group">
-                    <label>
-                        Postcode
-                        <input
-                            type="number"
-                            className="co-input"
-                            placeholder=""
-                            name="postcode"
-                            value={postcode}
-                            onChange={e => setPostcode(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                
-                <input type="submit" value="Save" className="btn btn-info btn-block mt-4" />
-            </form>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
             <h2>Total = ${total}</h2>
             
-            {savedInfo ? 
-            (
+          
                 <PayPalButton
                     amount={total}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
@@ -184,12 +115,6 @@ function Checkout(props){
                         clientId: "ASNP31jq-n5i8qMqIwgnegeQkLjTyUtcETPdirulwK3C4esDFI6-P-DJezugURmJuEYyAav7cpCBPCSh"
                     }}
                 />
-            )
-            :
-            (
-                <Fragment></Fragment>
-            )
-            }
             
 
             </Fragment>
