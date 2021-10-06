@@ -12,15 +12,19 @@
   width: 70%;
   margin: auto;
   margin-bottom: 20px;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px 10px;
+  border-radius: 8px;
 }
 
 .br-info {
   flex: 0 0 30%;
+  margin-left: 10px;
   overflow-wrap: break-word;
 }
 .br-content {
   flex: 0 0 70%;
-  border-right: 1px solid rgb(167, 167, 167);
   border-left: 1px solid rgb(167, 167, 167);
   padding: 10px;
 }
@@ -31,7 +35,7 @@
 
 .add-review {
   width: 70%;
-  margin: 50px auto;
+  margin: 100px auto;
 }
 
 .add-review h2,
@@ -73,10 +77,25 @@ textarea {
 }
 .review-name {
   margin-bottom: 3px;
+  margin-top: 30px;
   font-weight: bold;
 }
 
 .review-date {
   margin-top: 3px;
   font-size: small;
+}
+
+.review-form-submit {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.review-form-submit input {
+  background-color: #439fdc;
+  border-radius: 10px;
+  color: white;
+  border-style: none;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
 }

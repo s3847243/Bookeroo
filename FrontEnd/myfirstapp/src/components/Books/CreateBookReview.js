@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "./css/BookReview.css";
 import {Rating} from 'react-simple-star-rating';
+import { addReview } from "../../actions/reviewActions";
+
 export const CreateBookReview = (props) => {
 
     const [name, setName] = useState("");
@@ -15,7 +17,9 @@ export const CreateBookReview = (props) => {
             review: review,
             ISBN: props.isbn,
         }
-        console.log(reviewData)
+        console.log(reviewData);
+        addReview(reviewData);
+        window.location.reload(false);
     }
 
     const handleRating = (rate) => {
@@ -45,7 +49,7 @@ export const CreateBookReview = (props) => {
                     </label>
                 </div>
                 
-                <div className="review-form-field">
+                <div className="review-form-submit">
                     <input type="submit" value="Post Review"/>
                 </div>
             </form>

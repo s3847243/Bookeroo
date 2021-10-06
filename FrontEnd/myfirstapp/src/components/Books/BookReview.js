@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import "./css/BookReview.css";
 import {RatingView} from 'react-simple-star-rating';
+import { getReviews } from "../../actions/reviewActions";
 export const BookReview = (props) => {
 
     const [reviews, setReviews] = useState([{reviewer: "example reviewer 1",
@@ -13,6 +14,8 @@ export const BookReview = (props) => {
     stars: 5,
     content: "excellent i guess....excellent i guess....excellent i guess....excellent i guess....excellent i guess....",
     }]);
+
+    //getReviews(props.isbn)
 
     const ReviewItem = (props) => {
         return (
@@ -31,17 +34,19 @@ export const BookReview = (props) => {
     return (
         <div className="reviews">
             <h2>Reviews</h2>
-            
+        
             {/* // reviews */}
             {reviews.map((review, i) => (
-                    <ReviewItem
-                        reviewer = {review.reviewer}
-                        date = {review.date}
-                        stars = {review.stars}
-                        content = {review.content}
-                        index = {i}
-                        key = {i}
-                    />
+              
+                <ReviewItem
+                    reviewer = {review.reviewer}
+                    date = {review.date}
+                    stars = {review.stars}
+                    content = {review.content}
+                    index = {i}
+                    key = {i}
+                />
+  
             ))}
         </div>
     );
