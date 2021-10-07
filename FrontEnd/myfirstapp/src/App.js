@@ -5,13 +5,14 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
 import store from "./store";
 
 // import Landing from "./components/Layout/Landing";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
+import ErrorPage from "./components/Layout/ErrorPage"
+import AddBook from "./components/Dashboards/AddBook";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import Cart from "./components/Shopping/Cart";
@@ -24,8 +25,12 @@ import { SET_CURRENT_USER } from "./actions/types";
 // import SecuredRoute from "./securityUtils/SecureRoute";
 import BookIndex from "./components/Books/BookIndex";
 import BookDetails from "./components/Books/BookDetails";
+// import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
+// import { getType } from "./actions/securityActions";
 
 const jwtToken = localStorage.jwtToken;
+
 
 if (jwtToken) {
   setJWTToken(jwtToken);
@@ -44,6 +49,9 @@ if (jwtToken) {
 }
 
 class App extends Component {
+  state = {
+    userType:""
+  }
   render() {
     return (
       <Provider store={store}>
@@ -51,24 +59,25 @@ class App extends Component {
           <div className="App">
             <Header />
             {
-              //Public Routes
+              // public routes
             }
            
-            <Route exact path="/" component={BookIndex} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path ="/contact" component={Contact} />
-            <Route exact path ="/about" component={About} />
-            <Route path = "/book/:isbn" component={BookDetails} />
             <Route exact path = "/cart" component={Cart} />
             <Route exact path = "/checkout" component={Checkout} />
+            <Route path = "/ErrorPage" component={ErrorPage} />
+            <PublicRoute restricted={false} exact path="/" component={BookIndex} />
+            <PublicRoute restricted={true} exact path="/register" component={Register} />
+            <PublicRoute restricted={true} exact path="/login" component={Login} />
+            <PublicRoute restricted={false} exact path ="/contact" component={Contact} />
+            <PublicRoute restricted={false} exact path ="/about" component={About} />
+            <PublicRoute restricted={false} path = "/book/:isbn" component={BookDetails} />
+            <Route exact path ="/dashboard" component={Dashboard} />
 
             {
-              //Private Routes
+              //Private Routes // <Route exact path="/addPerson" component={AddPerson} />
             }
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addPerson" component={AddPerson} />
-            
+            {/* <PrivateRoute exact path={dash} component={comps} /> */}
+
           </div>
           <Footer />
         </Router>

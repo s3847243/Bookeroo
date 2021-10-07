@@ -1,44 +1,47 @@
-import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
+import React, { useState, Fragment ,useEffect} from "react";
 import "../usersTable.css";
-import data from "./mock-data-App.json";
 import ReadAppRow from "./ReadAppRow";
 import EditAppRow from "./EditAppRow";
-
+import { getUnapprovedUsers } from "../../actions/dashboardActions";
+import { postApproveUsers } from "../../actions/dashboardActions"
 function ApproveUsers(){
   
-    const [contacts, setContacts] = useState(data);
+  const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getUnapprovedUsers().then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+    
 
-    const [addFormData, setAddFormData] = useState({
+    // const [addFormData, setAddFormData] = useState({
       
-        fullName: "",
-        ABN:"",status:"",
-        address: "",
-        phoneNumber: "",
-        email: ""
-    });
+    //     fullName: "",
+    //     ABN:"",status:"",
+    //     address: "",
+    //     phoneNum: "",
+    //     email: ""
+    // });
 
     const [editFormData, setEditFormData] = useState({
-      fullName: "",
-      ABN:"",status:"",
+      fullName: "",phoneNum: "",
+      ABN:"",
       address: "",
-      phoneNumber: "",
-      email: "",
     });
 
     const [editContactId, setEditContactId] = useState(null);
 
-    const handleAddFormChange = (event) => {
-      event.preventDefault();
+    // const handleAddFormChange = (event) => {
+    //   event.preventDefault();
 
-      const fieldName = event.target.getAttribute("name");
-      const fieldValue = event.target.value;
+    //   const fieldName = event.target.getAttribute("name");
+    //   const fieldValue = event.target.value;
 
-      const newFormData = { ...addFormData };
-      newFormData[fieldName] = fieldValue;
+    //   const newFormData = { ...addFormData };
+    //   newFormData[fieldName] = fieldValue;
 
-      setAddFormData(newFormData);
-    };
+    //   setAddFormData(newFormData);
+    // };
 
     const handleEditFormChange = (event) => {
       event.preventDefault();
@@ -52,30 +55,30 @@ function ApproveUsers(){
       setEditFormData(newFormData);
     };
 
-    const handleAddFormSubmit = (event) => {
-      event.preventDefault();
+    // const handleAddFormSubmit = (event) => {
+    //   event.preventDefault();
 
-      const newContact = {
-        id: nanoid(),
-        fullName: addFormData.fullName,
-        address: addFormData.address,
-        phoneNumber: addFormData.phoneNumber,
-        email: addFormData.email,
-      };
+    //   const newContact = {
+    //     id: nanoid(),
+    //     fullName: addFormData.fullName,
+    //     address: addFormData.address,
+    //     phoneNum: addFormData.phoneNum,
+    //     email: addFormData.email,
+    //   };
 
-      const newContacts = [...contacts, newContact];
-      setContacts(newContacts);
-    };
+    //   const newContacts = [...contacts, newContact];
+    //   setContacts(newContacts);
+    // };
 
-    const handleEditFormSubmit = (event) => {
+    const handleEditFormSubmit = (event,contact) => {
       event.preventDefault();
 
       const editedContact = {
         id: editContactId,
         fullName: editFormData.fullName,
         address: editFormData.address,
-        phoneNumber: editFormData.phoneNumber,
-        email: editFormData.email,
+        phoneNum: editFormData.phoneNum,
+        email:contact.email,type:contact.type,approve:contact.approve
       };
 
       const newContacts = [...contacts];
@@ -95,8 +98,7 @@ function ApproveUsers(){
       const formValues = {
         fullName: contact.fullName,
         address: contact.address,
-        phoneNumber: contact.phoneNumber,
-        email: contact.email,
+        phoneNum: contact.phoneNum,
       };
 
       setEditFormData(formValues);
@@ -106,33 +108,18 @@ function ApproveUsers(){
       setEditContactId(null);
     };
 
-    const handleDeleteClick = (contactId) => {
+
+    const handleApproveClick = (contactId) => {
       const newContacts = [...contacts];
 
       const index = contacts.findIndex((contact) => contact.id === contactId);
-
+      postApproveUsers(contactId);
       newContacts.splice(index, 1);
-
       setContacts(newContacts);
-    };
-    const checkBoxSubmit = (event) => {
-        event.preventDefault();
-        const checkedValues = Array.from(event.target.value).map(el => [
-          el.id,
-          el.checked
-        ]);
-      
-        // now have object of id-checked key-value pairs
-        // filter/format accordingly for POST request endpoint needs
-        // JSON.stringify and place in body of request
-      
-        // Axios.post('http://localhost:8000/checkboxapi/user/')
-        //   .then(response => {
-        //   })
-        //   .catch(error => {
-        //     console.log(error)
-        //   })
-      };
+
+
+    }
+    //if (!contacts) return null;
 
     return (
       <Fragment>
@@ -148,7 +135,6 @@ function ApproveUsers(){
                 <th>Address</th>
                 <th>Email</th>
                 <th>Approve</th>
-                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -165,8 +151,7 @@ function ApproveUsers(){
                     <ReadAppRow
                       contact={contact}
                       handleEditClick={handleEditClick}
-                      handleDeleteClick={handleDeleteClick}
-                      checkBoxSubmit={checkBoxSubmit}
+                      handleApproveClick={handleApproveClick}
                     />
                   )}
                 </Fragment>
@@ -174,40 +159,6 @@ function ApproveUsers(){
             </tbody>
           </table>
         </form>
-        <div className="form-add">
-          <h2>Add a Contact</h2>
-          <form className="formAdd" onSubmit={handleAddFormSubmit}>
-            <input
-              type="text"
-              name="fullName"
-              required="required"
-              placeholder="Enter a name..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="text"
-              name="address"
-              required="required"
-              placeholder="Enter an addres..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="text"
-              name="phoneNumber"
-              required="required"
-              placeholder="Enter a phone number..."
-              onChange={handleAddFormChange}
-            />
-            <input
-              type="email"
-              name="email"
-              required="required"
-              placeholder="Enter an email..."
-              onChange={handleAddFormChange}
-            />
-            <button type="submit">Add</button>
-          </form>
-          </div>
       </div>
       </Fragment>
     );

@@ -1,6 +1,4 @@
 import React, { Component, Fragment} from 'react'
-import DashNav from './Dashboards/DashNav';
-import DashContent from './Dashboards/DashContent';
 import Sidebar from './Dashboards/Sidebar';
 import "../App.css"
 import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
@@ -9,15 +7,12 @@ import ApproveUsers from './Dashboards/ApproveUsers';
 import AllBooks from './Dashboards/AllBooks';
 import Transactions from './Dashboards/Transactions';
 import Reports from './Dashboards/Reports';
+import AddBook from "./Dashboards/AddBook";
+import SellBook from "./Dashboards/SellBook";
+import SellOldBook from "./Dashboards/SellOldBook"
+import Orders from "./Dashboards/Orders"
 class Dashboard extends Component { 
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            userType: "admin",
-            currentPage: "allBooks"
-        };
-    }
+
 
     render() {
         return (
@@ -68,16 +63,21 @@ class Dashboard extends Component {
     
         //)
         
+        
         <Fragment>
-        <h1 className = 'head-Dash'>Welcome to the Dashboard</h1>
             <Router>
                 <Sidebar />
                 <Switch>
-                    <Route exact path ='/AllUsers'  component={AllUsers} />
-                    <Route exact path ='/ApproveUsers' component={ApproveUsers} />
-                    <Route exact path ='/AllBooks'  component={AllBooks} />
-                    <Route exact path ='/Transactions'  component={Transactions} />
-                    <Route exact path ='/Reports'  component={Reports} />
+                    <Route  path ='/AllUsers'  component={AllUsers} /> 
+                    <Route  path ='/ApproveUsers' component={ApproveUsers} />
+                    <Route  path ='/AllBooks'  component={AllBooks} />
+                    <Route  path ='/Transactions'  component={Transactions} />
+                    <Route  path ='/Reports'  component={Reports} />
+                    <Route exact path ="/addBook" component={AddBook} />
+                    <Route exact path ="/sellBookCust" component={SellOldBook} />
+                    <Route exact path ="/Orders" component={Orders} />
+                    <Route exact path ="/SellBook" component={SellBook} />
+
                 </Switch>
             </Router>
         </Fragment>

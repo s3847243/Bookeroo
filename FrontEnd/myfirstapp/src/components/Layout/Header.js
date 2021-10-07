@@ -2,11 +2,23 @@ import React, { Component, Fragment } from 'react'
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import { logout } from "../../actions/securityActions";
+import { getType } from '../../actions/securityActions';
 
  class Header extends Component {
 
     onLogout(e) {
         logout();
+    }
+    doClick(){
+        if(getType() === "USER"){
+            window.location.href = "DashboardCust";
+        }else if(getType() === "BUSINESS"){
+            window.location.href = "DashboardShop";
+        }else if (getType() === "ADMIN"){
+            window.location.href = "dashboard";
+        }else{
+            window.location.href = "ErrorPage";
+        }
     }
 
     render() {
@@ -22,13 +34,13 @@ import { logout } from "../../actions/securityActions";
                 </button>
     
                 <div className="collapse navbar-collapse" id="mobile-nav">
-                    <ul className="navbar-nav mr-auto">
+                    {/* <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <a className="nav-link" href="/dashboard">
                                 Dashboard
                             </a>
                         </li>
-                    </ul>
+                    </ul> */}
                     
                     <ul className="navbar-nav ml-auto">
                     {
@@ -67,6 +79,11 @@ import { logout } from "../../actions/securityActions";
                         <li className="nav-item">
                             <a className="nav-link" href="/about">
                                 About
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/ErrorPage">
+                                Dashboard
                             </a>
                         </li>
 

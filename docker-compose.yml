@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  frontend:
+    image: s3851781/bk-react-webapp:latest
+    stdin_open: true
+    ports:
+      - "3000:3000"
+  login_ms:
+    image: s3851781/bk-login-microservices:latest
+    ports:
+      - "8080:8080"
+  book_ms:
+    image: s3851781/bk-book-microservices:latest
+    ports:
+      - "8081:8081"

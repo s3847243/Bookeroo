@@ -21,7 +21,7 @@ function CustomerOrders(){
     //     date: "",
     //     seller: "",amount:"",status:""
     // });
-
+    // bookName:"",ISDB:"",Author:"",date:"",yearUsed:"",category:""
     // const [editContactId, setEditContactId] = useState(null);
     // adding through the form
     const handleAddFormChange = (event) => {

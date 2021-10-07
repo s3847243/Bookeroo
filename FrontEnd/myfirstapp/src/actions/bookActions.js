@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { GET_ERRORS, GET_PERSONS, GET_PERSON } from "./types";
 
 export const getAllBooks = async () => {
   try {

@@ -105,8 +105,10 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<?> deleteUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
+    public ResponseEntity<?> updateUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
         Long userId = Long.parseLong(id);
+        System.out.println(userId + " update called");
+        System.out.println(user);
         userDetailsService.updateUser(userId, user);
         return new ResponseEntity<>("User updated", HttpStatus.OK);
     }
@@ -121,15 +123,21 @@ public class UserController {
     public ResponseEntity<?> approveUser(@PathVariable String id){
         Long userId = Long.parseLong(id);
 
-        userDetailsService.approveUser(userId);
-        return new ResponseEntity<>("User approved", HttpStatus.OK);
+
+        if(userDetailsService.approveUser(userId))
+            return new ResponseEntity<>("User approved", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/blockUser/{id}")
     public ResponseEntity<?> blockUser(@PathVariable String id){
         Long userId = Long.parseLong(id);
-        userDetailsService.blockUser(userId);
-        return new ResponseEntity<>("User blocked", HttpStatus.OK);
+
+        if(userDetailsService.blockUser(userId))
+            return new ResponseEntity<>("User approved", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
     }
 
 }

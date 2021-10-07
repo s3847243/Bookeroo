@@ -1,15 +1,17 @@
-import React , { Component } from 'react'
-//import {  } from 'react-router';
+import React , { Component, Fragment } from 'react'
 import "./css/BookDetails.css"
 import { getBookByID } from "../../actions/bookActions.js";
 import BookListing from './BookListing';
-import {addToCart} from "./../../actions/cartActions"
+import {addToCart} from "./../../actions/cartActions";
+import {getType} from "./../../actions/securityActions"
+import BookReview from './BookReview';
+import {Rating} from 'react-simple-star-rating'
+import CreateBookReview from './CreateBookReview';
 
 class BookDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userType: "",
             book: null,
             listings: [
                 // TODO: dummy listings for now, will use a microservice for next sprint
@@ -21,26 +23,19 @@ class BookDetails extends Component {
                 price: "20",
                 condition: "old",
                 qtyRem: "1"}
-            ]
+            ],
+
         }
         this.handleCartButton = this.handleCartButton.bind(this);
     }
    
 
     componentDidMount() {
-
         getBookByID(this.props.match.params.isbn)
             .then((res) => {
                 this.setState({book: res.data})
             })
             .catch((error) => {console.log("unfulfilled promise: " + error )});
-            
-        /**
-         * getusertype
-         * setusertype
-         */
-        
-
     }
 
     handleCartButton(index) {
@@ -53,7 +48,6 @@ class BookDetails extends Component {
             condition: listing.condition
         }
         addToCart(cartItem);
-        
         
     }
 
@@ -114,7 +108,8 @@ class BookDetails extends Component {
                             </p>
                         </div>
                     </div>
-                    {/* {userType == "USER" ? : <Fragment/>} */}
+                    {/* REFACTOR, move the actions and data retreival into the Book Listing component */}
+                    {(getType() === "USER" || getType() === "NONE") ?
                     <div className="listings">
                         <h2>Listings</h2>
                         <hr/>
@@ -136,6 +131,7 @@ class BookDetails extends Component {
                                         </th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     {this.state.listings.map((listing, i) => (
                                         <BookListing
@@ -150,10 +146,24 @@ class BookDetails extends Component {
                                         />
                                     ))}
                                 </tbody>
-                            
-
                             </table>
+
+                            
                     </div>
+
+                    
+                    : 
+                     
+                    <Fragment/>
+                    }
+                    <hr/>
+                    
+                    
+                    <BookReview isbn="" />
+
+                    <CreateBookReview
+                        isbn={this.state.book.isbn}
+                    />
 
 
                 </div>

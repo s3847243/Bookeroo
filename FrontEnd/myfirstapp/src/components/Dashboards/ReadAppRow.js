@@ -1,20 +1,19 @@
 import React from "react";
 
-const ReadAppRow = ({ contact, handleEditClick, handleDeleteClick,checkBoxSubmit }) => {
+const ReadAppRow = ({ contact, handleEditClick,handleApproveClick }) => {
   return (
     <tr>
       <td>{contact.id}</td>
       <td>{contact.fullName}</td>
-      <td>{contact.phoneNumber}</td>
-      <td>{contact.ABN}</td>
+      <td>{contact.phoneNum}</td>
+      <td>{contact.abn}</td>
       <td>{contact.address}</td>
       <td>{contact.email}</td>
       <td><label>
-        <button onClick={(event) => checkBoxSubmit(event)}> 
+        <button type="button" onClick={() => handleApproveClick(contact.id)}> 
         Approve
         </button>
         </label></td>
-      <td>{contact.status}</td>
       <td>
         <button
           type="button"
@@ -22,9 +21,7 @@ const ReadAppRow = ({ contact, handleEditClick, handleDeleteClick,checkBoxSubmit
         >
           Edit
         </button>
-        <button type="button" onClick={() => handleDeleteClick(contact.id)}>
-          Delete
-        </button>
+        
       </td>
     </tr>
   );
