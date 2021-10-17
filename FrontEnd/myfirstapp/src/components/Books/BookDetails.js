@@ -14,15 +14,27 @@ class BookDetails extends Component {
         this.state = {
             book: null,
             listings: [
-                // TODO: dummy listings for now, will use a microservice for next sprint
-                {seller: "example seller",
-                price: "30",
-                condition: "new",
-                qtyRem: "1"},
-                {seller: "example seller 2",
-                price: "20",
-                condition: "old",
-                qtyRem: "1"}
+                {
+                    isbn: "Example isbn",
+                    bookId: "Example bid",
+                    title: "Example ttl",
+                    seller: "example seller",
+                    sellerId: "1",
+                    price: "30",
+                    condition: "new",
+                    qtyRem: "1"
+                    },
+                    {
+                    isbn: "Example isbn 2",
+                    bookId: "Example bid 2",
+                    title: "Example ttl 2",
+                    seller: "example seller 2",
+                    sellerId: "1",
+                    price: "20",
+                    condition: "old",
+                    qtyRem: "1"
+                    },
+                
             ],
 
         }
@@ -42,8 +54,10 @@ class BookDetails extends Component {
         const listing = this.state.listings[index];
         const cartItem = {
             isbn: this.state.book.isbn,
+            bookId: this.state.book.id,
             title: this.state.book.title,
             seller: listing.seller,
+            sellerId: listing.sellerId,
             price: listing.price,
             condition: listing.condition
         }
