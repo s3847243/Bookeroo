@@ -1,4 +1,4 @@
-    package com.rmit.sept.bk_listingservices.web;
+package com.rmit.sept.bk_listingservices.web;
 
 
 import com.rmit.sept.bk_listingservices.model.Listing;
@@ -40,14 +40,15 @@ public class ListingsController {
         return listingService.getAllListings();
     }
 
-    @GetMapping("/customer/{id}")
-    public List<Listing> getByCustomerId(@PathVariable String id){
-        return listingService.findByCustomer(id);
-    }
-
     @GetMapping("/seller/{id}")
     public List<Listing> getBySellerId(@PathVariable String id){
         return listingService.findBySeller(id);
+    }
+
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<?> deleteListing(@PathVariable String id){
+        listingService.deleteListing(id);
+        return  new ResponseEntity<>("Listing deleted", HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")

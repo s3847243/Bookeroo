@@ -10,6 +10,5 @@ public interface ListingsRepository extends CrudRepository<Transaction, Long> {
 
     Listing getById(Long id);
     List<Listing> findByBookId(String bookId);
-    List<Listing> findByCustomerId(String customerId);
     List<Listing> findBySellerId(String sellerId);
 }

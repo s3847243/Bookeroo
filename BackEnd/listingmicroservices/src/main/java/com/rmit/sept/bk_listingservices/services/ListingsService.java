@@ -32,24 +32,12 @@ public class ListingsService {
         return books;
     }
 
-    public List<Listing> findByCustomer(String customerId){
-        return listingsRepository.findByCustomerId(customerId);
-    }
-
     public List<Listing> findBySeller(String sellerId){
         return listingsRepository.findBySellerId(sellerId);
     }
 
-    public Listing updateStatus(Long id, String status){
-        Listing listing = listingsRepository.getById(id);
-
-        if(listing == null){
-            throw new NullPointerException();
-        }
-
-        listing.setStatus(status);
-        listingsRepository.save(listing);
-        return listingsRepository.getById(id);
+    public void deleteListing(String id){
+        Long longId = Long.parseLong(id);
+        listingsRepository.delete(listingsRepository.getById(longId));
     }
-
 }
