@@ -9,7 +9,7 @@ jobs:
    environment:
     LOGIN_MS_TAG: s3851781/bk-login-microservices:latest
     BOOK_MS_TAG: s3851781/bk-book-microservices:latest
-
+    TRANSACTION_MS_TAG: s3851781/bk-transaction-microservices:latest
    steps:
     - checkout
     - setup_remote_docker
@@ -75,6 +75,37 @@ jobs:
         name: push backend (book microservices)
         command: |
           docker push $BOOK_MS_TAG
+
+  ########## Transaction Microservices ##########
+    - run:
+        name: build dependencies
+        command: |
+          cd BackEnd/transactionmicroservices
+          mvn package
+
+    - run:
+        name: test
+        command: |
+          cd BackEnd/transactionmicroservices
+          mvn test
+
+    # Build Image
+    - run:
+        name: build transaction microservices image
+        command: |
+          cd BackEnd/transactionmicroservices
+          docker build . -t $TRANSACTION_MS_TAG
+
+    # Deploy Image
+    - run:
+        name: login to DockerHub
+        command: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+    - run:
+        name: push backend (transaction microservices)
+        command: |
+          docker push $TRANSACTION_MS_TAG
 
   ########## FRONTEND ##########
  test_build_deploy_frontend:
