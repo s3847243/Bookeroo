@@ -8,6 +8,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { addTransaction } from "../../actions/transactionActions";
 import CartItem from "./CartItem";
 import "./css/cart.css"
+import { getId } from "../../actions/securityActions";
 
 function Checkout(props){
 
@@ -19,36 +20,25 @@ function Checkout(props){
     const [paidFor, setPaidFor] = useState(false);
 
     useEffect(() => {
-        console.log("checkpaid")
-        // send to transactions backend
         if (paidFor) {
-            console.log("clear the cart")
             removeAllCart();
         }
-       
-        },
-        [paidFor]
+    }, [paidFor]
     );
 
-
     const processTransaction = (data) => {
-        const transaction = {};
-        // transaction['id'] = data.orderID;
-        transaction['bookId'] = data.orderID;
-        transaction['sellerId'] = data.orderID;
-        transaction['customerId'] = data.orderID;
-        transaction['value'] = total;
-        transaction['status'] = 'shipping';
-        console.log(transaction);
-        // OPTIONAL: Call your server to save the transaction
-                    // return fetch("/paypal-transaction-complete", {
-                    //     method: "post",
-                    //     body: JSON.stringify({
-                    //     orderID: data.orderID
-                    //     })
-                        
-                    // });
-        addTransaction(transaction);
+        console.log(cartItems);
+        cartItems.forEach((item) => {
+            console.log("item")
+            console.log(item);
+            let transaction = {};
+            transaction['bookId'] = item.bookId;
+            transaction['sellerId'] = item.sellerId;
+            transaction['customerId'] = getId();
+            transaction['value'] = item.price;
+            transaction['status'] = 'shipping';
+            addTransaction(transaction);
+        });
     }
 
     return (
@@ -56,7 +46,7 @@ function Checkout(props){
             {paidFor ? (
                 <Fragment>
                     <h1>Thanks for buying from Bookeroo!</h1>
-                    <p> We will implement your order next Sprint. (Transaction history, order status, etc.) </p>
+                    
                 </Fragment>
             ) : 
             cartLength !== 0 ?

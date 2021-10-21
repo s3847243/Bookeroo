@@ -52,16 +52,6 @@ export const login = LoginRequest => async dispatch => {
   }
 };
 
-// export const logout = () => dispatch => {
-//   console.log("logout call")
-//   localStorage.removeItem("jwtToken");
-//   setJWTToken(false);
-//   dispatch({
-//     type: SET_CURRENT_USER,
-//     payload: {}
-//   });
-// };
-
 export const logout = async () => {
   console.log("logout call")
   localStorage.removeItem("jwtToken");
@@ -77,12 +67,22 @@ export const getType = () => {
   else{
     return "NONE"
   }
-
 }
+
 export const isLogin = () => {
   if (localStorage.getItem("jwtToken")) {
       return true;
   }
 
   return false;
+}
+
+export const getId = () => {
+  const token = localStorage.getItem("jwtToken");
+  if(token){
+    return jwt_decode(token).id;
+  }
+  else{
+    return "NONE"
+  }
 }
