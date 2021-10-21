@@ -1,17 +1,25 @@
 import React from "react";
 
-const ReadTransRow = ({ contact}) => {
+const ReadOrderRow = ({ contact,handleCancelOrderClick}) => {
   return (
     <tr>
       <td>{contact.id}</td>
       <td>{contact.bookName}</td>
       <td>{contact.Author}</td>
-      <td>{contact.date}</td>
+      <td>{contact.ISBN}</td>
       <td>{contact.seller}</td>
-      <td>{contact.ISDB}</td>
-      <td>{contact.status}</td>
+      <td>{contact.Date}</td>
+      <td>
+      <button
+          type="button"
+          className="cancel-button"
+          onClick={(event) => handleCancelOrderClick(event, contact)}
+        >
+          Cancel Order
+        </button>
+        </td>
     </tr>
   );
 };
 
-export default ReadTransRow;
+export default ReadOrderRow;

@@ -14,7 +14,7 @@ const ReadCustRow = ({ contact, handleCancelOrderClick}) => {
       <td>
         <button
           type="button"
-          onClick={(event) => handleEditClick(event, contact)}
+          onClick={(event) => handleCancelOrderClick(event, contact)}
         >
           Cancel Order
         </button>
