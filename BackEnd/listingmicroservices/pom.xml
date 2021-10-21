@@ -8,10 +8,10 @@
 		<version>2.3.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.rmit.sept.bk_transactionservices</groupId>
-	<artifactId>transactionmicroservices</artifactId>
+	<groupId>com.rmit.sept.bk_listingservices</groupId>
+	<artifactId>listingmicroservices</artifactId>
 	<version>0.0.1</version>
-	<name>bk_transactionservices</name>
+	<name>bk_listingservices</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

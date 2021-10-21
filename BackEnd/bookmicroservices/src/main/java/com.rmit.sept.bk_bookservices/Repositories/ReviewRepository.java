@@ -8,10 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
-
     Review getById(Long id);
     Review getByIsbn(String isbn);
-    List<Review> findByTitleContaining(String title);
-    List<Review> findByAuthorContaining(String author);
-    List<Review> findByGenre(String genre);
 }

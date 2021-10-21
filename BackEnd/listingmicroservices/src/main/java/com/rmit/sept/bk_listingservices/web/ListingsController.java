@@ -2,7 +2,7 @@ package com.rmit.sept.bk_listingservices.web;
 
 
 import com.rmit.sept.bk_listingservices.model.Listing;
-import com.rmit.sept.bk_listingservices.services.ListingService;
+import com.rmit.sept.bk_listingservices.services.ListingsService;
 import com.rmit.sept.bk_listingservices.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,16 +22,16 @@ public class ListingsController {
     private MapValidationErrorService mapValidationErrorService;
 
     @Autowired
-    private ListingService listingService;
+    private ListingsService listingService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createBook(@Valid @RequestBody Listing listing, BindingResult result){
+    public ResponseEntity<?> createListing(@Valid @RequestBody Listing listing, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
         Listing newListing = listingService.saveListing(listing);
 
-        return  new ResponseEntity<Listing>(newlisting, HttpStatus.CREATED);
+        return  new ResponseEntity<Listing>(newListing, HttpStatus.CREATED);
 
     }
 
@@ -51,13 +51,4 @@ public class ListingsController {
         return  new ResponseEntity<>("Listing deleted", HttpStatus.OK);
     }
 
-    @PostMapping("/update/{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable String id, @Valid @RequestBody String status, BindingResult result){
-        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null)return errorMap;
-        Long longId = Long.parseLong(id);
-
-        Listing updatedlisting = listingService.updateStatus(longId, status);
-        return  new ResponseEntity<Listing>(updatedlisting, HttpStatus.OK);
-    }
 }

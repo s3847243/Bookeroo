@@ -18,14 +18,14 @@ public class ReviewService {
 
     public Review saveReview (Review newReview){
         try{
-            newReview.setTitle(newReview.getTitle());
-            newReview.setBody(newReview.getBody());
-            newReview.setUserID(newReview.getUserID());
+            newReview.setReviewer(newReview.getReviewer());
             newReview.setIsbn(newReview.getIsbn());
+            newReview.setRating(newReview.getRating());
+            newReview.setBody(newReview.getBody());
             return reviewRepository.save(newReview);
 
         }catch (Exception e){
-            throw new ISBNAlreadyExistsException("ISBN '"+newReview.getIsbn()+"' already exists");
+            throw new ISBNAlreadyExistsException("ISBN '"+newReview.getId()+"' already exists");
         }
 
     }
