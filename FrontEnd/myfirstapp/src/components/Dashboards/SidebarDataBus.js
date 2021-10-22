@@ -6,7 +6,7 @@ export const SidebarDataBus = [
     {
         title : "Transactions",
         icon: <FaIcons.FaEnvelope />,
-        path: "/customerTransaction",
+        path: "/Transaction_Shop_Owner",
         cName:'nav-text'
     },
     {

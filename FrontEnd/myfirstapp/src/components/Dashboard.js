@@ -13,6 +13,7 @@ import SellOldBook from "./Dashboards/SellOldBook"
 import CustomerOrders from './Dashboards/CustomerOrders';
 import TransactionBoughtCustomer from './Dashboards/TransactionBoughtCustomer'
 import TransactionSoldCustomer from './Dashboards/TransactionSoldCustomer'
+import TransactionShopOwner from './Dashboards/TransactionShopOwner'
 class Dashboard extends Component { 
 
 
@@ -26,11 +27,12 @@ class Dashboard extends Component {
                     <Route  path ='/ApproveUsers' component={ApproveUsers} />
                     <Route  path ='/AllBooks'  component={AllBooks} />
                     <Route  path ='/Transactions'  component={Transactions} />
+                    <Route  path ='/Transaction_Shop_Owner'  component={TransactionShopOwner} />
                     <Route  path ='/Reports'  component={Reports} />
                     <Route exact path ="/addBook" component={AddBook} />
                     <Route exact path ="/sellBookCust" component={SellOldBook} />
                     <Route exact path ="/Orders" component={CustomerOrders} />
-                    <Route exact path ="/SellBook" component={SellBook} />
+                    <Route exact path ="/sellBooks" component={SellBook} />
                     <Route exact path = "/TransactionSold" component={TransactionSoldCustomer} />
                     <Route exact path = "/TransactionBought" component={ TransactionBoughtCustomer} />
 
