@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment,useEffect } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
 import ReadTransRow from "./ReadTransRow";
@@ -13,7 +13,7 @@ function Transactions(){
       });
     },[])
 
-  const [contacts, setContacts] = useState(data);
+  //const [contacts, setContacts] = useState(data);
 
 
   return (

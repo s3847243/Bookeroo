@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from "react";
-import data from "./mock-data-App.json";
 import { getId } from "../../actions/securityActions";
 import { getAllBooks } from "../../actions/bookActions";
 
@@ -20,7 +19,7 @@ function SellOldBook() {
     
   });
 
-  handleSellFormChange = (event) => {
+  const handleSellFormChange = (event) => {
     event.preventDefault();
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
@@ -28,7 +27,7 @@ function SellOldBook() {
     newFormData[fieldName] = fieldValue;
     setValues(newFormData);
   };
-  handleSellFormSubmit = (event) => {
+  const handleSellFormSubmit = (event) => {
     event.preventDefault();
     var string = values.bookName;
     const words = string.split("|");
@@ -72,7 +71,7 @@ function SellOldBook() {
         <label>Amount</label>
         <input
           id="amount"
-          value={amount}
+          
           name="amount"
           type="text"
           onChange={handleSellFormChange}

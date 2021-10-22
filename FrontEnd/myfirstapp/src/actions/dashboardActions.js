@@ -71,7 +71,7 @@ export const getAllTransactionsShopOwner = async (id) => {
   }
 };
 
-export const getAllTransactionSoldCustomer = async () => {
+export const getAllTransactionSoldCustomer = async (id) => {
   try {
     const res = await axios.get("http://localhost:8082/api/transaction/seller/"+id);
     return res;
@@ -79,7 +79,7 @@ export const getAllTransactionSoldCustomer = async () => {
     console.log(err);
   }
 };
-export const getAllTransactionBoughtCustomer = async () => {
+export const getAllTransactionBoughtCustomer = async (id) => {
   try {
     const res = await axios.get("http://localhost:8082/api/transactions/customer/"+id);  // 
     return res;

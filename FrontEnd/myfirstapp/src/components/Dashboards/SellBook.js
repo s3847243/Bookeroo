@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import data from './mock-data-App.json'
 
 function SellBook() {
 
-  const [radio, setRadio] = useState('');
-  const [amount, setAmount] = useState('');
-  const [bookState, setbookState] = useState('');
+  const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllBooks().then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+  const [amount, setAmount] = useState("");
   const [values, setValues] = useState({
-    type: "", bookName: "", amount: ""
+    condition: "",
+    bookName: "",
+    amount: "",
+    sellerId:"",
+    isbn:"",
+    
   });
   const handleSellFormChange = (event) => {
     event.preventDefault();
@@ -16,16 +25,22 @@ function SellBook() {
     const newFormData = { ...values };
     newFormData[fieldName] = fieldValue;
     setValues(newFormData);
-  }
+  };
   const handleSellFormSubmit = (event) => {
     event.preventDefault();
+    var string = values.bookName;
+    const words = string.split("|");
     const sellBook = {
-      type: values.type,
-      bookName: values.bookName,
-      amount: values.amount
+      bookTitle: words[0],
+      isbn:words[1],
+      value:values.amount,
+      sellerId:getId(),
+      condition: values.condition,
 
-    }
-  }
+
+    };
+    console.log(sellBook);
+  };
   return (
     <form className="sell-form" onSubmit={handleSellFormSubmit}>
       <div>
@@ -48,21 +63,29 @@ function SellBook() {
             onChange={handleSellFormChange}
           />
         </div>
-        <select className="custom-select" name="bookName" onChange={handleSellFormChange}>
-          {data.map((names) => (
-            <option key={names.ABN}>{names.ABN}</option>
+        <select
+          className="custom-select"
+          name="bookName"
+          onChange={handleSellFormChange}
+        >
+          {contacts.map((names) => (
+            <option key={names.isbn}>
+              {names.title} {"|"} {names.isbn} 
+            </option>
           ))}
         </select>
 
         <label>Amount</label>
         <input
           id="amount"
-          value={amount}
+          
           name="amount"
           type="text"
           onChange={handleSellFormChange}
         />
-        <button className="sell-submit" type="submit">DONE</button>
+        <button className="sell-submit" type="submit">
+          DONE
+        </button>
       </div>
     </form>
   );
