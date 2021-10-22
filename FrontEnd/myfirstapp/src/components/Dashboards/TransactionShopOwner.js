@@ -4,7 +4,7 @@ import "../usersTable.css";
 import data from "./mock-data-trans.json";
 import ReadTransRow from "./ReadTransRow";
 
-function Transactions(){
+function TransactionsShopOwner(){
   
     // const [contacts, setContacts] = useState(data);
 
@@ -19,7 +19,7 @@ function Transactions(){
                 <th>id</th>
                 <th>bookName</th>
                 <th>customerName</th>
-                <th>date</th>
+                <th>ISBN</th>
                 <th>seller</th>
                 <th>amount</th>
                 <th>status</th>
@@ -43,4 +43,4 @@ function Transactions(){
     );
 };
 
-export default Transactions;
+export default TransactionsShopOwner;

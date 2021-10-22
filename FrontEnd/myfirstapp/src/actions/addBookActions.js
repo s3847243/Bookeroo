@@ -10,22 +10,7 @@ export const addBook = async (newBook) =>{
         console.log(err);
     }
 }
-export const sellBook = (sellBook,history) => async dispatch =>{
-    // try{
-    //     await axios.post("http://localhost:8080/api/books/addBook", sellBook);
-    //     history.push("/sellBook");
-    //     dispatch({
-    //         type: GET_ERRORS,
-    //         payload: {}
-    //     });
-    // }
-    // catch (err){
-    //     dispatch ({
-    //         type: GET_ERRORS,
-    //         payload: err.response.data
-    //     });
-    // }
-}
+
 export const postEditBook = async (postedit,id) => {
     try {
       await axios.post("http://localhost:8081/api/books/update/"+id,postedit);
@@ -43,11 +28,11 @@ export const deleteBook = async (id) => {
     }
 };
 
-// export const getAllTransactions = async () => {
-//     try {
-//       const res = await axios.get("http://localhost:8081/api/transaction");
-//       return res;
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+export const postSellBook = async (sellBook) => {
+    try {
+      await axios.post("http://localhost:8081/api/books/update",sellBook);
+      
+    } catch (err) {
+      console.log(err);
+    }
+};

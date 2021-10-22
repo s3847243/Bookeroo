@@ -52,3 +52,61 @@ export const blockUser = async (id) => {
     console.log(err);
   }
 };
+
+export const getAllTransactionsAdmin = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAllTransactionsShopOwner = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllOrdersShopOwner = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllTransactionSoldCustomer = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllTransactionBoughtCustomer = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllOrdersCustomer = async () => {
+  try {
+    const res = await axios.get("http://localhost:8000/api/transaction/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const postCancelOrderCustomer = async (postedit,id)=> {
+  try {
+    await axios.post("http://localhost:8080/api/users/update/"+id, postedit);
+    
+  } catch (err) {
+    console.log(err);
+  }
+};
