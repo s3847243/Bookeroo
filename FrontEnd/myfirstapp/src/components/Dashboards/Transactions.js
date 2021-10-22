@@ -4,13 +4,13 @@ import "../usersTable.css";
 import data from "./mock-data-trans.json";
 import ReadTransRow from "./ReadTransRow";
 
-function Transactions(){
-  
-    // const [contacts, setContacts] = useState(data);
+function Transactions() {
+
+  const [contacts, setContacts] = useState(data);
 
 
-    return (
-      <Fragment>
+  return (
+    <Fragment>
       <div className="app-container">
         <form className="tableForm">
           <table>
@@ -28,10 +28,10 @@ function Transactions(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                   (
-                    <ReadTransRow
-                      contact={contact}
-                    />
+                  (
+                  <ReadTransRow
+                    contact={contact}
+                  />
                   )
                 </Fragment>
               ))}
@@ -39,8 +39,8 @@ function Transactions(){
           </table>
         </form>
       </div>
-      </Fragment>
-    );
+    </Fragment>
+  );
 };
 
 export default Transactions;
