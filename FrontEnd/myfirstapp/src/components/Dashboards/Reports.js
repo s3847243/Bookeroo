@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState, Fragment, useEffect } from 'react';
 import {CSVLink} from 'react-csv';
 import data from './mock-data-books.json'
 import dataTrans from './mock-data-trans.json'
@@ -35,7 +35,7 @@ function Reports(){
     const [value, setValues] = useState([]);
     useEffect(() => {
       getAllTransactionsAdmin().then((res)=>{
-        setContacts(res.data)
+        setValues(res.data)
       });
     },[])
   const csvReport = {

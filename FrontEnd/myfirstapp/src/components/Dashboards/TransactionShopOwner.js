@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
 import ReadTransRowShopOwner from "./ReadTransRowShopOwner";

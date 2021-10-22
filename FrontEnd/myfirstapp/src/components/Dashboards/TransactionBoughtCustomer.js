@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import "../usersTable.css";
 import ReadTransRow from "./ReadTransRow";
 import { getAllTransactionBoughtCustomer } from "../../actions/dashboardActions";
