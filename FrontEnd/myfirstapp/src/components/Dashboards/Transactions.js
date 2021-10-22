@@ -9,6 +9,7 @@ function Transactions(){
     const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllTransactionsAdmin().then((res)=>{
+        if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])

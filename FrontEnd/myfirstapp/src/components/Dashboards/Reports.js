@@ -29,12 +29,14 @@ function Reports(){
   const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllBooks().then((res)=>{
+        if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])
     const [value, setValues] = useState([]);
     useEffect(() => {
       getAllTransactionsAdmin().then((res)=>{
+        if(res === undefined) {return}
         setValues(res.data)
       });
     },[])
