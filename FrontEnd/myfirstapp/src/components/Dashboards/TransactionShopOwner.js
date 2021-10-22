@@ -9,6 +9,7 @@ function TransactionsShopOwner(){
     const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllTransactionsShopOwner(getId()).then((res)=>{
+        if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])

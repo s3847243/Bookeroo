@@ -10,10 +10,12 @@ function TransactionSoldCustomer(){
     const [contacts, setContacts] = useState([]);
     useEffect(() => {
       getAllTransactionSoldCustomer(getId()).then((res)=>{
+        if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])
     console.log(contacts);
+    if (!contacts) return null;
 
 
     return (
