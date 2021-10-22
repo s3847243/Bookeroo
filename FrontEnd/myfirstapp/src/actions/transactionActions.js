@@ -20,8 +20,6 @@ export const getTransactions = async (isbn) => {
 
 export const addTransaction = async (newTransaction) =>{
     try{
-        console.log(newTransaction);
-        console.log("addTransaction call");
         await axios.post("http://localhost:8082/api/transactions/create", newTransaction);
     }
     catch (err){

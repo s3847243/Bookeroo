@@ -5,40 +5,17 @@ import BookListing from './BookListing';
 import { addToCart } from "./../../actions/cartActions";
 import { getType } from "./../../actions/securityActions"
 import BookReview from './BookReview';
-import { Rating } from 'react-simple-star-rating'
 import CreateBookReview from './CreateBookReview';
+import { getIsbnListings } from '../../actions/listingActions';
 
 class BookDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             book: null,
-            listings:
-                [
-                    {
-                        isbn: "Example isbn",
-                        bookId: "Example bid",
-                        title: "Example ttl",
-                        seller: "example seller",
-                        sellerId: "1",
-                        price: "30",
-                        condition: "new",
-                        qtyRem: "1"
-                    },
-                    {
-                        isbn: "Example isbn 2",
-                        bookId: "Example bid 2",
-                        title: "Example ttl 2",
-                        seller: "example seller 2",
-                        sellerId: "1",
-                        price: "20",
-                        condition: "old",
-                        qtyRem: "1"
-                    },
-
-                ],
-
+            listings:[],
         }
+        
         this.handleCartButton = this.handleCartButton.bind(this);
     }
 
@@ -49,6 +26,13 @@ class BookDetails extends Component {
                 this.setState({ book: res.data })
             })
             .catch((error) => { console.log("unfulfilled promise: " + error) });
+        getIsbnListings(this.props.match.params.isbn)
+            .then((res) => {
+                this.setState({listings: res.data})
+                console.log(res.data) 
+            })        
+            .catch((error) => { console.log("unfulfilled promise: " + error) });
+            
     }
 
     handleCartButton(index) {
@@ -57,9 +41,9 @@ class BookDetails extends Component {
             isbn: this.state.book.isbn,
             bookId: this.state.book.id,
             title: this.state.book.title,
-            seller: listing.seller,
+            seller: listing.sellerName,
             sellerId: listing.sellerId,
-            price: listing.price,
+            price: listing.value,
             condition: listing.condition
         }
         addToCart(cartItem);
@@ -144,9 +128,7 @@ class BookDetails extends Component {
                                                     <th>
                                                         Condition
                                                     </th>
-                                                    <th>
-                                                        QTY Remaining
-                                                    </th>
+                                                    
                                                 </tr>
                                             </thead>
 
@@ -155,10 +137,9 @@ class BookDetails extends Component {
                                                     <BookListing
                                                         handler={this.handleCartButton}
 
-                                                        seller={listing.seller}
-                                                        price={listing.price}
+                                                        sellerName={listing.sellerName}
+                                                        value={listing.value}
                                                         condition={listing.condition}
-                                                        qtyRem={listing.qtyRem}
                                                         index={i}
                                                         key={i}
                                                     />
@@ -188,5 +169,6 @@ class BookDetails extends Component {
         );
     }
 }
+
 
 export default BookDetails;

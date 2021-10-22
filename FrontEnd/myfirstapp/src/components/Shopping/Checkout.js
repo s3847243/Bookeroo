@@ -27,10 +27,7 @@ function Checkout(props){
     );
 
     const processTransaction = (data) => {
-        console.log(cartItems);
         cartItems.forEach((item) => {
-            console.log("item")
-            console.log(item);
             let transaction = {};
             transaction['bookId'] = item.bookId;
             transaction['sellerId'] = item.sellerId;

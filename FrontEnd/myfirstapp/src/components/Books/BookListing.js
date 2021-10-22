@@ -11,10 +11,9 @@ export const BookListing = (props) => {
     return (
         
         <tr className = "book-listing-row">
-            <td>{props.seller}</td>
-            <td>${props.price}</td>   
+            <td>{props.sellerName}</td>
+            <td>${props.value}</td>   
             <td>{props.condition}</td> 
-            <td>{props.qtyRem}</td>
             {!added 
             ? 
             (

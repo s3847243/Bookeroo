@@ -45,6 +45,11 @@ public class ListingsController {
         return listingService.findBySeller(id);
     }
 
+    @GetMapping("/isbn/{isbn}")
+    public List<Listing> getByIsbn(@PathVariable String isbn){
+        return listingService.findByIsbn(isbn);
+    }
+
     @PostMapping("/delete/{id}")
     public ResponseEntity<?> deleteListing(@PathVariable String id){
         listingService.deleteListing(id);

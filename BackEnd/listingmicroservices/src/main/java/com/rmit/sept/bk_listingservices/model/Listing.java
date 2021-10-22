@@ -18,7 +18,7 @@ public class Listing {
     @NotBlank(message = "book id is required")
     private String bookId;
     @NotNull(message = "seller name is required")
-    private int sellerName;
+    private String sellerName;
     @NotBlank(message = "seller id is required")
     private String sellerId;
     @NotNull(message = "value is required")
@@ -26,7 +26,7 @@ public class Listing {
     @NotNull(message = "condition is required")
     private String condition;
     @NotNull(message = "isbn is required")
-    private int isbn;
+    private String isbn;
 
     private Date create_At;
     private Date update_At;
@@ -79,11 +79,11 @@ public class Listing {
         this.bookTitle = bookTitle;
     }
 
-    public int getSellerName() {
+    public String getSellerName() {
         return sellerName;
     }
 
-    public void setSellerName(int sellerName) {
+    public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
     }
 
@@ -95,11 +95,11 @@ public class Listing {
         this.condition = condition;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 

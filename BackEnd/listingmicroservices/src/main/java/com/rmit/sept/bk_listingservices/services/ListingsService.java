@@ -36,6 +36,10 @@ public class ListingsService {
         return listingsRepository.findBySellerId(sellerId);
     }
 
+    public List<Listing> findByIsbn(String isbn){
+        return listingsRepository.findByIsbn(isbn);
+    }
+
     public void deleteListing(String id){
         Long longId = Long.parseLong(id);
         listingsRepository.delete(listingsRepository.getById(longId));
