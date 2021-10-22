@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_transactionservices;
+package com.rmit.sept.bk_listingservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
