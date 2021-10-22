@@ -16,7 +16,7 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Review saveReview (Review newReview){
+    public Review saveReview (Review newReview)  {
         try{
             newReview.setReviewer(newReview.getReviewer());
             newReview.setIsbn(newReview.getIsbn());
@@ -25,7 +25,8 @@ public class ReviewService {
             return reviewRepository.save(newReview);
 
         }catch (Exception e){
-            throw new ISBNAlreadyExistsException("ISBN '"+newReview.getId()+"' already exists");
+            // log4j here
+            return null;
         }
 
     }
@@ -59,8 +60,8 @@ public class ReviewService {
         return reviewRepository.getById(id);
     }
 
-    public Review getByISBN(String isbn){
-        return reviewRepository.getByIsbn(isbn);
+    public List<Review> getAllByISBN(String isbn){
+        return reviewRepository.findByIsbn(isbn);
     }
 
 }

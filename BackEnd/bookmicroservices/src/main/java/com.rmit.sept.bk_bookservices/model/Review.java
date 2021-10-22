@@ -14,14 +14,11 @@ public class Review {
     @NotBlank(message = "reviewer is required")
     private String reviewer;
     @NotBlank(message = "isbn is required")
-    @Column(unique = true)
-    @Digits(fraction = 0, integer = 13)
     private String isbn;
     @NotBlank(message = "rating is required")
-    private int rating;
+    private String rating;
     @NotBlank(message = "body is required")
     private String body;
-    @Transient
     private Date create_At;
     private Date update_At;
 
@@ -40,12 +37,10 @@ public class Review {
         this.reviewer = reviewer;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
-    public int getRating() {return rating;}
-
-    public void setIsbn(int rating) {this.rating = rating; }
+    public String getRating() {return rating;}
 
     public String getBody() {return body;}
     public void setBody(String body) {this.body = body; }
