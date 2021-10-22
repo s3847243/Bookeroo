@@ -14,7 +14,6 @@ function Transactions(){
       });
     },[])
 
-  //const [contacts, setContacts] = useState(data);
 
 
   return (

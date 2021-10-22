@@ -1,16 +1,16 @@
 import React from "react";
 import Enzyme, {mount, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import AddBook from "./AddBook";
+import SellBook from "./SellBook";
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe("<AddBook /> component Unit Test", () => {
+describe("<SellBook /> component Unit Test", () => {
 
 
-    it("Should render addBook form", ()=>{
+    it("Should render SellBook form", ()=>{
         const component = shallow(
-            <AddBook/>
+            <SellBook/>
         );
         expect(component.find('form')).toHaveLength(1);    
     });

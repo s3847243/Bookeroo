@@ -21,7 +21,7 @@ function CustomerOrders(){
 
     const handleCancelOrderClick = (event,contact) => {
       const newContacts = [...contacts];
-      const newStatus = "Cancelled"
+      const newStatus = "Cancel"
     
       const postCancel = {
         id:contact.id,

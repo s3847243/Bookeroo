@@ -1,7 +1,5 @@
 import React,{ useState, Fragment, useEffect } from 'react';
 import {CSVLink} from 'react-csv';
-import data from './mock-data-books.json'
-import dataTrans from './mock-data-trans.json'
 import { getAllTransactionsAdmin } from '../../actions/dashboardActions';
 import { getAllBooks } from '../../actions/bookActions';
 import "../usersTable.css"
