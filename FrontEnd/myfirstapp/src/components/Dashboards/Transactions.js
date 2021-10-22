@@ -1,10 +1,17 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-trans.json";
 import ReadTransRow from "./ReadTransRow";
+import { getAllTransactionsAdmin } from "../../actions/dashboardActions";
 
-function Transactions() {
+function Transactions(){
+  
+    const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllTransactionsAdmin().then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
 
   const [contacts, setContacts] = useState(data);
 
@@ -19,7 +26,6 @@ function Transactions() {
                 <th>id</th>
                 <th>bookName</th>
                 <th>customerName</th>
-                <th>date</th>
                 <th>seller</th>
                 <th>amount</th>
                 <th>status</th>

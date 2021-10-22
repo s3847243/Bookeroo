@@ -1,13 +1,18 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-trans.json";
-import ReadTransRow from "./ReadTransRow";
+import ReadTransRowShopOwner from "./ReadTransRowShopOwner";
+import { getId } from "../../actions/securityActions";
+import { getAllTransactionsShopOwner } from "../../actions/dashboardActions";
 
 function TransactionsShopOwner(){
-  
-    // const [contacts, setContacts] = useState(data);
-
+    const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllTransactionsShopOwner(getId()).then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+    
 
     return (
       <Fragment>
@@ -29,7 +34,7 @@ function TransactionsShopOwner(){
               {contacts.map((contact) => (
                 <Fragment>
                    (
-                    <ReadTransRow
+                    <ReadTransRowShopOwner
                       contact={contact}
                     />
                   )

@@ -55,32 +55,25 @@ export const blockUser = async (id) => {
 
 export const getAllTransactionsAdmin = async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
+    const res = await axios.get("http://localhost:8082/api/transaction/");
     return res;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const getAllTransactionsShopOwner = async () => {
+export const getAllTransactionsShopOwner = async (id) => {
   try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
+    const res = await axios.get("http://localhost:8082/api/transaction/seller/"+id);
     return res;
   } catch (err) {
     console.log(err);
   }
 };
-export const getAllOrdersShopOwner = async () => {
-  try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
-    return res;
-  } catch (err) {
-    console.log(err);
-  }
-};
+
 export const getAllTransactionSoldCustomer = async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
+    const res = await axios.get("http://localhost:8082/api/transaction/seller/"+id);
     return res;
   } catch (err) {
     console.log(err);
@@ -88,23 +81,24 @@ export const getAllTransactionSoldCustomer = async () => {
 };
 export const getAllTransactionBoughtCustomer = async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
+    const res = await axios.get("http://localhost:8082/api/transactions/customer/"+id);  // 
     return res;
   } catch (err) {
     console.log(err);
   }
 };
-export const getAllOrdersCustomer = async () => {
-  try {
-    const res = await axios.get("http://localhost:8000/api/transaction/");
+export const getAllOrdersCustomer = async (id) => {         
+  try {                                                              /// same as getalltransboughtcustoer
+    const res = await axios.get("http://localhost:8082/api/transactions/");
     return res;
   } catch (err) {
     console.log(err);
   }
 };
-export const postCancelOrderCustomer = async (postedit,id)=> {
+
+export const postCancelOrderCustomer = async (postCancel,id)=> {
   try {
-    await axios.post("http://localhost:8080/api/users/update/"+id, postedit);
+    await axios.post("http://localhost:8082/api/transactions/update/"+id, postCancel);
     
   } catch (err) {
     console.log(err);

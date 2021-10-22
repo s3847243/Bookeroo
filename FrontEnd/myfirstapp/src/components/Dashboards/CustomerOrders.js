@@ -3,21 +3,36 @@ import { nanoid } from "nanoid";
 import "../usersTable.css";
 import data from "./mock-data-orders.json";
 import ReadCustRow from "./ReadCustRow";
+import {getId }from "../../actions/securityActions";
+import { getAllTransactionBoughtCustomer } from "../../actions/dashboardActions";
+import { postCancelOrderCustomer } from "../../actions/dashboardActions";
+
 
 function CustomerOrders(){
   
-    const [contacts, setContacts] = useState(data);
+    const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllTransactionBoughtCustomer(getId()).then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+    console.log(contacts);
 
 
-    const handleCancelOrderClick = (contactId) => {
+    const handleCancelOrderClick = (event,contact) => {
       const newContacts = [...contacts];
-
-      const index = contacts.findIndex((contact) => contact.id === contactId);
-      console.log(index);
-      deleteUser(contactId);
-      newContacts.splice(index, 1);
-
-      setContacts(newContacts);
+      const newStatus = "Cancelled"
+    
+      const postCancel = {
+        id:contact.id,
+        bookTitle:contact.bookTitle,
+        bookId:contact.bookId,
+        customerId:contact.customerId,
+        sellerId:contact.sellerId,
+        value:contact.value,
+        status:newStatus
+      }
+      postCancelOrderCustomer(postCancel,contact.id);
       
     };
     return (
@@ -32,7 +47,6 @@ function CustomerOrders(){
                 <th>Author</th>
                 <th>date</th>
                 <th>seller</th>
-                <th>ISDB</th>
                 <th>status</th>
                 <th>Actions</th>
               </tr>

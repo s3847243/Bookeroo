@@ -1,12 +1,19 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-trans.json";
 import ReadTransRow from "./ReadTransRow";
+import { getAllTransactionSoldCustomer } from "../../actions/dashboardActions";
+import { getId } from "../../actions/securityActions";
 
 function TransactionSoldCustomer(){
   
-    // const [contacts, setContacts] = useState(data);
+    const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllTransactionSoldCustomer(getId()).then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+    console.log(contacts);
 
 
     return (

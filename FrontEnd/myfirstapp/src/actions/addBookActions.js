@@ -30,7 +30,7 @@ export const deleteBook = async (id) => {
 
 export const postSellBook = async (sellBook) => {
     try {
-      await axios.post("http://localhost:8081/api/books/update",sellBook);
+      await axios.post("http://localhost:8083/api/listings/create",sellBook);
       
     } catch (err) {
       console.log(err);

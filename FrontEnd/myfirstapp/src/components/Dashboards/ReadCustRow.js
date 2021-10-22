@@ -6,7 +6,6 @@ const ReadCustRow = ({ contact, handleCancelOrderClick}) => {
       <td>{contact.id}</td>
       <td>{contact.bookName}</td>
       <td>{contact.Author}</td>
-      <td>{contact.ISDB}</td>
       <td>{contact.seller}</td>
       <td>{contact.category}</td>
       <td>{contact.status}</td>

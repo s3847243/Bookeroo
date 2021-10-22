@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReadTransRow = ({ contact}) => {
+const ReadTransRowShopOwner = ({ contact}) => {
   return (
     <tr>
       <td>{contact.id}</td>
@@ -13,4 +13,4 @@ const ReadTransRow = ({ contact}) => {
   );
 };
 
-export default ReadTransRow;
+export default ReadTransRowShopOwner;
