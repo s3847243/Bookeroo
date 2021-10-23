@@ -12,9 +12,7 @@ export const getIsbnListings = async (isbn) => {
 
 export const addListing = async (newListing) =>{
     try{
-        console.log(newListing);
-        console.log("addListing call");
-        await axios.post("http://localhost:8083/api/listings", newListing);
+        await axios.post("http://localhost:8083/api/listings/create", newListing);
     }
     catch (err){
         console.log(err);

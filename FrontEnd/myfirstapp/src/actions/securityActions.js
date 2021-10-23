@@ -86,3 +86,13 @@ export const getId = () => {
     return "NONE"
   }
 }
+
+export const getName = () => {
+  const token = localStorage.getItem("jwtToken");
+  if(token){
+    return jwt_decode(token).fullName;
+  }
+  else{
+    return "NONE"
+  }
+}

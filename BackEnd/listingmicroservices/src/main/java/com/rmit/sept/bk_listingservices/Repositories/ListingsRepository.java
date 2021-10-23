@@ -9,7 +9,6 @@ import java.util.List;
 public interface ListingsRepository extends CrudRepository<Listing, Long> {
 
     Listing getById(Long id);
-    List<Listing> findByBookId(String bookId);
     List<Listing> findBySellerId(String sellerId);
     List<Listing> findByIsbn(String isbn);
 }

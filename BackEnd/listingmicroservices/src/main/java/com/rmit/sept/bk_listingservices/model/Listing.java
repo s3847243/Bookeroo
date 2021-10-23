@@ -13,10 +13,6 @@ public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "bookTitle is required")
-    private String bookTitle;
-    @NotBlank(message = "book id is required")
-    private String bookId;
     @NotNull(message = "seller name is required")
     private String sellerName;
     @NotBlank(message = "seller id is required")
@@ -35,13 +31,6 @@ public class Listing {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
-
-    public String getBookId() {
-        return bookId;
-    }
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
 
     public String getSellerId() {
         return sellerId;
@@ -69,14 +58,6 @@ public class Listing {
     }
     public void setUpdate_At(Date update_At) {
         this.update_At = update_At;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
     }
 
     public String getSellerName() {
@@ -117,8 +98,6 @@ public class Listing {
     public String toString() {
         return "Listing{" +
                 "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookId='" + bookId + '\'' +
                 ", sellerName=" + sellerName +
                 ", sellerId='" + sellerId + '\'' +
                 ", value=" + value +

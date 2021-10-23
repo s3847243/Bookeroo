@@ -108,10 +108,12 @@ class BookDetails extends Component {
                             </div>
                         </div>
                         {/* REFACTOR, move the actions and data retreival into the Book Listing component */}
-                        {(getType() === "USER" || getType() === "NONE") ?
+                        
                             <div className="listings">
                                 <h2>Listings</h2>
                                 <hr />
+                                {(getType() === "USER" || getType() === "NONE") ?
+                                <div>
                                 {
                                     this.state.listings.length == 0 ?
                                         <p id="listings-info">This book has no available listings.</p>
@@ -147,10 +149,11 @@ class BookDetails extends Component {
                                             </tbody>
                                         </table>
                                 }
+                                </div>
+                                :
+                                <p id="listings-info">Only public users can see listings</p>
+                                }
                             </div>
-                            :
-                            <Fragment />
-                        }
                         <hr />
 
 

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
-import { getId } from "../../actions/securityActions";
+import { getId, getName } from "../../actions/securityActions";
 import { getAllBooks } from "../../actions/bookActions";
+import { addListing } from "../../actions/listingActions";
 
 function SellOldBook() {
   const [contacts, setContacts] = useState([]);
@@ -12,11 +13,8 @@ function SellOldBook() {
   const [amount, setAmount] = useState("");
   const [values, setValues] = useState({
     condition: "",
-    bookName: "",
     amount: "",
-    sellerId:"",
-    isbn:"",
-    
+    bookName:"The Lord of the Rings | 9780007136582",
   });
 
   const handleSellFormChange = (event) => {
@@ -32,15 +30,13 @@ function SellOldBook() {
     var string = values.bookName;
     const words = string.split("|");
     const sellBook = {
-      bookTitle: words[0],
-      isbn:words[1],
+      isbn:words[1].trim(),
       value:values.amount,
       sellerId:getId(),
+      sellerName:getName(),
       condition: values.condition,
-
-
     };
-    console.log(sellBook);
+    addListing(sellBook);
   };
   return (
     <form className="sell-form" onSubmit={handleSellFormSubmit}>

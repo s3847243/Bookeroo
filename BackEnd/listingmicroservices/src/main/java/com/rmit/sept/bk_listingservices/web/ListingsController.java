@@ -32,7 +32,6 @@ public class ListingsController {
         Listing newListing = listingService.saveListing(listing);
 
         return  new ResponseEntity<Listing>(newListing, HttpStatus.CREATED);
-
     }
 
     @GetMapping("")

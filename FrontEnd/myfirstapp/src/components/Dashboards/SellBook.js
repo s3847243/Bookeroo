@@ -1,7 +1,8 @@
 import React, { useState ,useEffect} from 'react'
 import data from './mock-data-App.json'
-import { getId } from '../../actions/securityActions';
+import { getId, getName } from '../../actions/securityActions';
 import { getAllBooks } from '../../actions/bookActions';
+import { addListing } from '../../actions/listingActions';
 
 function SellBook() {
 
@@ -14,34 +15,32 @@ function SellBook() {
   const [amount, setAmount] = useState("");
   const [values, setValues] = useState({
     condition: "",
-    bookName: "",
     amount: "",
-    sellerId:"",
-    isbn:"",
-    
+    bookName:"The Lord of the Rings | 9780007136582",
   });
-  const handleSellFormChange = (event) => {
+
+ const handleSellFormChange = (event) => {
     event.preventDefault();
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
     const newFormData = { ...values };
     newFormData[fieldName] = fieldValue;
     setValues(newFormData);
+    console.log(values);
   };
+
   const handleSellFormSubmit = (event) => {
     event.preventDefault();
     var string = values.bookName;
     const words = string.split("|");
     const sellBook = {
-      bookTitle: words[0],
-      isbn:words[1],
+      isbn:words[1].trim(),
       value:values.amount,
       sellerId:getId(),
+      sellerName:getName(),
       condition: values.condition,
-
-
     };
-    console.log(sellBook);
+    addListing(sellBook);
   };
   return (
     <form className="sell-form" onSubmit={handleSellFormSubmit}>
@@ -51,7 +50,7 @@ function SellBook() {
           <input
             id="new"
             value="NEW"
-            name="type"
+            name="condition"
             type="radio"
             required
             onChange={handleSellFormChange}
@@ -60,7 +59,7 @@ function SellBook() {
           <input
             id="old"
             value="OLD"
-            name="type"
+            name="condition"
             type="radio"
             onChange={handleSellFormChange}
           />
