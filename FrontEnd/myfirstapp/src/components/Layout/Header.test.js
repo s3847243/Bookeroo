@@ -9,24 +9,12 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe("<Header/> component Unit Test", () => {
 
-    it("Should render login when logged out", ()=>{
-        localStorage.clear();
+    it("Should header", ()=>{
         const component = mount(
             <Header store={store}/>
         );
-        expect(component.find("#login")).toHaveLength(1);
-        expect(component.find("#signup")).toHaveLength(1);
-        expect(component.find("#logout")).toHaveLength(0);    
-           
-    });
-
-    it("Should render logout when logged in", ()=>{
-        localStorage.setItem("jwtToken", "example");
-        const component = mount(
-            <Header store={store}/>
-        );
-        expect(component.find("#login")).toHaveLength(0);
-        expect(component.find("#signup")).toHaveLength(0);    
-        expect(component.find("#logout")).toHaveLength(1);  
+        expect(component.find("#contact")).toHaveLength(1);
+        expect(component.find("#about")).toHaveLength(1);    
+        expect(component.find("#dashboard")).toHaveLength(1);  
     });
 })
