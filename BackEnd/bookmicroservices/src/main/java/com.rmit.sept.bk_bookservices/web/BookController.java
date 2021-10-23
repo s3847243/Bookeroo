@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/books")
 public class BookController {
 
-    private final Logger logger = LogManager.getLogger(BookController.class);
+    private static final Logger LOGGER = LogManager.getLogger(BookController.class);
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
@@ -30,7 +30,7 @@ public class BookController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createBook(@Valid @RequestBody Book book, BindingResult result){
-        logger.debug("createBook Called");
+        LOGGER.debug("createBook Called");
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -41,33 +41,33 @@ public class BookController {
 
     @GetMapping("")
     public List<Book> allBooks(){
-        logger.debug("allBooks called");
+        LOGGER.debug("allBooks called");
         return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
     public Book getById(@PathVariable String id){
-        logger.debug("getById called");
+        LOGGER.debug("getById called");
         Long bookId = Long.parseLong(id);
         return bookService.getById(bookId);
     }
 
     @GetMapping("/isbn/{isbn}")
     public Book getByISBN(@PathVariable String isbn){
-        logger.debug("getByISBN called");
+        LOGGER.debug("getByISBN called");
         return bookService.getByISBN(isbn);
     }
 
 
     @GetMapping("/search")
     public List<Book> search(@RequestParam String params){
-        logger.debug("search called");
+        LOGGER.debug("search called");
         return bookService.search(params);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody Book book, BindingResult result){
-        logger.debug("update called");
+        LOGGER.debug("update called");
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -79,7 +79,7 @@ public class BookController {
 
     @PostMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable String id){
-        logger.debug("delete called");
+        LOGGER.debug("delete called");
         bookService.deleteBook(id);
         return new ResponseEntity<>("Book deleted", HttpStatus.OK);
     }
