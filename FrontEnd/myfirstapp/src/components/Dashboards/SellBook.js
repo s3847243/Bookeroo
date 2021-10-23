@@ -35,10 +35,10 @@ function SellBook() {
     const words = string.split("|");
     const sellBook = {
       isbn:words[1].trim(),
-      value:values.amount,
+      val:values.amount,
       sellerId:getId(),
       sellerName:getName(),
-      condition: values.condition,
+      cond: values.condition,
     };
     addListing(sellBook);
   };

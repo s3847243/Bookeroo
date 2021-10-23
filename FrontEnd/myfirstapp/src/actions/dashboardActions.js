@@ -97,6 +97,7 @@ export const getAllOrdersCustomer = async (id) => {
 };
 
 export const postCancelOrderCustomer = async (postCancel,id)=> {
+  console.log(postCancel)
   try {
     await axios.post("http://3.105.25.226:8082/api/transactions/update/"+id, postCancel);
     

@@ -33,11 +33,11 @@ function TransactionsShopOwner(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                   (
+                   
                     <ReadTransRowShopOwner
                       contact={contact}
                     />
-                  )
+                  
                 </Fragment>
               ))}
             </tbody>

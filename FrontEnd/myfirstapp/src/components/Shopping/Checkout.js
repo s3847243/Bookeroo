@@ -33,7 +33,7 @@ function Checkout(props){
             transaction['bookId'] = item.bookId;
             transaction['sellerId'] = item.sellerId;
             transaction['customerId'] = getId();
-            transaction['value'] = item.price;
+            transaction['val'] = item.price;
             transaction['status'] = 'shipping';
             addTransaction(transaction);
         });
@@ -78,7 +78,7 @@ function Checkout(props){
                             isbn = {listing.isbn}
                             seller = {listing.seller}
                             price = {listing.price}
-                            condition = {listing.condition}
+                            condition = {listing.cond}
                             qtyRem = {listing.qty}
                             index = {i}
                             key = {i}

@@ -59,7 +59,7 @@ function Cart(){
                             isbn = {listing.isbn}
                             seller = {listing.seller}
                             price = {listing.price}
-                            condition = {listing.condition}
+                            condition = {listing.cond}
                             qtyRem = {listing.qty}
                             index = {i}
                             key = {i}

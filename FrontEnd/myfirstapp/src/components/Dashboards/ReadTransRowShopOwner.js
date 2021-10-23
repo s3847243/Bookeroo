@@ -7,7 +7,7 @@ const ReadTransRowShopOwner = ({ contact}) => {
       <td>{contact.bookId}</td>
       <td>{contact.customerId}</td>
       <td>Me</td>
-      <td>{contact.value}</td>
+      <td>{contact.val}</td>
       <td>{contact.status}</td>
     </tr>
   );

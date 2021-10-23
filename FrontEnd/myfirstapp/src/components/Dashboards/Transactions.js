@@ -34,11 +34,11 @@ function Transactions(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                  (
+                  
                   <ReadTransRow
                     contact={contact}
                   />
-                  )
+                  
                 </Fragment>
               ))}
             </tbody>

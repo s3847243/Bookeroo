@@ -55,8 +55,11 @@ public class TransactionController {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
         Long longId = Long.parseLong(id);
-
-        Transaction updatedTransaction = transactionService.updateStatus(longId, status);
+        String formattedStatus = "";
+        if(status.endsWith("=")){
+            formattedStatus = status.substring(0, status.length() - 1);
+        }
+        Transaction updatedTransaction = transactionService.updateStatus(longId, formattedStatus);
         return  new ResponseEntity<Transaction>(updatedTransaction, HttpStatus.OK);
     }
 }

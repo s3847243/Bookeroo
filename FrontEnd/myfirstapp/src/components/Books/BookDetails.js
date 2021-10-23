@@ -43,8 +43,8 @@ class BookDetails extends Component {
             title: this.state.book.title,
             seller: listing.sellerName,
             sellerId: listing.sellerId,
-            price: listing.value,
-            condition: listing.condition
+            price: listing.val,
+            condition: listing.cond
         }
         addToCart(cartItem);
 
@@ -140,8 +140,8 @@ class BookDetails extends Component {
                                                         handler={this.handleCartButton}
 
                                                         sellerName={listing.sellerName}
-                                                        value={listing.value}
-                                                        condition={listing.condition}
+                                                        value={listing.val}
+                                                        condition={listing.cond}
                                                         index={i}
                                                         key={i}
                                                     />

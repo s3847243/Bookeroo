@@ -18,7 +18,7 @@ public class Transaction {
     @NotBlank(message = "seller id is required")
     private String sellerId;
     @NotNull(message = "value is required")
-    private int value;
+    private int val;
     @NotBlank(message = "status is required")
     private String status;
     private Date create_At;
@@ -50,11 +50,11 @@ public class Transaction {
         this.sellerId = sellerId;
     }
 
-    public int getValue() {
-        return value;
+    public int getVal() {
+        return val;
     }
-    public void setValue(int value) {
-        this.value = value;
+    public void setVal(int val) {
+        this.val = val;
     }
 
     public String getStatus() {
@@ -96,7 +96,7 @@ public class Transaction {
                 ", bookId=" + bookId +
                 ", customerId=" + customerId +
                 ", sellerId=" + sellerId +
-                ", value=" + value +
+                ", value=" + val +
                 ", status=" + status +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +

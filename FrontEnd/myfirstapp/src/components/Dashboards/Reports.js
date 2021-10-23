@@ -6,22 +6,19 @@ import "../usersTable.css"
 
 const TransactionHeader = [
   {label:'Id',key:'id'},
-  {label:'Book Name',key:'bookName'},
-  {label:'customer name',key:'customerName'},
-  {label:'date',key:'date'},
-  {label:'seller',key:'seller'},
-  {label:'amount',key:'amount'},
+  {label:'BookID',key:'bookId'},
+  {label:'customerId',key:'customerId'},
+  {label:'sellerId',key:'sellerId'},
+  {label:'amount',key:'value'},
   {label:'status',key:'status'}
 ]
 const Booksheaders = [
   {label:'Id',key:'id'},
-  {label:'Book Name',key:'bookName'},
-  {label:'Author',key:'Author'},
-  {label:'ISDB',key:'ISDB'},
-  {label:'seller',key:'seller'},
-  {label:'category',key:'category'},
-  {label:'status',key:'status'},
-  {label:'type',key:'bookName'},
+  {label:'Book Name',key:'title'},
+  {label:'Author',key:'author'},
+  {label:'isbn',key:'isbn'},
+  {label:'publishyear',key:'published'},
+  {label:'genre',key:'genre'},
 ]
 function Reports(){
   const [contacts, setContacts] = useState([]);
@@ -55,7 +52,7 @@ function Reports(){
       <h1 style={{margin:"25px 85px 75px 100px", textAlign:"center"}}>Exporting Reports of Books in CSV format</h1>
       <CSVLink {...csvReport}> Export to books CSV</CSVLink>
       <br></br>
-      <h1 style={{margin:"25px 85px 75px 100px", alignContent:"center"}}>Exporting Reports of Books in CSV format</h1>
+      <h1 style={{margin:"25px 85px 75px 100px", alignContent:"center"}}>Exporting Reports of Transaction in CSV format</h1>
       <CSVLink {...csvTransReport}> Export to Transaction CSV</CSVLink>
     </div>
   )

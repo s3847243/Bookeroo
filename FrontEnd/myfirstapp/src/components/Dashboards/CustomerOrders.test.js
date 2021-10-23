@@ -21,7 +21,7 @@ describe("<CustomerOrders/> component Unit Test", () => {
         expect(table).toHaveLength(1);
         expect(row).toHaveLength(1);
         expect(thead).toHaveLength(1);
-        expect(headers).toHaveLength(7);
+        expect(headers).toHaveLength(6);
     });
     it("Should render table form", ()=>{
         const component = mount(

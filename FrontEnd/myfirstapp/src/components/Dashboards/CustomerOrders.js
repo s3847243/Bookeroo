@@ -1,7 +1,5 @@
 import React, { useState, Fragment,useEffect } from "react";
-import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-orders.json";
 import ReadCustRow from "./ReadCustRow";
 import {getId }from "../../actions/securityActions";
 import { getAllTransactionBoughtCustomer } from "../../actions/dashboardActions";
@@ -16,25 +14,19 @@ function CustomerOrders(){
         setContacts(res.data)
       });
     },[])
-    console.log(contacts);
-
+    
+    const [disable, setDisable] = useState(false);
+    
 
     const handleCancelOrderClick = (event,contact) => {
       const newContacts = [...contacts];
-      const newStatus = "Cancel"
-    
-      const postCancel = {
-        id:contact.id,
-        bookTitle:contact.bookTitle,
-        bookId:contact.bookId,
-        customerId:contact.customerId,
-        sellerId:contact.sellerId,
-        value:contact.value,
-        status:newStatus
-      }
-      postCancelOrderCustomer(postCancel,contact.id);
+      const newStatus = "cancel";
+      setDisable(true);
+      postCancelOrderCustomer(newStatus,contact.id);
       
     };
+
+    
     return (
       <Fragment>
       <div className="app-container">
@@ -43,10 +35,9 @@ function CustomerOrders(){
             <thead>
               <tr>
                 <th>id</th>
-                <th>bookName</th>
-                <th>Author</th>
-                <th>date</th>
-                <th>seller</th>
+                <th>customerId</th>
+                <th>sellerId</th>
+                <th>value</th>
                 <th>status</th>
                 <th>Actions</th>
               </tr>
@@ -54,12 +45,14 @@ function CustomerOrders(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                   (
+                   
                     <ReadCustRow
                       contact={contact}
                       handleCancelOrderClick = {handleCancelOrderClick}
+                      disable = {disable}
+                      setDisable = {setDisable}
                     />
-                  )
+                  
                 </Fragment>
               ))}
             </tbody>
