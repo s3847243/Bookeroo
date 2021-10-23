@@ -3,7 +3,7 @@ import { addBook } from '../../actions/addBookActions';
 
 function AddBook(){
     const[values,setValues] = useState({
-        title:"",isbn:"",author:"",published:"",genre:""
+        title:"",isbn:"",author:"",published:"",genre:"",tableOfContents:""
     })
     const [pdfFile, setPdfFile]=useState(null);
     const [pdfFileError, setPdfFileError]=useState('');
@@ -61,21 +61,13 @@ function AddBook(){
         //     console.log('dataFiles');
         // }
     const handleAddFormChange = (event) =>{
+        if(values.tableOfContents.length > 200){
+            alert('Table of Contents need to be less than 200 characters');
+        }
         
         const fieldName = event.target.getAttribute("name");
         
         const fieldValue = event.target.value;
-        // if(fieldName === "image"){
-        //     fieldValue = event.target.files[0];
-        // }
-        // if(fieldName === "pdf"){
-        //     if(fileType.includes((event.target.files[0].type))){
-        //         fieldValue = event.target.files[0];
-        //     }else{
-        //         setPdfFile(null);
-        //         setPdfFileError('Please select valid pdf file');
-        //     }
-        // }
         const newFormData = { ...values};
         newFormData[fieldName] = fieldValue;
         setValues(newFormData);
@@ -88,7 +80,8 @@ function AddBook(){
             isbn:values.isbn,          // isbn
             author:values.author,      // author
             published:values.published,           // published
-            genre:values.genre,    // genre
+            genre:values.genre, 
+            tableOfContents:values.tableOfContents   // genre
 
 
         }
@@ -111,7 +104,8 @@ function AddBook(){
                 name="title"
                 onChange={handleAddFormChange}
             />
-            <label htmlFor="isbn">Isbn must be 13 numerical characters</label>
+            <br></br>
+            <h6 htmlFor="isbn">Isbn must be 13 numerical characters</h6>
             <input
                 onChange={handleAddFormChange}
                 id="ISBN"
@@ -120,6 +114,7 @@ function AddBook(){
                 placeholder="ISBN"
                 name="isbn"
             />
+            <br></br>
             <input
                 onChange={handleAddFormChange}
                 id="author"
@@ -128,6 +123,7 @@ function AddBook(){
                 placeholder="author"
                 name="author"
             />
+            <br></br>
             <input
                 onChange={handleAddFormChange}
                 id="published"
@@ -136,6 +132,7 @@ function AddBook(){
                 placeholder="published"
                 name="published"
             />
+            <br></br>
             <input
                 onChange={handleAddFormChange}
                 id="genre"
@@ -144,20 +141,17 @@ function AddBook(){
                 placeholder="genre"
                 name="genre"
             />
-            {/* <input
-                id="image"
-                class="form-field"
-                type="file"
-                placeholder="uploadImage"
-                name="image"
+            <br></br>
+            <h6 htmlFor="isbn">Enter Table of Contents under 200 characters</h6>
+            <textarea
                 onChange={handleAddFormChange}
+                id="tableOfContents"
+                className="form-control"
+                type="text"
+                placeholder="tableOfContents"
+                name="tableOfContents"
             />
-            <div className="form-group col-md-6">
-                <label className="text-white">Select File :</label>
-                <input type="file" className="form-control" name="pdf" required onChange={handleAddFormChange} />
-            </div>
-            {pdfFileError&&<div className='error-msg'>{pdfFileError}</div>}
-            <br></br> */}
+            
             <button className="form-control  btn btn-primary" style={{marginTop:'30px'}} type="submit">
             Add Book
             </button>
