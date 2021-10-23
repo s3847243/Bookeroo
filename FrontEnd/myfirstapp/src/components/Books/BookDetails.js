@@ -84,8 +84,16 @@ class BookDetails extends Component {
                             </div>
                             <div className="sub-content">
                                 <h1 className="title-bd">{book.title}</h1>
+                                <p><strong>TABLE OF CONTENTS</strong></p>
+                                <p>{book.tableOfContents}</p>
+                                <p><strong>DESCRIPTION</strong></p>
                                 <p>
-                                    {book.tableOfContents}
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                                    qui officia deserunt mollit anim id est laborum.
                                 </p>
                             </div>
                         </div>
