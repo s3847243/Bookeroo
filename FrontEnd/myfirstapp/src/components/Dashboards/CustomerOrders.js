@@ -14,7 +14,6 @@ function CustomerOrders(){
         setContacts(res.data)
       });
     },[])
-    console.log(contacts);
     
     const [disable, setDisable] = useState(false);
     
@@ -23,19 +22,11 @@ function CustomerOrders(){
       const newContacts = [...contacts];
       const newStatus = "cancel";
       setDisable(true);
-      const postCancel = {
-        id:contact.id,
-        bookTitle:contact.bookTitle,
-        bookId:contact.bookId,
-        customerId:contact.customerId,
-        sellerId:contact.sellerId,
-        val:contact.val,
-        status:newStatus
-      }
-      postCancelOrderCustomer(postCancel,contact.id);
+      postCancelOrderCustomer(newStatus,contact.id);
       
     };
-    setDisable(null);
+
+    
     return (
       <Fragment>
       <div className="app-container">
@@ -54,14 +45,14 @@ function CustomerOrders(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                   (
+                   
                     <ReadCustRow
                       contact={contact}
                       handleCancelOrderClick = {handleCancelOrderClick}
                       disable = {disable}
                       setDisable = {setDisable}
                     />
-                  )
+                  
                 </Fragment>
               ))}
             </tbody>

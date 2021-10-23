@@ -14,13 +14,11 @@ const TransactionHeader = [
 ]
 const Booksheaders = [
   {label:'Id',key:'id'},
-  {label:'Book Name',key:'bookName'},
-  {label:'Author',key:'Author'},
-  {label:'ISDB',key:'ISDB'},
-  {label:'seller',key:'seller'},
-  {label:'category',key:'category'},
-  {label:'status',key:'status'},
-  {label:'type',key:'bookName'},
+  {label:'Book Name',key:'title'},
+  {label:'Author',key:'author'},
+  {label:'isbn',key:'isbn'},
+  {label:'publishyear',key:'published'},
+  {label:'genre',key:'genre'},
 ]
 function Reports(){
   const [contacts, setContacts] = useState([]);
