@@ -1,7 +1,5 @@
 import React, { useState, Fragment,useEffect } from "react";
-import { nanoid } from "nanoid";
 import "../usersTable.css";
-import data from "./mock-data-orders.json";
 import ReadCustRow from "./ReadCustRow";
 import {getId }from "../../actions/securityActions";
 import { getAllTransactionBoughtCustomer } from "../../actions/dashboardActions";
@@ -17,12 +15,14 @@ function CustomerOrders(){
       });
     },[])
     console.log(contacts);
-
+    
+    const [disable, setDisable] = useState(false);
+    
 
     const handleCancelOrderClick = (event,contact) => {
       const newContacts = [...contacts];
-      const newStatus = "Cancel"
-    
+      const newStatus = "cancel";
+      setDisable(true);
       const postCancel = {
         id:contact.id,
         bookTitle:contact.bookTitle,
@@ -35,6 +35,7 @@ function CustomerOrders(){
       postCancelOrderCustomer(postCancel,contact.id);
       
     };
+    setDisable(null);
     return (
       <Fragment>
       <div className="app-container">
@@ -43,10 +44,9 @@ function CustomerOrders(){
             <thead>
               <tr>
                 <th>id</th>
-                <th>bookName</th>
-                <th>Author</th>
-                <th>date</th>
-                <th>seller</th>
+                <th>customerId</th>
+                <th>sellerId</th>
+                <th>value</th>
                 <th>status</th>
                 <th>Actions</th>
               </tr>
@@ -58,6 +58,8 @@ function CustomerOrders(){
                     <ReadCustRow
                       contact={contact}
                       handleCancelOrderClick = {handleCancelOrderClick}
+                      disable = {disable}
+                      setDisable = {setDisable}
                     />
                   )
                 </Fragment>
