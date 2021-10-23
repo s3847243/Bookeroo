@@ -26,7 +26,8 @@ function Checkout(props){
     }, [paidFor]
     );
 
-    const processTransaction = (data) => {
+    const processTransaction = () => {
+        setPaidFor(true);
         cartItems.forEach((item) => {
             let transaction = {};
             transaction['bookId'] = item.bookId;
@@ -89,19 +90,24 @@ function Checkout(props){
 
             <h2>Total = ${total}</h2>
             
-          
-                <PayPalButton
+                {
+                    total != 0 
+                    ?
+                    <PayPalButton
                     amount={total}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                     onSuccess={(details, data) => {
                     alert("Transaction completed by " + details.payer.name.given_name);
-                    setPaidFor(true);
-                    processTransaction(data);
+                    processTransaction();
                     }}
                     options={{
                         clientId: "ASNP31jq-n5i8qMqIwgnegeQkLjTyUtcETPdirulwK3C4esDFI6-P-DJezugURmJuEYyAav7cpCBPCSh"
                     }}
-                />
+                    />
+                    :
+                    <button onClick={() => processTransaction()}>Accept Share</button>
+                }
+                
             
 
             </Fragment>

@@ -23,10 +23,9 @@ function TransactionsShopOwner(){
             <thead>
               <tr>
                 <th>id</th>
-                <th>bookName</th>
-                <th>customerName</th>
-                <th>ISBN</th>
-                <th>seller</th>
+                <th>bookId</th>
+                <th>customerID</th>
+                <th>sellerId</th>
                 <th>amount</th>
                 <th>status</th>
               </tr>

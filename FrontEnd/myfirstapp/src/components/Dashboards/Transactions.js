@@ -24,9 +24,9 @@ function Transactions(){
             <thead>
               <tr>
                 <th>id</th>
-                <th>bookName</th>
-                <th>customerName</th>
-                <th>seller</th>
+                <th>bookId</th>
+                <th>customerId</th>
+                <th>sellerId</th>
                 <th>amount</th>
                 <th>status</th>
               </tr>

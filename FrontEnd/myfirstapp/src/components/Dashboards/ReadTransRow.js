@@ -4,10 +4,10 @@ const ReadTransRow = ({ contact}) => {
   return (
     <tr>
       <td>{contact.id}</td>
-      <td>{contact.bookName}</td>
-      <td>{contact.customerName}</td>
-      <td>{contact.seller}</td>
-      <td>{contact.amount}</td>
+      <td>{contact.bookId}</td>
+      <td>{contact.customerId}</td>
+      <td>{contact.sellerId}</td>
+      <td>{contact.value}</td>
       <td>{contact.status}</td>
     </tr>
   );

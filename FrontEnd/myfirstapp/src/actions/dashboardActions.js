@@ -55,7 +55,7 @@ export const blockUser = async (id) => {
 
 export const getAllTransactionsAdmin = async () => {
   try {
-    const res = await axios.get("http://localhost:8082/api/transaction/");
+    const res = await axios.get("http://localhost:8082/api/transactions/");
     return res;
   } catch (err) {
     console.log(err);
@@ -64,7 +64,7 @@ export const getAllTransactionsAdmin = async () => {
 
 export const getAllTransactionsShopOwner = async (id) => {
   try {
-    const res = await axios.get("http://localhost:8082/api/transaction/seller/"+id);
+    const res = await axios.get("http://localhost:8082/api/transactions/seller/"+id);
     return res;
   } catch (err) {
     console.log(err);
@@ -73,7 +73,7 @@ export const getAllTransactionsShopOwner = async (id) => {
 
 export const getAllTransactionSoldCustomer = async (id) => {
   try {
-    const res = await axios.get("http://localhost:8082/api/transaction/seller/"+id);
+    const res = await axios.get("http://localhost:8082/api/transactions/seller/"+id);
     return res;
   } catch (err) {
     console.log(err);
