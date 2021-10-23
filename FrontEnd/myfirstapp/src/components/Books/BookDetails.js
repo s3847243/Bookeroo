@@ -85,25 +85,7 @@ class BookDetails extends Component {
                             <div className="sub-content">
                                 <h1 className="title-bd">{book.title}</h1>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                    qui officia deserunt mollit anim id est laborum.
-                                </p>
-                                <p>
-                                    Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Sit amet risus
-                                    nullam eget felis eget. Vestibulum morbi blandit cursus risus at ultrices. Gravida
-                                    cum sociis natoque penatibus et magnis dis parturient. Ultrices in iaculis nunc sed
-                                    augue. Sit amet purus gravida quis blandit. Lectus urna duis convallis convallis. Vel
-                                    pharetra vel turpis nunc eget lorem dolor. Risus feugiat in ante metus dictum at tempor
-                                    commodo. Vel pharetra vel turpis nunc eget lorem dolor. Magna eget est lorem ipsum dolor.
-                                    Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Arcu non odio euismod
-                                    lacinia at quis risus sed vulputate. Maecenas sed enim ut sem. At imperdiet dui accumsan
-                                    sit. Nam libero justo laoreet sit amet cursus. In ornare quam viverra orci sagittis eu
-                                    volutpat. Sit amet porttitor eget dolor morbi non arcu risus. Adipiscing diam donec
-                                    adipiscing tristique risus nec feugiat.
+                                    {book.tableOfContents}
                                 </p>
                             </div>
                         </div>
