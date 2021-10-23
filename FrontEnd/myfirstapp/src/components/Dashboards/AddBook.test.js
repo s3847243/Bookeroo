@@ -15,17 +15,4 @@ describe("<AddBook /> component Unit Test", () => {
         expect(component.find('form')).toHaveLength(1);    
     });
 
-
-    // it("Should update state when input changes", ()=>{
-    //     const component = shallow(
-    //         <AddBook/>
-    //     );
-    //     const value = 'eg';
-    //     const getAttribute = jest.fn();
-    //     getAttribute.mockReturnValueOnce(value);
-    
-        
-    //     component.find('#Book-name').simulate('change', { target: { name: 'title',getAttribute, value: value } });
-    //     expect(component.find('#Book-name').text()).toEqual('eg');
-    // });
 })

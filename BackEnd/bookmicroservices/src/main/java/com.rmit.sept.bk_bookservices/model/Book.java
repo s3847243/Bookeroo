@@ -27,7 +27,8 @@ public class Book{
     private String genre;
     @NotBlank(message = "publication year is required")
     private String published;
-    @Transient
+    @NotBlank(message = "table of contents")
+    private String tableOfContents;
     private Date create_At;
     private Date update_At;
 
@@ -50,6 +51,13 @@ public class Book{
 
     public String getPublished() { return published; }
     public void setPublished(String published) { this.published = published; }
+
+    public String getTableOfContents() {
+        return tableOfContents;
+    }
+    public void setTableOfContents(String tableOfContents) {
+        this.tableOfContents = tableOfContents;
+    }
 
     public Date getCreate_At() {
         return create_At;

@@ -1,18 +1,16 @@
 import React from 'react'
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
 export const SidebarDataUser = [
-    // {
-    //     title : "Transactions - Sold",
-    //     icon: <FaIcons.FaEnvelope />,
-    //     path: "/AllUsers",
-    //     cName:'nav-text'
-    // },
+    {
+        title : "Transactions - Sold",
+        icon: <FaIcons.FaEnvelope />,
+        path: "/TransactionSold",
+        cName:'nav-text'
+    },
     {
         title : "Transactions - Bought",
         icon: <FaIcons.FaEnvelope />,
-        path: "/ApproveUsers",
+        path: "/TransactionBought",
         cName:'nav-text'
     },
     {

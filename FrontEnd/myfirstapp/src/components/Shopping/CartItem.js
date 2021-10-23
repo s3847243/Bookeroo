@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 function CartItem({title, isbn, seller, price, condition, qtyRem, index, handler}){
 
@@ -12,7 +12,12 @@ function CartItem({title, isbn, seller, price, condition, qtyRem, index, handler
             <td>{seller}</td> 
             <td>${price}</td>
             <td>{condition}</td>
+            {handler ? 
+            
             <td><button className="rm-cart-btn" onClick={() => handler(index)}>Remove</button></td>
+                :
+                <Fragment></Fragment>
+            }
         </tr>   
      
     );

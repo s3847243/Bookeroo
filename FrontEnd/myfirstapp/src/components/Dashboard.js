@@ -10,60 +10,15 @@ import Reports from './Dashboards/Reports';
 import AddBook from "./Dashboards/AddBook";
 import SellBook from "./Dashboards/SellBook";
 import SellOldBook from "./Dashboards/SellOldBook"
-import Orders from "./Dashboards/Orders"
+import CustomerOrders from './Dashboards/CustomerOrders';
+import TransactionBoughtCustomer from './Dashboards/TransactionBoughtCustomer'
+import TransactionSoldCustomer from './Dashboards/TransactionSoldCustomer'
+import TransactionShopOwner from './Dashboards/TransactionShopOwner'
 class Dashboard extends Component { 
 
 
     render() {
-        return (
-            // <React.StrictMode>
-            //    <DashNav userType = {this.state.userType} />
-            //    <DashContent currentPage = {this.state.currentPage} /> 
-            // </React.StrictMode>
-        //     <div className = "side">
-        //         <div className="Sidebar">
-        //             <ul className = "SidebarList">
-        //                 {
-        //                     SidebarData.map((val,key) =>{
-        //                         return (
-        //                             <li
-        //                                 key={key}
-        //                                 className = "row"
-        //                                 id={window.location.pathname == val.link ? "active" : ""}
-        //                                 onClick={() => {
-        //                                     window.location.pathname = val.link;
-        //                                 }}
-        //                             >
-        //                                 <div id="icon">{val.icon}</div>
-        //                                 <div id = "title">{val.title}</div>
-        //                             </li>
-        //                         );
-        //                     })
-        //                 }
-        //             </ul>        
-        //         </div>
-        //     </div>
-            
-            
-
-        // // <div className="Persons">
-        // //     <div className="container">
-        // //         <div className="row">
-        //             <div className="col-md-12">
-        //                 <h1 className="display-4 text-center">Persons</h1>
-        //                 <br />
-        //                <CreatePersonButton />
-        //                 <br />
-        //                 <hr />
-        //                 <Person/>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
-    
-        //)
-        
-        
+        return (    
         <Fragment>
             <Router>
                 <Sidebar />
@@ -72,11 +27,14 @@ class Dashboard extends Component {
                     <Route  path ='/ApproveUsers' component={ApproveUsers} />
                     <Route  path ='/AllBooks'  component={AllBooks} />
                     <Route  path ='/Transactions'  component={Transactions} />
+                    <Route  path ='/Transaction_Shop_Owner'  component={TransactionShopOwner} />
                     <Route  path ='/Reports'  component={Reports} />
                     <Route exact path ="/addBook" component={AddBook} />
                     <Route exact path ="/sellBookCust" component={SellOldBook} />
-                    <Route exact path ="/Orders" component={Orders} />
-                    <Route exact path ="/SellBook" component={SellBook} />
+                    <Route exact path ="/Orders" component={CustomerOrders} />
+                    <Route exact path ="/sellBooks" component={SellBook} />
+                    <Route exact path = "/TransactionSold" component={TransactionSoldCustomer} />
+                    <Route exact path = "/TransactionBought" component={ TransactionBoughtCustomer} />
 
                 </Switch>
             </Router>

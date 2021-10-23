@@ -1,0 +1,129 @@
+.reviews h2 {
+  margin-top: 10px;
+  font-size: 40px;
+  margin-left: 133px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.book-review-row {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 20px;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px 10px;
+  border-radius: 8px;
+}
+
+.br-info {
+  flex: 0 0 30%;
+  margin-left: 10px;
+  overflow-wrap: break-word;
+}
+.br-content {
+  flex: 0 0 70%;
+  border-left: 1px solid rgb(167, 167, 167);
+  padding: 10px;
+}
+
+.br-content p {
+  width: 500px;
+  overflow-wrap: break-word;
+}
+
+.add-review {
+  width: 70%;
+  margin: 100px auto;
+}
+
+.add-review h2,
+h3 {
+  text-align: center;
+}
+
+.review-form-field {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+.review-form-field label,
+input,
+textarea {
+  margin: auto;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.review-form-field input,
+textarea {
+  font-size: 20px;
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center;
+}
+
+.rating-field {
+  margin-left: 0;
+  margin-top: 15px;
+}
+.rating-field span:first-of-type {
+  margin-left: 0px;
+}
+.review-name {
+  margin-bottom: 3px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.review-date {
+  margin-top: 3px;
+  font-size: small;
+}
+
+.review-form-submit {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.review-form-submit input {
+  background-color: #439fdc;
+  border-radius: 10px;
+  color: white;
+  border-style: none;
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+}
+
+#reviews-info{
+  text-align: center;
+}
+
+.add-review-info{
+  text-align: center;
+  margin-top: 100px;
+}
+
+.average-rating {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+  margin: 30px auto;
+  
+}
+.average-rating p{
+  margin-bottom: 4px;
+}
+
+small {
+  font-size: 14px;
+}
+

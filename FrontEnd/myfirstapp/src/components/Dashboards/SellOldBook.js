@@ -1,67 +1,82 @@
-import React, { 
-  // useState 
-} from 'react'
-// import data from './mock-data-App.json'
+import React, { useState,useEffect } from "react";
+import { getId, getName } from "../../actions/securityActions";
+import { getAllBooks } from "../../actions/bookActions";
+import { addListing } from "../../actions/listingActions";
 
 function SellOldBook() {
-  return(
-    <h1> Error 404 : This Page is currently under construction</h1>
-  )
-  //  const[radio,setRadio] = useState("");
-  //  const[amount,setAmount] = useState("");
-  //  const [values, setValues] = useState({
-  //    type:"",bookName:"",amount:""
-  //  });
+  const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllBooks().then((res)=>{
+        setContacts(res.data)
+      });
+    },[])
+  const [amount, setAmount] = useState("");
+  const [values, setValues] = useState({
+    condition: "",
+    amount: "",
+    bookName:"The Lord of the Rings | 9780007136582",
+  });
 
-  // handleSellFormChange = event =>{
-  //   event.preventDefault();
-  //   const fieldName = event.target.getAttribute("name");
-  //   const fieldValue = event.target.value;
-  //   const newFormData = { ...values};
-  //   newFormData[fieldName] = fieldValue;
-  //   setValues(newFormData);
-  // }
-  // handleSellFormSubmit = event =>{
-  //   event.preventDefault();
-  //   const sellBook = {
-  //     type:values.type,
-  //     bookName:values.bookName,
-  //     amount:values.amount
+  const handleSellFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = { ...values };
+    newFormData[fieldName] = fieldValue;
+    setValues(newFormData);
+  };
+  const handleSellFormSubmit = (event) => {
+    event.preventDefault();
+    var string = values.bookName;
+    const words = string.split("|");
+    const sellBook = {
+      isbn:words[1].trim(),
+      val:values.amount,
+      sellerId:getId(),
+      sellerName:getName(),
+      cond: values.condition,
+    };
+    addListing(sellBook);
+  };
+  return (
+    <form className="sell-form" onSubmit={handleSellFormSubmit}>
+      <div>
+        <div className="radio-buttons">
+          OLD
+          <input
+            id="old"
+            value="Old"
+            name="condition"
+            type="radio"
+            required
+            onChange={handleSellFormChange}
+          />
+        </div>
+        <select
+          className="custom-select"
+          name="bookName"
+          onChange={handleSellFormChange}
+        >
+          {contacts.map((names) => (
+            <option key={names.isbn}>
+              {names.title} {"|"} {names.isbn} 
+            </option>
+          ))}
+        </select>
 
-  //   }
-  // }
-  // return (
-  //   <form className = "sell-form" onSubmit={handleSellFormSubmit}>
-  //   <div>
-  //     <div className="radio-buttons">
-        
-  //       OLD
-  //       <input
-  //         id="old"
-  //         value="OLD"
-  //         name="type"
-  //         type="radio"
-  //         required
-  //         onChange={handleSellFormChange}
-  //       />
-  //     </div>
-  //     <select className="custom-select" name="bookName" onChange={handleSellFormChange}>
-  //       {data.map((names) => (
-  //         <option key={names.ABN}>{names.ABN}</option>
-  //       ))}
-  //     </select>
-
-  //     <label>Amount</label>
-  //     <input
-  //       id="amount"
-  //       value={amount}
-  //       name="amount"
-  //       type="text"
-  //       onChange={handleSellFormChange}
-  //     />
-  //     <button className = "sell-submit" type = "submit">DONE</button>
-  //   </div>
-  //   </form>
-  // );
+        <label>Amount</label>
+        <input
+          id="amount"
+          
+          name="amount"
+          type="text"
+          onChange={handleSellFormChange}
+        />
+        <button className="sell-submit" type="submit">
+          DONE
+        </button>
+      </div>
+    </form>
+  );
 }
 export default SellOldBook;
