@@ -1,23 +1,22 @@
-import React, { useState, Fragment,useEffect } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import { nanoid } from "nanoid";
 import "../usersTable.css";
-import ReadTransRow from "./ReadTransRow";
-import { getAllTransactionsAdmin } from "../../actions/dashboardActions";
+import ReadTransRowShopOwner from "./ReadTransRowShopOwner";
+import { getId } from "../../actions/securityActions";
+import { getAllTransactionsShopOwner } from "../../actions/dashboardActions";
 
-function Transactions(){
-  
+function TransactionsShopOwner(){
     const [contacts, setContacts] = useState([]);
     useEffect(() => {
-      getAllTransactionsAdmin().then((res)=>{
+      getAllTransactionsShopOwner(getId()).then((res)=>{
         if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])
+    
 
-
-
-  return (
-    <Fragment>
+    return (
+      <Fragment>
       <div className="app-container">
         <form className="tableForm">
           <table>
@@ -25,7 +24,7 @@ function Transactions(){
               <tr>
                 <th>id</th>
                 <th>bookId</th>
-                <th>customerId</th>
+                <th>customerID</th>
                 <th>sellerId</th>
                 <th>amount</th>
                 <th>status</th>
@@ -34,10 +33,10 @@ function Transactions(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                  (
-                  <ReadTransRow
-                    contact={contact}
-                  />
+                   (
+                    <ReadTransRowShopOwner
+                      contact={contact}
+                    />
                   )
                 </Fragment>
               ))}
@@ -45,8 +44,8 @@ function Transactions(){
           </table>
         </form>
       </div>
-    </Fragment>
-  );
+      </Fragment>
+    );
 };
 
-export default Transactions;
+export default TransactionsShopOwner;

@@ -52,3 +52,55 @@ export const blockUser = async (id) => {
     console.log(err);
   }
 };
+
+export const getAllTransactionsAdmin = async () => {
+  try {
+    const res = await axios.get("http://localhost:8082/api/transactions/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAllTransactionsShopOwner = async (id) => {
+  try {
+    const res = await axios.get("http://localhost:8082/api/transactions/seller/"+id);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAllTransactionSoldCustomer = async (id) => {
+  try {
+    const res = await axios.get("http://localhost:8082/api/transactions/seller/"+id);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllTransactionBoughtCustomer = async (id) => {
+  try {
+    const res = await axios.get("http://localhost:8082/api/transactions/customer/"+id);  // 
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAllOrdersCustomer = async (id) => {         
+  try {                                                              /// same as getalltransboughtcustoer
+    const res = await axios.get("http://localhost:8082/api/transactions/");
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const postCancelOrderCustomer = async (postCancel,id)=> {
+  try {
+    await axios.post("http://localhost:8082/api/transactions/update/"+id, postCancel);
+    
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -11,17 +11,14 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "title is required")
-    private String title;
-    @NotBlank(message = "author is required")
-    private String userID;
+    @NotBlank(message = "reviewer is required")
+    private String reviewer;
     @NotBlank(message = "isbn is required")
-    @Column(unique = true)
-    @Digits(fraction = 0, integer = 13)
     private String isbn;
-    private int rating;
+    @NotBlank(message = "rating is required")
+    private String rating;
+    @NotBlank(message = "body is required")
     private String body;
-    @Transient
     private Date create_At;
     private Date update_At;
 
@@ -30,17 +27,20 @@ public class Review {
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
 
-    public String getTitle() {return title;}
-    public void setTitle(String title) {this.title = title;}
-
-    public String getUserID() {return userID; }
-    public void setUserID(String userID) {this.userID = userID; }
-
     public String getIsbn() {return isbn;}
     public void setIsbn(String isbn) {this.isbn = isbn; }
 
-    public int getRating() {return rating;}
-    public void setIsbn(int rating) {this.rating = rating; }
+    public String getReviewer() {
+        return reviewer;
+    }
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+    public String getRating() {return rating;}
 
     public String getBody() {return body;}
     public void setBody(String body) {this.body = body; }
@@ -59,7 +59,6 @@ public class Review {
         this.update_At = update_At;
     }
 
-
     @PrePersist
     protected void onCreate(){
         this.create_At = new Date();
@@ -72,13 +71,15 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Review{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", userID='" + userID + '\'' +
+                ", reviewer='" + reviewer + '\'' +
                 ", isbn='" + isbn + '\'' +
+                ", rating=" + rating +
+                ", body='" + body + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';
     }
+
 }

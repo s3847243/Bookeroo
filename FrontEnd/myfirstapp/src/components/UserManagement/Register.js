@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { createNewUser } from "../../actions/securityActions";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
-// import classnames from "classnames";
+import "./Register.css"
 
 export class Register extends Component {
   constructor() {
@@ -37,48 +37,47 @@ export class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
-    
+
     let err = this.props.createNewUser(newUser, this.props.history);
-    this.setState({registerError: err})
+    this.setState({ registerError: err })
     console.log(this.state.registerError);
   }
 
   handleUserChange(e) {
     const businessSelected = e.target.value === "Public User" ? false : true;
     const abnFeild = document.getElementById("abn-field");
-    if(businessSelected) {
+    if (businessSelected) {
       abnFeild.removeAttribute("disabled")
-    } 
-    else 
-    {
+    }
+    else {
       abnFeild.setAttribute("disabled", "");
       abnFeild.value = "";
-    } 
-    
+    }
+
     this.setState({
       isBusiness: businessSelected
     });
   }
 
   onChange(e) {
-  this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
 
 
   render() {
     // const { errors } = this.state;
-    const errorMessage = this.state.registerError ? 
-    <Fragment>
-      <h2>Incorrect information</h2>
-      <p>This error may be because of one or more of the following factors:</p>
-      <ul>
-        <li>Email was already used</li>
-        <li>Passwords did not match</li>
-        <li>Password were less than 6 characters</li>
-      </ul>
-    </Fragment>
-    : null;
+    const errorMessage = this.state.registerError ?
+      <Fragment>
+        <h2>Incorrect information</h2>
+        <p>This error may be because of one or more of the following factors:</p>
+        <ul>
+          <li>Email was already used</li>
+          <li>Passwords did not match</li>
+          <li>Password were less than 6 characters</li>
+        </ul>
+      </Fragment>
+      : null;
     return (
       <div className="register">
         <div className="container">
@@ -151,18 +150,26 @@ export class Register extends Component {
                     placeholder="Confirm Password"
                     name="confirmPassword"
                     value={this.state.confirmPassword}
-                    onChange = {this.onChange}
+                    onChange={this.onChange}
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <input type="radio" value="Public User" name="user-type" onChange={e => this.handleUserChange(e)} required/> Public User <br></br>
-                  <input type="radio" value="Business User" name="user-type" onChange={e => this.handleUserChange(e)} required/> Business User
+                  <div className="radio-group">
+                    <div>
+                      <label for="pub-radio">Public User </label>
+                      <input id="pub-radio" type="radio" value="Public User" name="user-type" onChange={e => this.handleUserChange(e)} required />
+                    </div>
+                    <div>
+                      <label for="bus-radio">Business User</label>
+                      <input id="bus-radio" type="radio" value="Business User" name="user-type" onChange={e => this.handleUserChange(e)} required />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="form-group">
                   <input
-                    id= "abn-field"
+                    id="abn-field"
                     type="text"
                     className="form-control form-control-lg"
                     placeholder="Your ABN"
@@ -174,7 +181,7 @@ export class Register extends Component {
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
-              
+
             </div>
           </div>
         </div>

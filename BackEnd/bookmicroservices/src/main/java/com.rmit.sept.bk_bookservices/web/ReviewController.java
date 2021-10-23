@@ -1,6 +1,5 @@
 package com.rmit.sept.bk_bookservices.web;
 
-import com.rmit.sept.bk_bookservices.model.Book;
 import com.rmit.sept.bk_bookservices.model.Review;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_bookservices.services.ReviewService;
@@ -39,15 +38,15 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/review/{id}")
     public Review getById(@PathVariable String id){
         Long reviewId = Long.parseLong(id);
         return reviewService.getById(reviewId);
     }
 
     @GetMapping("/isbn/{isbn}")
-    public Review getByISBN(@PathVariable String isbn){
-        return reviewService.getByISBN(isbn);
+    public List<Review> getByISBN(@PathVariable String isbn){
+        return reviewService.getAllByISBN(isbn);
     }
 
     @PostMapping("delete/{id}")

@@ -1,23 +1,23 @@
-import React, { useState, Fragment,useEffect } from "react";
-import { nanoid } from "nanoid";
+import React, { useState, useEffect,Fragment } from "react";
 import "../usersTable.css";
 import ReadTransRow from "./ReadTransRow";
-import { getAllTransactionsAdmin } from "../../actions/dashboardActions";
+import { getAllTransactionBoughtCustomer } from "../../actions/dashboardActions";
+import { getId } from "../../actions/securityActions";
 
-function Transactions(){
+function TransactionBoughtCustomer(){
   
     const [contacts, setContacts] = useState([]);
     useEffect(() => {
-      getAllTransactionsAdmin().then((res)=>{
+      getAllTransactionBoughtCustomer(getId()).then((res)=>{
         if(res === undefined) {return}
         setContacts(res.data)
       });
     },[])
+    console.log(contacts);
 
 
-
-  return (
-    <Fragment>
+    return (
+      <Fragment>
       <div className="app-container">
         <form className="tableForm">
           <table>
@@ -34,10 +34,10 @@ function Transactions(){
             <tbody>
               {contacts.map((contact) => (
                 <Fragment>
-                  (
-                  <ReadTransRow
-                    contact={contact}
-                  />
+                   (
+                    <ReadTransRow
+                      contact={contact}
+                    />
                   )
                 </Fragment>
               ))}
@@ -45,8 +45,8 @@ function Transactions(){
           </table>
         </form>
       </div>
-    </Fragment>
-  );
+      </Fragment>
+    );
 };
 
-export default Transactions;
+export default TransactionBoughtCustomer;

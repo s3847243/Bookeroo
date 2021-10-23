@@ -1,5 +1,7 @@
 package com.rmit.sept.bk_listingservices.model;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,12 +13,17 @@ public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "book id is required")
-    private String bookId;
+    @NotNull(message = "seller name is required")
+    private String sellerName;
     @NotBlank(message = "seller id is required")
     private String sellerId;
     @NotNull(message = "value is required")
     private int value;
+    @NotNull(message = "condition is required")
+    private String condition;
+    @NotNull(message = "isbn is required")
+    private String isbn;
+
     private Date create_At;
     private Date update_At;
 
@@ -24,13 +31,6 @@ public class Listing {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
-
-    public String getBookId() {
-        return bookId;
-    }
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
 
     public String getSellerId() {
         return sellerId;
@@ -60,6 +60,29 @@ public class Listing {
         this.update_At = update_At;
     }
 
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     @PrePersist
     protected void onCreate(){
@@ -73,11 +96,13 @@ public class Listing {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Listing{" +
                 "id=" + id +
-                ", bookId=" + bookId +
-                ", sellerId=" + sellerId +
+                ", sellerName=" + sellerName +
+                ", sellerId='" + sellerId + '\'' +
                 ", value=" + value +
+                ", condition=" + condition +
+                ", isbn=" + isbn +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';

@@ -1,8 +1,8 @@
-package com.rmit.sept.bk_transactionservices.security;
+package com.rmit.sept.bk_listingservices.security;
 
 public class SecurityConstant {
 
-    public static final String BOOK_CREATION_URLS = "/api/transactions/**";
+    public static final String LISTING_URLS = "/api/listings/**";
     public static final String H2_URL = "/h2-console/**";
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";

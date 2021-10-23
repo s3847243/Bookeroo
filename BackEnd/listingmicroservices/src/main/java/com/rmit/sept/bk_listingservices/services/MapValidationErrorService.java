@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_transactionservices.services;
+package com.rmit.sept.bk_listingservices.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

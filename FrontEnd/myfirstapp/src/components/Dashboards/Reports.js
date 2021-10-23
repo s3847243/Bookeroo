@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{ useState, Fragment, useEffect } from 'react';
 import {CSVLink} from 'react-csv';
-import data from './mock-data-books.json'
-import dataTrans from './mock-data-trans.json'
+import { getAllTransactionsAdmin } from '../../actions/dashboardActions';
+import { getAllBooks } from '../../actions/bookActions';
 import "../usersTable.css"
 
 const TransactionHeader = [
@@ -23,18 +23,31 @@ const Booksheaders = [
   {label:'status',key:'status'},
   {label:'type',key:'bookName'},
 ]
-const csvReport = {
-  filename:'Report.csv',
-  headers:Booksheaders,
-  data:data
-}
-const csvTransReport = {
-  filename:'ReportTransactions.csv',
-  headers:TransactionHeader,
-  data:dataTrans
-}
- 
 function Reports(){
+  const [contacts, setContacts] = useState([]);
+    useEffect(() => {
+      getAllBooks().then((res)=>{
+        if(res === undefined) {return}
+        setContacts(res.data)
+      });
+    },[])
+    const [value, setValues] = useState([]);
+    useEffect(() => {
+      getAllTransactionsAdmin().then((res)=>{
+        if(res === undefined) {return}
+        setValues(res.data)
+      });
+    },[])
+  const csvReport = {
+    filename:'Report.csv',
+    headers:Booksheaders,
+    data:contacts
+  }
+  const csvTransReport = {
+    filename:'ReportTransactions.csv',
+    headers:TransactionHeader,
+    data:value
+  }
   return(
     <div style={{marginTop: "50px",
     

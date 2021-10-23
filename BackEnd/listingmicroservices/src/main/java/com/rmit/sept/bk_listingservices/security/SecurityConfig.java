@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_transactionservices.security;
+package com.rmit.sept.bk_listingservices.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .antMatchers(SecurityConstant.BOOK_CREATION_URLS).permitAll()
+                .antMatchers(SecurityConstant.LISTING_URLS).permitAll()
                 .antMatchers(SecurityConstant.H2_URL).permitAll()
                 .anyRequest().authenticated();
     }

@@ -1,4 +1,4 @@
-package com.rmit.sept.bk_transactionservices;
+package com.rmit.sept.bk_listingservices;
 
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class mstransactionTests {
+class mslistingtests {
 
 	@Test
 	void contextLoads() {

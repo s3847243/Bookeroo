@@ -13,3 +13,11 @@ services:
     image: s3851781/bk-book-microservices:latest
     ports:
       - "8081:8081"
+  transaction_ms:
+    image: s3851781/bk-transaction-microservices:latest
+    ports:
+      - "8082:8082"
+  listing_ms:
+    image: s3851781/bk-listing-microservices:latest
+    ports:
+      - "8083:8083"

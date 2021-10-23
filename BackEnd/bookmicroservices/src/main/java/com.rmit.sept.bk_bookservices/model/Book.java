@@ -27,7 +27,6 @@ public class Book{
     private String genre;
     @NotBlank(message = "publication year is required")
     private String published;
-    @Transient
     private Date create_At;
     private Date update_At;
 
