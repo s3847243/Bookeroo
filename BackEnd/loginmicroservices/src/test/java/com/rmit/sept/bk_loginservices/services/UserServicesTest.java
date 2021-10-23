@@ -149,35 +149,5 @@ class UserServicesTest {
         assertEquals(1, testUserDetailsService.getUnapprovedUsers().size());
     }
 
-    @Test
-    void approveUser(){
-        testUser.setUserType("BUSINESS");
 
-        Role businessRole = new Role();
-        businessRole.setName("BUSINESS");
-        Mockito.when(roleRepository.findByName(Mockito.any())).thenReturn(businessRole);
-
-        Mockito.when(userRepository.save(Mockito.any(User.class)))
-                .thenAnswer(i -> i.getArguments()[0]);
-
-        testUser = testUserService.saveUser(testUser);
-
-        assertTrue(testUserDetailsService.approveUser(id));
-    }
-
-    @Test
-    void blockUser(){
-        testUser.setUserType("USER");
-
-        Role userRole = new Role();
-        userRole.setName("USER");
-        Mockito.when(roleRepository.findByName(Mockito.any())).thenReturn(userRole);
-
-        Mockito.when(userRepository.save(Mockito.any(User.class)))
-                .thenAnswer(i -> i.getArguments()[0]);
-
-        testUser = testUserService.saveUser(testUser);
-
-        assertTrue(testUserDetailsService.blockUser(id));
-    }
 }
