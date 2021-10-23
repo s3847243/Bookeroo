@@ -36,17 +36,13 @@ public class ReviewTests {
         MockitoAnnotations.initMocks(this);
 
         testReview = new Review();
-        testReview.setTitle("Revolt Against the Modern World");
-        testReview.setUserID("1");
-        testReview.setBody("10/10 ");
+        testReview.setBody("10/10");
         testReview.setIsbn("089281506X");
         testReview.setId(Long.parseLong("1"));
     }
 
     @Test
     void testSetGetMethods() {
-        assertTrue(testReview.getUserID().equals("1"));
-        assertTrue(testReview.getTitle().equals("Revolt Against the Modern World"));
         assertTrue(testReview.getBody().equals("10/10"));
         assertTrue(testReview.getIsbn().equals("089281506X"));
         assertTrue(testReview.getId() == Long.parseLong("1"));
