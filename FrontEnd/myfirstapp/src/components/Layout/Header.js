@@ -65,11 +65,18 @@ import { getType } from '../../actions/securityActions';
                         </li>
                         </Fragment>
                     }
+                    {
+                        (getType() == "USER" || getType() == "NONE") 
+                        ?
                         <li className="nav-item">
                             <a className="nav-link" href="/cart">
                                 Cart
                             </a>
                         </li>
+                        :
+                        <Fragment/>
+                    }
+                        
 
                         <li className="nav-item">
                             <a className="nav-link" href="/contact">
