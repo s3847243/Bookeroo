@@ -1,7 +1,6 @@
 package com.rmit.sept.bk_bookservices.web;
 
 
-import com.rmit.sept.bk_bookservices.Repositories.BookRepository;
 import com.rmit.sept.bk_bookservices.model.Book;
 import com.rmit.sept.bk_bookservices.services.BookService;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
@@ -11,7 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Map;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import javax.validation.Valid;
 
@@ -19,6 +19,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
+
+    private final Logger logger = LogManager.getLogger(BookController.class);
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
@@ -28,6 +30,7 @@ public class BookController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createBook(@Valid @RequestBody Book book, BindingResult result){
+        logger.debug("createBook Called");
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -38,28 +41,33 @@ public class BookController {
 
     @GetMapping("")
     public List<Book> allBooks(){
+        logger.debug("allBooks called");
         return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
     public Book getById(@PathVariable String id){
+        logger.debug("getById called");
         Long bookId = Long.parseLong(id);
         return bookService.getById(bookId);
     }
 
     @GetMapping("/isbn/{isbn}")
     public Book getByISBN(@PathVariable String isbn){
+        logger.debug("getByISBN called");
         return bookService.getByISBN(isbn);
     }
 
 
     @GetMapping("/search")
     public List<Book> search(@RequestParam String params){
+        logger.debug("search called");
         return bookService.search(params);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @Valid @RequestBody Book book, BindingResult result){
+        logger.debug("update called");
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -71,7 +79,7 @@ public class BookController {
 
     @PostMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable String id){
-
+        logger.debug("delete called");
         bookService.deleteBook(id);
         return new ResponseEntity<>("Book deleted", HttpStatus.OK);
     }

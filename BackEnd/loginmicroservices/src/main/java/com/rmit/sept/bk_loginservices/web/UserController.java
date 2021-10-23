@@ -10,6 +10,8 @@ import com.rmit.sept.bk_loginservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_loginservices.services.UserService;
 import com.rmit.sept.bk_loginservices.validator.UserValidator;
 import org.apache.coyote.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PRE
 @RequestMapping("/api/users")
 public class UserController {
 
+    private final Logger logger = LogManager.getLogger(UserController.class);
+
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
@@ -42,6 +46,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
+        logger.debug("registerUser called");
         // Validate passwords match
         userValidator.validate(user,result);
 
@@ -63,7 +68,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-
+        logger.debug("login called");
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) return errorMap;
@@ -87,17 +92,22 @@ public class UserController {
 
     @GetMapping("")
     public List<User> allUsers(){
+        logger.debug("allUsers called");
         return userDetailsService.getAllUsers();
     }
 
     @GetMapping("/{id}")
     public User get(@PathVariable String id){
+        logger.debug("get called");
+        logger.debug("user id: " + id);
         Long userId = Long.parseLong(id);
         return userDetailsService.loadUserById(userId);
     }
 
     @PostMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id){
+        logger.debug("deleteUser called");
+        logger.debug("user id: " + id);
         Long userId = Long.parseLong(id);
 
         userDetailsService.deleteUser(userId);
@@ -106,6 +116,9 @@ public class UserController {
 
     @PostMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@Valid @RequestBody User user, @PathVariable String id, BindingResult result){
+        logger.debug("updateUser called");
+        logger.debug("user id: " + id);
+        logger.debug("user info: " + user);
         Long userId = Long.parseLong(id);
         System.out.println(userId + " update called");
         System.out.println(user);
@@ -115,16 +128,19 @@ public class UserController {
 
     @GetMapping("/approve")
     public List<User> getUnapproved(){
+        logger.debug("getUnapproved called");
         return userDetailsService.getUnapprovedUsers();
     }
 
 
     @PostMapping("/approve/{id}")
     public ResponseEntity<?> approveUser(@PathVariable String id){
+        logger.debug("approveUser called");
+        logger.debug("user id: " + id);
         Long userId = Long.parseLong(id);
 
 
-        if(userDetailsService.approveUser(userId))
+        if(userDetailsService.userApproval(userId, true))
             return new ResponseEntity<>("User approved", HttpStatus.OK);
         else
             return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
@@ -132,9 +148,11 @@ public class UserController {
 
     @PostMapping("/blockUser/{id}")
     public ResponseEntity<?> blockUser(@PathVariable String id){
+        logger.debug("blockUser called");
+        logger.debug("user id: " + id);
         Long userId = Long.parseLong(id);
 
-        if(userDetailsService.blockUser(userId))
+        if(userDetailsService.userApproval(userId, false))
             return new ResponseEntity<>("User approved", HttpStatus.OK);
         else
             return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);

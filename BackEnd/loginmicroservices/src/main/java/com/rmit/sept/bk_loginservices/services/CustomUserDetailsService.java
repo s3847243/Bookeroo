@@ -75,28 +75,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         return users;
     }
 
-    public boolean approveUser(Long id){
-        User user;
-        if(userRepository.getById(id) == null){
-            return false;
+    public boolean userApproval(Long id, Boolean approved){
+        User user = userRepository.getById(id);
+        boolean returnVal = false;
+        if(user != null){
+            user.setEnabled(approved);
+            userRepository.save(user);
+            returnVal = true;
         }
 
-        user = userRepository.getById(id);
-        user.setEnabled(true);
-        userRepository.save(user);
-        return true;
-    }
-
-    public boolean blockUser(Long id){
-        User user;
-        if(userRepository.getById(id) == null){
-            return false;
-        }
-
-        user = userRepository.getById(id);
-        user.setEnabled(false);
-        userRepository.save(user);
-        return true;
+        return returnVal;
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(User user){
