@@ -15,35 +15,35 @@ jobs:
     - checkout
     - setup_remote_docker
 
-#    ########## Login Microservices ##########
-#    - run:
-#        name: build dependencies
-#        command: |
-#          cd BackEnd/loginmicroservices
-#          mvn package
-#
-#    - run:
-#        name: test
-#        command: |
-#          cd BackEnd/loginmicroservices
-#          mvn test
-#
-#    # Build Image
-#    - run:
-#       name: build login microservices image
-#       command: |
-#         cd BackEnd/loginmicroservices
-#         docker build . -t $LOGIN_MS_TAG
-#
-#    # Deploy Image
-#    - run:
-#       name: login to DockerHub
-#       command: |
-#         docker login -u $DOCKER_USER -p $DOCKER_PASS
-#    - run:
-#       name: push backend (login microservices)
-#       command: |
-#         docker push $LOGIN_MS_TAG
+    ########## Login Microservices ##########
+    - run:
+        name: build dependencies
+        command: |
+          cd BackEnd/loginmicroservices
+          mvn package
+
+    - run:
+        name: test
+        command: |
+          cd BackEnd/loginmicroservices
+          mvn test
+
+    # Build Image
+    - run:
+       name: build login microservices image
+       command: |
+         cd BackEnd/loginmicroservices
+         docker build . -t $LOGIN_MS_TAG
+
+    # Deploy Image
+    - run:
+       name: login to DockerHub
+       command: |
+         docker login -u $DOCKER_USER -p $DOCKER_PASS
+    - run:
+       name: push backend (login microservices)
+       command: |
+         docker push $LOGIN_MS_TAG
 
     ########## Book Microservices ##########
 
