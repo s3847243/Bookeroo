@@ -9,7 +9,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
 
     try{
 
-      await axios.post("http://localhost:8080/api/users/register", newUser);
+      await axios.post("http://3.105.25.226:8080/api/users/register", newUser);
       history.push("/login");
       dispatch({
           type: GET_ERRORS,
@@ -29,7 +29,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
 export const login = LoginRequest => async dispatch => {
   try {
     // post => Login Request
-    const res = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
+    const res = await axios.post("http://3.105.25.226:8080/api/users/login", LoginRequest);
     // extract token from res.data
     const { token } = res.data;
     // store the token in the localStorage

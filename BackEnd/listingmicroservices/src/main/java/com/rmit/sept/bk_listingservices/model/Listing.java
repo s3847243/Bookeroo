@@ -1,7 +1,5 @@
 package com.rmit.sept.bk_listingservices.model;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,9 +16,9 @@ public class Listing {
     @NotBlank(message = "seller id is required")
     private String sellerId;
     @NotNull(message = "value is required")
-    private int value;
+    private int val;
     @NotNull(message = "condition is required")
-    private String condition;
+    private String cond;
     @NotNull(message = "isbn is required")
     private String isbn;
 
@@ -39,11 +37,11 @@ public class Listing {
         this.sellerId = sellerId;
     }
 
-    public int getValue() {
-        return value;
+    public int getVal() {
+        return val;
     }
-    public void setValue(int value) {
-        this.value = value;
+    public void setVal(int val) {
+        this.val = val;
     }
 
     public Date getCreate_At() {
@@ -68,12 +66,12 @@ public class Listing {
         this.sellerName = sellerName;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getCond() {
+        return cond;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setCond(String cond) {
+        this.cond = cond;
     }
 
     public String getIsbn() {
@@ -100,8 +98,8 @@ public class Listing {
                 "id=" + id +
                 ", sellerName=" + sellerName +
                 ", sellerId='" + sellerId + '\'' +
-                ", value=" + value +
-                ", condition=" + condition +
+                ", value=" + val +
+                ", condition=" + cond +
                 ", isbn=" + isbn +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +

@@ -29,7 +29,7 @@ function CustomerOrders(){
         bookId:contact.bookId,
         customerId:contact.customerId,
         sellerId:contact.sellerId,
-        value:contact.value,
+        val:contact.val,
         status:newStatus
       }
       postCancelOrderCustomer(postCancel,contact.id);

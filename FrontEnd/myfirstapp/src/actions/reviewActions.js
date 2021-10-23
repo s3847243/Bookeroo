@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getAllReviews = async () => {
   try {
-    const res = await axios.get("http://localhost:8081/api/reviews/");
+    const res = await axios.get("http://3.105.25.226:8081/api/reviews/");
     return res;
   } catch (err) {
     console.log(err);
@@ -11,7 +11,7 @@ export const getAllReviews = async () => {
 
 export const getIsbnReviews = async (isbn) => {
   try {
-    const res = await axios.get("http://localhost:8081/api/reviews/isbn/" + isbn);
+    const res = await axios.get("http://3.105.25.226:8081/api/reviews/isbn/" + isbn);
     return res;
   } catch (err) {
     console.log(err);
@@ -22,7 +22,7 @@ export const addReview = async (newReview) => {
   try {
     console.log(newReview);
     console.log("addReview call");
-    await axios.post("http://localhost:8081/api/reviews/create", newReview);
+    await axios.post("http://3.105.25.226:8081/api/reviews/create", newReview);
   }
   catch (err) {
     console.log(err);
